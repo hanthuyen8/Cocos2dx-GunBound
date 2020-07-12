@@ -62,6 +62,7 @@ list(APPEND GAME_SOURCE
      Classes/Dino.cpp
      Classes/Hockey/Hockey.cpp
      Classes/Hockey/GameSprite.cpp
+     Classes/GunBound/GunBound.cpp
      )
 list(APPEND GAME_HEADER
      Classes/AppDelegate.h
@@ -70,6 +71,7 @@ list(APPEND GAME_HEADER
      Classes/Dino.h
      Classes/Hockey/Hockey.h
      Classes/Hockey/GameSprite.h
+     Classes/GunBound/GunBound.h
      )
 
 if(ANDROID)

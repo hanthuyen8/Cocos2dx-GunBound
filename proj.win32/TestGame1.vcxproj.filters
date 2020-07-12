@@ -19,6 +19,9 @@
     <ClCompile Include="D:\Projects\Cocos2dx\TestGame1\Classes\Hockey\GameSprite.cpp">
       <Filter>Source Files\Classes\Hockey</Filter>
     </ClCompile>
+    <ClCompile Include="D:\Projects\Cocos2dx\TestGame1\Classes\GunBound\GunBound.cpp">
+      <Filter>Source Files\Classes\GunBound</Filter>
+    </ClCompile>
     <ClCompile Include="D:\Projects\Cocos2dx\TestGame1\proj.win32\main.cpp">
       <Filter>Source Files\proj.win32</Filter>
     </ClCompile>
@@ -44,6 +47,9 @@
     </ClInclude>
     <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Classes\Hockey\GameSprite.h">
       <Filter>Source Files\Classes\Hockey</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Classes\GunBound\GunBound.h">
+      <Filter>Source Files\Classes\GunBound</Filter>
     </ClInclude>
     <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\proj.win32\main.h">
       <Filter>Source Files\proj.win32</Filter>
@@ -96,6 +102,15 @@
     <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Resources\Hockey\Hockey.png">
       <Filter>Resources\Hockey</Filter>
     </ClInclude>
+    <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Resources\UI\Button_Disable.png">
+      <Filter>Resources\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Resources\UI\Button_Normal.png">
+      <Filter>Resources\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Resources\UI\Button_Press.png">
+      <Filter>Resources\UI</Filter>
+    </ClInclude>
     <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Resources\fonts\Marker Felt.ttf">
       <Filter>Resources\fonts</Filter>
     </ClInclude>
@@ -124,6 +139,9 @@
     <Filter Include="Resources\Hockey">
       <UniqueIdentifier>{B5686327-6088-3BB0-B7C1-F3329C87A6CA}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resources\UI">
+      <UniqueIdentifier>{1D093A2F-A21E-34A9-98D1-88AA6EB0CEA2}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Resources\fonts">
       <UniqueIdentifier>{1AF88857-954B-36FF-9BB6-7152666F14F7}</UniqueIdentifier>
     </Filter>
@@ -135,6 +153,9 @@
     </Filter>
     <Filter Include="Source Files\Classes">
       <UniqueIdentifier>{12E40912-90DB-338E-A66E-41483419EC57}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Classes\GunBound">
+      <UniqueIdentifier>{48182B51-57E5-33DC-AA45-4158770AA57F}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Classes\Hockey">
       <UniqueIdentifier>{39F670B9-D946-3934-BCFF-5A43F88AF4FB}</UniqueIdentifier>

@@ -82,19 +82,19 @@
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <ExceptionHandling>Sync</ExceptionHandling>
+      <ExceptionHandling>
+      </ExceptionHandling>
       <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
       <Optimization>Disabled</Optimization>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <UseFullPaths>false</UseFullPaths>
-      <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;LWS_WITH_LIBUV;CMAKE_INTDIR="Debug";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>LWS_WITH_LIBUV;CMAKE_INTDIR="Debug";%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;LWS_WITH_LIBUV;CMAKE_INTDIR=\"Debug\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;LWS_WITH_LIBUV;CMAKE_INTDIR=\"Debug\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>D:\Projects\Cocos2dx\TestGame1\cocos2d\external\recast\..;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\tinyxml2\.;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\xxhash\.;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\xxtea\.;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\clipper\.;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\edtaa3func\.;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\ConvertUTF\.;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\poly2tri\..;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\md5\..;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\unzip\.;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\Box2D\include;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\chipmunk\include;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\freetype2\include\win32\freetype2;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\bullet\include;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\bullet\include\bullet;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\jpeg\include\win32;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\openssl\include\win32;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\uv\include;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\webp\include\win32;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\websockets\include\win32;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\curl\include\win32;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\png\include\win32;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\win32-specific\gles\include\OGLES;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\win32-specific\icon\include;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\win32-specific\MP3Decoder\include;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\win32-specific\OggDecoder\include;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\win32-specific\OpenalSoft\include;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\glfw3\include\win32;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\zlib\..\win32-specific\zlib\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
@@ -113,21 +113,21 @@
     <ClCompile>
       <AdditionalIncludeDirectories>D:\Projects\Cocos2dx\TestGame1\cocos2d\external\recast\..;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\tinyxml2\.;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\xxhash\.;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\xxtea\.;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\clipper\.;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\edtaa3func\.;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\ConvertUTF\.;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\poly2tri\..;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\md5\..;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\unzip\.;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\Box2D\include;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\chipmunk\include;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\freetype2\include\win32\freetype2;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\bullet\include;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\bullet\include\bullet;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\jpeg\include\win32;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\openssl\include\win32;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\uv\include;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\webp\include\win32;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\websockets\include\win32;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\curl\include\win32;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\png\include\win32;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\win32-specific\gles\include\OGLES;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\win32-specific\icon\include;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\win32-specific\MP3Decoder\include;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\win32-specific\OggDecoder\include;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\win32-specific\OpenalSoft\include;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\glfw3\include\win32;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\zlib\..\win32-specific\zlib\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
-      <ExceptionHandling>Sync</ExceptionHandling>
+      <ExceptionHandling>
+      </ExceptionHandling>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
       <Optimization>MaxSpeed</Optimization>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <UseFullPaths>false</UseFullPaths>
-      <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;LWS_WITH_LIBUV;CMAKE_INTDIR="Release";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;LWS_WITH_LIBUV;CMAKE_INTDIR="Release";%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
       <DebugInformationFormat>
       </DebugInformationFormat>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;LWS_WITH_LIBUV;CMAKE_INTDIR=\"Release\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;LWS_WITH_LIBUV;CMAKE_INTDIR=\"Release\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>D:\Projects\Cocos2dx\TestGame1\cocos2d\external\recast\..;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\tinyxml2\.;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\xxhash\.;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\xxtea\.;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\clipper\.;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\edtaa3func\.;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\ConvertUTF\.;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\poly2tri\..;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\md5\..;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\unzip\.;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\Box2D\include;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\chipmunk\include;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\freetype2\include\win32\freetype2;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\bullet\include;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\bullet\include\bullet;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\jpeg\include\win32;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\openssl\include\win32;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\uv\include;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\webp\include\win32;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\websockets\include\win32;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\curl\include\win32;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\png\include\win32;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\win32-specific\gles\include\OGLES;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\win32-specific\icon\include;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\win32-specific\MP3Decoder\include;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\win32-specific\OggDecoder\include;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\win32-specific\OpenalSoft\include;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\glfw3\include\win32;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\zlib\..\win32-specific\zlib\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
@@ -146,21 +146,21 @@
     <ClCompile>
       <AdditionalIncludeDirectories>D:\Projects\Cocos2dx\TestGame1\cocos2d\external\recast\..;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\tinyxml2\.;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\xxhash\.;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\xxtea\.;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\clipper\.;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\edtaa3func\.;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\ConvertUTF\.;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\poly2tri\..;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\md5\..;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\unzip\.;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\Box2D\include;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\chipmunk\include;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\freetype2\include\win32\freetype2;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\bullet\include;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\bullet\include\bullet;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\jpeg\include\win32;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\openssl\include\win32;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\uv\include;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\webp\include\win32;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\websockets\include\win32;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\curl\include\win32;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\png\include\win32;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\win32-specific\gles\include\OGLES;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\win32-specific\icon\include;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\win32-specific\MP3Decoder\include;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\win32-specific\OggDecoder\include;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\win32-specific\OpenalSoft\include;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\glfw3\include\win32;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\zlib\..\win32-specific\zlib\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
-      <ExceptionHandling>Sync</ExceptionHandling>
+      <ExceptionHandling>
+      </ExceptionHandling>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
       <Optimization>MinSpace</Optimization>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <UseFullPaths>false</UseFullPaths>
-      <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;LWS_WITH_LIBUV;CMAKE_INTDIR="MinSizeRel";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;LWS_WITH_LIBUV;CMAKE_INTDIR="MinSizeRel";%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
       <DebugInformationFormat>
       </DebugInformationFormat>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;LWS_WITH_LIBUV;CMAKE_INTDIR=\"MinSizeRel\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;LWS_WITH_LIBUV;CMAKE_INTDIR=\"MinSizeRel\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>D:\Projects\Cocos2dx\TestGame1\cocos2d\external\recast\..;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\tinyxml2\.;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\xxhash\.;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\xxtea\.;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\clipper\.;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\edtaa3func\.;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\ConvertUTF\.;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\poly2tri\..;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\md5\..;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\unzip\.;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\Box2D\include;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\chipmunk\include;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\freetype2\include\win32\freetype2;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\bullet\include;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\bullet\include\bullet;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\jpeg\include\win32;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\openssl\include\win32;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\uv\include;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\webp\include\win32;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\websockets\include\win32;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\curl\include\win32;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\png\include\win32;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\win32-specific\gles\include\OGLES;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\win32-specific\icon\include;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\win32-specific\MP3Decoder\include;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\win32-specific\OggDecoder\include;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\win32-specific\OpenalSoft\include;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\glfw3\include\win32;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\zlib\..\win32-specific\zlib\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
@@ -180,19 +180,19 @@
       <AdditionalIncludeDirectories>D:\Projects\Cocos2dx\TestGame1\cocos2d\external\recast\..;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\tinyxml2\.;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\xxhash\.;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\xxtea\.;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\clipper\.;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\edtaa3func\.;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\ConvertUTF\.;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\poly2tri\..;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\md5\..;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\unzip\.;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\Box2D\include;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\chipmunk\include;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\freetype2\include\win32\freetype2;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\bullet\include;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\bullet\include\bullet;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\jpeg\include\win32;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\openssl\include\win32;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\uv\include;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\webp\include\win32;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\websockets\include\win32;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\curl\include\win32;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\png\include\win32;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\win32-specific\gles\include\OGLES;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\win32-specific\icon\include;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\win32-specific\MP3Decoder\include;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\win32-specific\OggDecoder\include;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\win32-specific\OpenalSoft\include;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\glfw3\include\win32;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\zlib\..\win32-specific\zlib\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <ExceptionHandling>Sync</ExceptionHandling>
+      <ExceptionHandling>
+      </ExceptionHandling>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
       <Optimization>MaxSpeed</Optimization>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <UseFullPaths>false</UseFullPaths>
-      <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;LWS_WITH_LIBUV;CMAKE_INTDIR="RelWithDebInfo";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;LWS_WITH_LIBUV;CMAKE_INTDIR="RelWithDebInfo";%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;LWS_WITH_LIBUV;CMAKE_INTDIR=\"RelWithDebInfo\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;LWS_WITH_LIBUV;CMAKE_INTDIR=\"RelWithDebInfo\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>D:\Projects\Cocos2dx\TestGame1\cocos2d\external\recast\..;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\tinyxml2\.;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\xxhash\.;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\xxtea\.;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\clipper\.;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\edtaa3func\.;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\ConvertUTF\.;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\poly2tri\..;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\md5\..;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\unzip\.;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\Box2D\include;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\chipmunk\include;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\freetype2\include\win32\freetype2;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\bullet\include;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\bullet\include\bullet;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\jpeg\include\win32;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\openssl\include\win32;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\uv\include;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\webp\include\win32;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\websockets\include\win32;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\curl\include\win32;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\png\include\win32;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\win32-specific\gles\include\OGLES;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\win32-specific\icon\include;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\win32-specific\MP3Decoder\include;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\win32-specific\OggDecoder\include;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\win32-specific\OpenalSoft\include;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\glfw3\include\win32;D:\Projects\Cocos2dx\TestGame1\cocos2d\external\zlib\..\win32-specific\zlib\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
