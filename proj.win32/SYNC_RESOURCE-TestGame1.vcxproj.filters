@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="D:\Projects\Cocos2dx\TestGame1\proj.win32\CMakeFiles\f9227a623e442fdedbfaf5063066b3ab\SYNC_RESOURCE-TestGame1.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\Projects\Cocos2dx\TestGame1\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="D:\Projects\Cocos2dx\TestGame1\proj.win32\CMakeFiles\SYNC_RESOURCE-TestGame1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{8708D21A-EAC5-3F43-8C81-BF656039DF87}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

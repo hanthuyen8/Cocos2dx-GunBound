@@ -1,0 +1,11 @@
+Dino Characters changes
+- 2017-10-08
+Added a crouch and a walk animation for it.
+https://arks.itch.io/dino-characters
+
+Idle: 0 - 3
+Move: 4 - 9
+Kick: 10 - 12
+Hurt: 13 - 16
+Crouch: 17
+Sneak: 18 - 23

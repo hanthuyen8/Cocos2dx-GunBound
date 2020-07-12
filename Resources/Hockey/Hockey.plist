@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>Ball.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>anchor</key>
+                <string>{0.5,0.5}</string>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{109,110}</string>
+                <key>spriteSourceSize</key>
+                <string>{109,110}</string>
+                <key>textureRect</key>
+                <string>{{201,1598},{109,110}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>5 6 7 2 5 7 2 4 5 2 3 4 0 1 2 0 2 7</string>
+                <key>vertices</key>
+                <string>109 20 109 98 68 110 29 110 0 81 0 30 30 0 73 0</string>
+                <key>verticesUV</key>
+                <string>310 1618 310 1696 269 1708 230 1708 201 1679 201 1628 231 1598 274 1598</string>
+            </dict>
+            <key>Board.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>anchor</key>
+                <string>{0.5,0.5}</string>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{1013,1595}</string>
+                <key>spriteSourceSize</key>
+                <string>{1013,1595}</string>
+                <key>textureRect</key>
+                <string>{{1,1},{1013,1595}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>0 10 11 7 8 9 0 7 9 4 5 6 3 4 6 1 3 6 1 2 3 1 6 7 0 1 7 0 9 10</string>
+                <key>vertices</key>
+                <string>334 21 678 21 682 0 1013 0 1013 1595 682 1595 678 1574 334 1574 330 1595 0 1595 0 0 330 0</string>
+                <key>verticesUV</key>
+                <string>335 22 679 22 683 1 1014 1 1014 1596 683 1596 679 1575 335 1575 331 1596 1 1596 1 1 331 1</string>
+            </dict>
+            <key>Player.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>anchor</key>
+                <string>{0.5,0.5}</string>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{185,185}</string>
+                <key>spriteSourceSize</key>
+                <string>{185,185}</string>
+                <key>textureRect</key>
+                <string>{{312,1577},{185,185}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>1 9 10 7 8 9 6 7 9 1 6 9 4 5 6 2 3 4 1 2 4 1 4 6 0 1 10</string>
+                <key>vertices</key>
+                <string>165 20 185 66 185 128 143 185 64 185 22 165 0 119 0 63 24 15 68 0 119 0</string>
+                <key>verticesUV</key>
+                <string>477 1597 497 1643 497 1705 455 1762 376 1762 334 1742 312 1696 312 1640 336 1592 380 1577 431 1577</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>3</integer>
+            <key>pixelFormat</key>
+            <string>RGBA8888</string>
+            <key>premultiplyAlpha</key>
+            <false/>
+            <key>realTextureFileName</key>
+            <string>Hockey.png</string>
+            <key>size</key>
+            <string>{1015,1763}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:ba5c7d40b12fea772dbaa96a8ddd5d84:3aca7943b4c51afa3cde04b4c2f9365d:2603f87450b802f2c74ee235d098a9d7$</string>
+            <key>textureFileName</key>
+            <string>Hockey.png</string>
+        </dict>
+    </dict>
+</plist>
