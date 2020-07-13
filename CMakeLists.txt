@@ -63,6 +63,8 @@ list(APPEND GAME_SOURCE
      Classes/Hockey/Hockey.cpp
      Classes/Hockey/GameSprite.cpp
      Classes/GunBound/GunBound.cpp
+     Classes/GunBound/Gun.cpp
+     Classes/GunBound/GameTerrain.cpp
      )
 list(APPEND GAME_HEADER
      Classes/AppDelegate.h
@@ -72,6 +74,8 @@ list(APPEND GAME_HEADER
      Classes/Hockey/Hockey.h
      Classes/Hockey/GameSprite.h
      Classes/GunBound/GunBound.h
+     Classes/GunBound/Gun.h
+     Classes/GunBound/GameTerrain.h
      )
 
 if(ANDROID)

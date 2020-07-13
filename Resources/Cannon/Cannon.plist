@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>CannonGun.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{262,107}</string>
+                <key>spriteSourceSize</key>
+                <string>{262,107}</string>
+                <key>textureRect</key>
+                <string>{{1,1},{262,107}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>6 11 12 6 10 11 8 9 10 7 8 10 6 7 10 0 5 6 4 1 2 5 0 1 4 2 3 1 4 5 0 6 12</string>
+                <key>vertices</key>
+                <string>147 15 204 19 262 2 262 107 233 107 207 100 66 99 3 63 0 53 0 37 5 32 62 0 75 0</string>
+                <key>verticesUV</key>
+                <string>148 16 205 20 263 3 263 108 234 108 208 101 67 100 4 64 1 54 1 38 6 33 63 1 76 1</string>
+            </dict>
+            <key>CannonWheel.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{175,174}</string>
+                <key>spriteSourceSize</key>
+                <string>{175,174}</string>
+                <key>textureRect</key>
+                <string>{{1,103},{175,174}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>8 9 10 7 8 10 4 7 10 4 6 7 4 5 6 0 3 4 1 2 3 0 1 3 0 4 10 11 12 13</string>
+                <key>vertices</key>
+                <string>162 42 175 81 175 106 134 161 84 174 73 174 14 136 0 78 0 67 40 2 103 2 124 6 118 0 124 0</string>
+                <key>verticesUV</key>
+                <string>163 145 176 184 176 209 135 264 85 277 74 277 15 239 1 181 1 170 41 105 104 105 125 109 119 103 125 103</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>3</integer>
+            <key>pixelFormat</key>
+            <string>RGBA8888</string>
+            <key>premultiplyAlpha</key>
+            <false/>
+            <key>realTextureFileName</key>
+            <string>Cannon.png</string>
+            <key>size</key>
+            <string>{264,278}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:c4372a572f22c91713f55e2ff04d51f5:987541366ebc555121e680f968798182:eaaeaa9542ef98b7d07ad8a3e30ffa25$</string>
+            <key>textureFileName</key>
+            <string>Cannon.png</string>
+        </dict>
+    </dict>
+</plist>

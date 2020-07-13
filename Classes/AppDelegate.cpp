@@ -25,6 +25,7 @@
 #include "AppDelegate.h"
 #include "Hockey/Hockey.h"
 #include "GunBound/GunBound.h"
+#include "GunBound//GameTerrain.h"
 
 // #define USE_AUDIO_ENGINE 1
 
@@ -109,7 +110,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     register_all_packages();
 
     // create a scene. it's an autorelease object
-    auto scene = GunBound::createScene();
+    auto scene = GameTerrain::createScene();
 
     // run
     director->runWithScene(scene);
