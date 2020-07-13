@@ -65,9 +65,11 @@ list(APPEND GAME_SOURCE
      Classes/GunBound/GunBound.cpp
      Classes/GunBound/Gun.cpp
      Classes/GunBound/GameTerrain.cpp
+     Classes/GunBound/TestPhysics.cpp
      )
 list(APPEND GAME_HEADER
      Classes/AppDelegate.h
+     Classes/EarCut/earcut.hpp
      Classes/HelloWorldScene.h
      Classes/GameScene.h
      Classes/Dino.h
@@ -76,6 +78,7 @@ list(APPEND GAME_HEADER
      Classes/GunBound/GunBound.h
      Classes/GunBound/Gun.h
      Classes/GunBound/GameTerrain.h
+     Classes/GunBound/TestPhysics.h
      )
 
 if(ANDROID)
