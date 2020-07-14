@@ -57,7 +57,6 @@ endif()
 # add cross-platforms source files and header files 
 list(APPEND GAME_SOURCE
      Classes/AppDelegate.cpp
-     Classes/HelloWorldScene.cpp
      Classes/GameScene.cpp
      Classes/Dino.cpp
      Classes/Hockey/Hockey.cpp
@@ -66,11 +65,11 @@ list(APPEND GAME_SOURCE
      Classes/GunBound/Gun.cpp
      Classes/GunBound/GameTerrain.cpp
      Classes/GunBound/TestPhysics.cpp
+     Classes/GunBound/Crate.cpp
      )
 list(APPEND GAME_HEADER
      Classes/AppDelegate.h
      Classes/EarCut/earcut.hpp
-     Classes/HelloWorldScene.h
      Classes/GameScene.h
      Classes/Dino.h
      Classes/Hockey/Hockey.h
@@ -79,6 +78,7 @@ list(APPEND GAME_HEADER
      Classes/GunBound/Gun.h
      Classes/GunBound/GameTerrain.h
      Classes/GunBound/TestPhysics.h
+     Classes/GunBound/Crate.h
      )
 
 if(ANDROID)
