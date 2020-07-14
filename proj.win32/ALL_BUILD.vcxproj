@@ -22,7 +22,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{039238E8-25B4-383A-9063-C152CC2DDC01}</ProjectGuid>
+    <ProjectGuid>{4CA97F37-0335-3061-84C4-2D2B8314B4EB}</ProjectGuid>
     <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
     <Keyword>Win32Proj</Keyword>
     <Platform>win32</Platform>
@@ -105,10 +105,10 @@
     </Midl>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <CustomBuild Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\CMakeLists.txt">
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|win32'">Building Custom Rule D:/Projects/Cocos2dx/Cocos2dx-TestGame1/CMakeLists.txt</Message>
+    <CustomBuild Include="D:\Projects\Cocos2dx\TestGame1\CMakeLists.txt">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|win32'">Building Custom Rule D:/Projects/Cocos2dx/TestGame1/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|win32'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -SD:/Projects/Cocos2dx/Cocos2dx-TestGame1 -BD:/Projects/Cocos2dx/Cocos2dx-TestGame1/proj.win32 --check-stamp-file D:/Projects/Cocos2dx/Cocos2dx-TestGame1/proj.win32/CMakeFiles/generate.stamp
+D:\Apps\bin\cmake.exe -SD:/Projects/Cocos2dx/TestGame1 -BD:/Projects/Cocos2dx/TestGame1/proj.win32 --check-stamp-file D:/Projects/Cocos2dx/TestGame1/proj.win32/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -116,12 +116,12 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|win32'">C:\Program Files\CMake\share\cmake-3.17\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\CMakeParseArguments.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\Compiler\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\Platform\WindowsPaths.cmake;D:\Projects\Cocos2dx\Cocos2dx-TestGame1\cocos2d\cmake\Modules\CocosBuildHelpers.cmake;D:\Projects\Cocos2dx\Cocos2dx-TestGame1\cocos2d\cmake\Modules\CocosBuildSet.cmake;D:\Projects\Cocos2dx\Cocos2dx-TestGame1\cocos2d\cmake\Modules\CocosConfigDefine.cmake;D:\Projects\Cocos2dx\Cocos2dx-TestGame1\cocos2d\cmake\Modules\CocosConfigDepend.cmake;D:\Projects\Cocos2dx\Cocos2dx-TestGame1\proj.win32\CMakeFiles\3.17.3\CMakeCCompiler.cmake;D:\Projects\Cocos2dx\Cocos2dx-TestGame1\proj.win32\CMakeFiles\3.17.3\CMakeCXXCompiler.cmake;D:\Projects\Cocos2dx\Cocos2dx-TestGame1\proj.win32\CMakeFiles\3.17.3\CMakeRCCompiler.cmake;D:\Projects\Cocos2dx\Cocos2dx-TestGame1\proj.win32\CMakeFiles\3.17.3\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|win32'">D:\Projects\Cocos2dx\Cocos2dx-TestGame1\proj.win32\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|win32'">D:\Apps\share\cmake-3.18\Modules\CMakeCInformation.cmake;D:\Apps\share\cmake-3.18\Modules\CMakeCXXInformation.cmake;D:\Apps\share\cmake-3.18\Modules\CMakeCommonLanguageInclude.cmake;D:\Apps\share\cmake-3.18\Modules\CMakeGenericSystem.cmake;D:\Apps\share\cmake-3.18\Modules\CMakeInitializeConfigs.cmake;D:\Apps\share\cmake-3.18\Modules\CMakeLanguageInformation.cmake;D:\Apps\share\cmake-3.18\Modules\CMakeParseArguments.cmake;D:\Apps\share\cmake-3.18\Modules\CMakeRCInformation.cmake;D:\Apps\share\cmake-3.18\Modules\CMakeSystemSpecificInformation.cmake;D:\Apps\share\cmake-3.18\Modules\CMakeSystemSpecificInitialize.cmake;D:\Apps\share\cmake-3.18\Modules\Compiler\CMakeCommonCompilerMacros.cmake;D:\Apps\share\cmake-3.18\Modules\Compiler\MSVC-C.cmake;D:\Apps\share\cmake-3.18\Modules\Compiler\MSVC-CXX.cmake;D:\Apps\share\cmake-3.18\Modules\Platform\Windows-MSVC-C.cmake;D:\Apps\share\cmake-3.18\Modules\Platform\Windows-MSVC-CXX.cmake;D:\Apps\share\cmake-3.18\Modules\Platform\Windows-MSVC.cmake;D:\Apps\share\cmake-3.18\Modules\Platform\Windows.cmake;D:\Apps\share\cmake-3.18\Modules\Platform\WindowsPaths.cmake;D:\Projects\Cocos2dx\TestGame1\cocos2d\cmake\Modules\CocosBuildHelpers.cmake;D:\Projects\Cocos2dx\TestGame1\cocos2d\cmake\Modules\CocosBuildSet.cmake;D:\Projects\Cocos2dx\TestGame1\cocos2d\cmake\Modules\CocosConfigDefine.cmake;D:\Projects\Cocos2dx\TestGame1\cocos2d\cmake\Modules\CocosConfigDepend.cmake;D:\Projects\Cocos2dx\TestGame1\proj.win32\CMakeFiles\3.18.0-rc3\CMakeCCompiler.cmake;D:\Projects\Cocos2dx\TestGame1\proj.win32\CMakeFiles\3.18.0-rc3\CMakeCXXCompiler.cmake;D:\Projects\Cocos2dx\TestGame1\proj.win32\CMakeFiles\3.18.0-rc3\CMakeRCCompiler.cmake;D:\Projects\Cocos2dx\TestGame1\proj.win32\CMakeFiles\3.18.0-rc3\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|win32'">D:\Projects\Cocos2dx\TestGame1\proj.win32\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|win32'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|win32'">Building Custom Rule D:/Projects/Cocos2dx/Cocos2dx-TestGame1/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|win32'">Building Custom Rule D:/Projects/Cocos2dx/TestGame1/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|win32'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -SD:/Projects/Cocos2dx/Cocos2dx-TestGame1 -BD:/Projects/Cocos2dx/Cocos2dx-TestGame1/proj.win32 --check-stamp-file D:/Projects/Cocos2dx/Cocos2dx-TestGame1/proj.win32/CMakeFiles/generate.stamp
+D:\Apps\bin\cmake.exe -SD:/Projects/Cocos2dx/TestGame1 -BD:/Projects/Cocos2dx/TestGame1/proj.win32 --check-stamp-file D:/Projects/Cocos2dx/TestGame1/proj.win32/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -129,12 +129,12 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|win32'">C:\Program Files\CMake\share\cmake-3.17\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\CMakeParseArguments.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\Compiler\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\Platform\WindowsPaths.cmake;D:\Projects\Cocos2dx\Cocos2dx-TestGame1\cocos2d\cmake\Modules\CocosBuildHelpers.cmake;D:\Projects\Cocos2dx\Cocos2dx-TestGame1\cocos2d\cmake\Modules\CocosBuildSet.cmake;D:\Projects\Cocos2dx\Cocos2dx-TestGame1\cocos2d\cmake\Modules\CocosConfigDefine.cmake;D:\Projects\Cocos2dx\Cocos2dx-TestGame1\cocos2d\cmake\Modules\CocosConfigDepend.cmake;D:\Projects\Cocos2dx\Cocos2dx-TestGame1\proj.win32\CMakeFiles\3.17.3\CMakeCCompiler.cmake;D:\Projects\Cocos2dx\Cocos2dx-TestGame1\proj.win32\CMakeFiles\3.17.3\CMakeCXXCompiler.cmake;D:\Projects\Cocos2dx\Cocos2dx-TestGame1\proj.win32\CMakeFiles\3.17.3\CMakeRCCompiler.cmake;D:\Projects\Cocos2dx\Cocos2dx-TestGame1\proj.win32\CMakeFiles\3.17.3\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|win32'">D:\Projects\Cocos2dx\Cocos2dx-TestGame1\proj.win32\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|win32'">D:\Apps\share\cmake-3.18\Modules\CMakeCInformation.cmake;D:\Apps\share\cmake-3.18\Modules\CMakeCXXInformation.cmake;D:\Apps\share\cmake-3.18\Modules\CMakeCommonLanguageInclude.cmake;D:\Apps\share\cmake-3.18\Modules\CMakeGenericSystem.cmake;D:\Apps\share\cmake-3.18\Modules\CMakeInitializeConfigs.cmake;D:\Apps\share\cmake-3.18\Modules\CMakeLanguageInformation.cmake;D:\Apps\share\cmake-3.18\Modules\CMakeParseArguments.cmake;D:\Apps\share\cmake-3.18\Modules\CMakeRCInformation.cmake;D:\Apps\share\cmake-3.18\Modules\CMakeSystemSpecificInformation.cmake;D:\Apps\share\cmake-3.18\Modules\CMakeSystemSpecificInitialize.cmake;D:\Apps\share\cmake-3.18\Modules\Compiler\CMakeCommonCompilerMacros.cmake;D:\Apps\share\cmake-3.18\Modules\Compiler\MSVC-C.cmake;D:\Apps\share\cmake-3.18\Modules\Compiler\MSVC-CXX.cmake;D:\Apps\share\cmake-3.18\Modules\Platform\Windows-MSVC-C.cmake;D:\Apps\share\cmake-3.18\Modules\Platform\Windows-MSVC-CXX.cmake;D:\Apps\share\cmake-3.18\Modules\Platform\Windows-MSVC.cmake;D:\Apps\share\cmake-3.18\Modules\Platform\Windows.cmake;D:\Apps\share\cmake-3.18\Modules\Platform\WindowsPaths.cmake;D:\Projects\Cocos2dx\TestGame1\cocos2d\cmake\Modules\CocosBuildHelpers.cmake;D:\Projects\Cocos2dx\TestGame1\cocos2d\cmake\Modules\CocosBuildSet.cmake;D:\Projects\Cocos2dx\TestGame1\cocos2d\cmake\Modules\CocosConfigDefine.cmake;D:\Projects\Cocos2dx\TestGame1\cocos2d\cmake\Modules\CocosConfigDepend.cmake;D:\Projects\Cocos2dx\TestGame1\proj.win32\CMakeFiles\3.18.0-rc3\CMakeCCompiler.cmake;D:\Projects\Cocos2dx\TestGame1\proj.win32\CMakeFiles\3.18.0-rc3\CMakeCXXCompiler.cmake;D:\Projects\Cocos2dx\TestGame1\proj.win32\CMakeFiles\3.18.0-rc3\CMakeRCCompiler.cmake;D:\Projects\Cocos2dx\TestGame1\proj.win32\CMakeFiles\3.18.0-rc3\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|win32'">D:\Projects\Cocos2dx\TestGame1\proj.win32\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|win32'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|win32'">Building Custom Rule D:/Projects/Cocos2dx/Cocos2dx-TestGame1/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|win32'">Building Custom Rule D:/Projects/Cocos2dx/TestGame1/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|win32'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -SD:/Projects/Cocos2dx/Cocos2dx-TestGame1 -BD:/Projects/Cocos2dx/Cocos2dx-TestGame1/proj.win32 --check-stamp-file D:/Projects/Cocos2dx/Cocos2dx-TestGame1/proj.win32/CMakeFiles/generate.stamp
+D:\Apps\bin\cmake.exe -SD:/Projects/Cocos2dx/TestGame1 -BD:/Projects/Cocos2dx/TestGame1/proj.win32 --check-stamp-file D:/Projects/Cocos2dx/TestGame1/proj.win32/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -142,12 +142,12 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|win32'">C:\Program Files\CMake\share\cmake-3.17\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\CMakeParseArguments.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\Compiler\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\Platform\WindowsPaths.cmake;D:\Projects\Cocos2dx\Cocos2dx-TestGame1\cocos2d\cmake\Modules\CocosBuildHelpers.cmake;D:\Projects\Cocos2dx\Cocos2dx-TestGame1\cocos2d\cmake\Modules\CocosBuildSet.cmake;D:\Projects\Cocos2dx\Cocos2dx-TestGame1\cocos2d\cmake\Modules\CocosConfigDefine.cmake;D:\Projects\Cocos2dx\Cocos2dx-TestGame1\cocos2d\cmake\Modules\CocosConfigDepend.cmake;D:\Projects\Cocos2dx\Cocos2dx-TestGame1\proj.win32\CMakeFiles\3.17.3\CMakeCCompiler.cmake;D:\Projects\Cocos2dx\Cocos2dx-TestGame1\proj.win32\CMakeFiles\3.17.3\CMakeCXXCompiler.cmake;D:\Projects\Cocos2dx\Cocos2dx-TestGame1\proj.win32\CMakeFiles\3.17.3\CMakeRCCompiler.cmake;D:\Projects\Cocos2dx\Cocos2dx-TestGame1\proj.win32\CMakeFiles\3.17.3\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|win32'">D:\Projects\Cocos2dx\Cocos2dx-TestGame1\proj.win32\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|win32'">D:\Apps\share\cmake-3.18\Modules\CMakeCInformation.cmake;D:\Apps\share\cmake-3.18\Modules\CMakeCXXInformation.cmake;D:\Apps\share\cmake-3.18\Modules\CMakeCommonLanguageInclude.cmake;D:\Apps\share\cmake-3.18\Modules\CMakeGenericSystem.cmake;D:\Apps\share\cmake-3.18\Modules\CMakeInitializeConfigs.cmake;D:\Apps\share\cmake-3.18\Modules\CMakeLanguageInformation.cmake;D:\Apps\share\cmake-3.18\Modules\CMakeParseArguments.cmake;D:\Apps\share\cmake-3.18\Modules\CMakeRCInformation.cmake;D:\Apps\share\cmake-3.18\Modules\CMakeSystemSpecificInformation.cmake;D:\Apps\share\cmake-3.18\Modules\CMakeSystemSpecificInitialize.cmake;D:\Apps\share\cmake-3.18\Modules\Compiler\CMakeCommonCompilerMacros.cmake;D:\Apps\share\cmake-3.18\Modules\Compiler\MSVC-C.cmake;D:\Apps\share\cmake-3.18\Modules\Compiler\MSVC-CXX.cmake;D:\Apps\share\cmake-3.18\Modules\Platform\Windows-MSVC-C.cmake;D:\Apps\share\cmake-3.18\Modules\Platform\Windows-MSVC-CXX.cmake;D:\Apps\share\cmake-3.18\Modules\Platform\Windows-MSVC.cmake;D:\Apps\share\cmake-3.18\Modules\Platform\Windows.cmake;D:\Apps\share\cmake-3.18\Modules\Platform\WindowsPaths.cmake;D:\Projects\Cocos2dx\TestGame1\cocos2d\cmake\Modules\CocosBuildHelpers.cmake;D:\Projects\Cocos2dx\TestGame1\cocos2d\cmake\Modules\CocosBuildSet.cmake;D:\Projects\Cocos2dx\TestGame1\cocos2d\cmake\Modules\CocosConfigDefine.cmake;D:\Projects\Cocos2dx\TestGame1\cocos2d\cmake\Modules\CocosConfigDepend.cmake;D:\Projects\Cocos2dx\TestGame1\proj.win32\CMakeFiles\3.18.0-rc3\CMakeCCompiler.cmake;D:\Projects\Cocos2dx\TestGame1\proj.win32\CMakeFiles\3.18.0-rc3\CMakeCXXCompiler.cmake;D:\Projects\Cocos2dx\TestGame1\proj.win32\CMakeFiles\3.18.0-rc3\CMakeRCCompiler.cmake;D:\Projects\Cocos2dx\TestGame1\proj.win32\CMakeFiles\3.18.0-rc3\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|win32'">D:\Projects\Cocos2dx\TestGame1\proj.win32\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|win32'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|win32'">Building Custom Rule D:/Projects/Cocos2dx/Cocos2dx-TestGame1/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|win32'">Building Custom Rule D:/Projects/Cocos2dx/TestGame1/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|win32'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -SD:/Projects/Cocos2dx/Cocos2dx-TestGame1 -BD:/Projects/Cocos2dx/Cocos2dx-TestGame1/proj.win32 --check-stamp-file D:/Projects/Cocos2dx/Cocos2dx-TestGame1/proj.win32/CMakeFiles/generate.stamp
+D:\Apps\bin\cmake.exe -SD:/Projects/Cocos2dx/TestGame1 -BD:/Projects/Cocos2dx/TestGame1/proj.win32 --check-stamp-file D:/Projects/Cocos2dx/TestGame1/proj.win32/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -155,76 +155,76 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|win32'">C:\Program Files\CMake\share\cmake-3.17\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\CMakeParseArguments.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\Compiler\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\Platform\WindowsPaths.cmake;D:\Projects\Cocos2dx\Cocos2dx-TestGame1\cocos2d\cmake\Modules\CocosBuildHelpers.cmake;D:\Projects\Cocos2dx\Cocos2dx-TestGame1\cocos2d\cmake\Modules\CocosBuildSet.cmake;D:\Projects\Cocos2dx\Cocos2dx-TestGame1\cocos2d\cmake\Modules\CocosConfigDefine.cmake;D:\Projects\Cocos2dx\Cocos2dx-TestGame1\cocos2d\cmake\Modules\CocosConfigDepend.cmake;D:\Projects\Cocos2dx\Cocos2dx-TestGame1\proj.win32\CMakeFiles\3.17.3\CMakeCCompiler.cmake;D:\Projects\Cocos2dx\Cocos2dx-TestGame1\proj.win32\CMakeFiles\3.17.3\CMakeCXXCompiler.cmake;D:\Projects\Cocos2dx\Cocos2dx-TestGame1\proj.win32\CMakeFiles\3.17.3\CMakeRCCompiler.cmake;D:\Projects\Cocos2dx\Cocos2dx-TestGame1\proj.win32\CMakeFiles\3.17.3\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|win32'">D:\Projects\Cocos2dx\Cocos2dx-TestGame1\proj.win32\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|win32'">D:\Apps\share\cmake-3.18\Modules\CMakeCInformation.cmake;D:\Apps\share\cmake-3.18\Modules\CMakeCXXInformation.cmake;D:\Apps\share\cmake-3.18\Modules\CMakeCommonLanguageInclude.cmake;D:\Apps\share\cmake-3.18\Modules\CMakeGenericSystem.cmake;D:\Apps\share\cmake-3.18\Modules\CMakeInitializeConfigs.cmake;D:\Apps\share\cmake-3.18\Modules\CMakeLanguageInformation.cmake;D:\Apps\share\cmake-3.18\Modules\CMakeParseArguments.cmake;D:\Apps\share\cmake-3.18\Modules\CMakeRCInformation.cmake;D:\Apps\share\cmake-3.18\Modules\CMakeSystemSpecificInformation.cmake;D:\Apps\share\cmake-3.18\Modules\CMakeSystemSpecificInitialize.cmake;D:\Apps\share\cmake-3.18\Modules\Compiler\CMakeCommonCompilerMacros.cmake;D:\Apps\share\cmake-3.18\Modules\Compiler\MSVC-C.cmake;D:\Apps\share\cmake-3.18\Modules\Compiler\MSVC-CXX.cmake;D:\Apps\share\cmake-3.18\Modules\Platform\Windows-MSVC-C.cmake;D:\Apps\share\cmake-3.18\Modules\Platform\Windows-MSVC-CXX.cmake;D:\Apps\share\cmake-3.18\Modules\Platform\Windows-MSVC.cmake;D:\Apps\share\cmake-3.18\Modules\Platform\Windows.cmake;D:\Apps\share\cmake-3.18\Modules\Platform\WindowsPaths.cmake;D:\Projects\Cocos2dx\TestGame1\cocos2d\cmake\Modules\CocosBuildHelpers.cmake;D:\Projects\Cocos2dx\TestGame1\cocos2d\cmake\Modules\CocosBuildSet.cmake;D:\Projects\Cocos2dx\TestGame1\cocos2d\cmake\Modules\CocosConfigDefine.cmake;D:\Projects\Cocos2dx\TestGame1\cocos2d\cmake\Modules\CocosConfigDepend.cmake;D:\Projects\Cocos2dx\TestGame1\proj.win32\CMakeFiles\3.18.0-rc3\CMakeCCompiler.cmake;D:\Projects\Cocos2dx\TestGame1\proj.win32\CMakeFiles\3.18.0-rc3\CMakeCXXCompiler.cmake;D:\Projects\Cocos2dx\TestGame1\proj.win32\CMakeFiles\3.18.0-rc3\CMakeRCCompiler.cmake;D:\Projects\Cocos2dx\TestGame1\proj.win32\CMakeFiles\3.18.0-rc3\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|win32'">D:\Projects\Cocos2dx\TestGame1\proj.win32\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|win32'">false</LinkObjects>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\proj.win32\ZERO_CHECK.vcxproj">
-      <Project>{B8D2886F-0CD7-36BF-85AC-DDD51F7397C9}</Project>
+    <ProjectReference Include="D:\Projects\Cocos2dx\TestGame1\proj.win32\ZERO_CHECK.vcxproj">
+      <Project>{97A72F26-17F4-387F-9895-F3BC197AD8AB}</Project>
       <Name>ZERO_CHECK</Name>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </ProjectReference>
-    <ProjectReference Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\proj.win32\SYNC_RESOURCE-TestGame1.vcxproj">
-      <Project>{E1AAAE23-7EDC-3AAF-B22D-A3D1623561D1}</Project>
+    <ProjectReference Include="D:\Projects\Cocos2dx\TestGame1\proj.win32\SYNC_RESOURCE-TestGame1.vcxproj">
+      <Project>{7A1170AB-CB4E-32E6-85BA-B9EE5E36528D}</Project>
       <Name>SYNC_RESOURCE-TestGame1</Name>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </ProjectReference>
-    <ProjectReference Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\proj.win32\TestGame1.vcxproj">
-      <Project>{0409E7C0-AC63-33AF-B9A9-A5B597522F4C}</Project>
+    <ProjectReference Include="D:\Projects\Cocos2dx\TestGame1\proj.win32\TestGame1.vcxproj">
+      <Project>{7FF4B058-0997-3768-B2EF-455E4719C08D}</Project>
       <Name>TestGame1</Name>
     </ProjectReference>
-    <ProjectReference Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\proj.win32\engine\cocos\core\cocos2d.vcxproj">
-      <Project>{98E5E8CC-2080-3216-BF4E-014BCBF75827}</Project>
+    <ProjectReference Include="D:\Projects\Cocos2dx\TestGame1\proj.win32\engine\cocos\core\cocos2d.vcxproj">
+      <Project>{C3BF5B7C-837E-3EDE-9D79-4894697BD2B0}</Project>
       <Name>cocos2d</Name>
     </ProjectReference>
-    <ProjectReference Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\proj.win32\engine\external\clipper\ext_clipper.vcxproj">
-      <Project>{9F8E2B9F-8C47-3FEC-87D0-9B9C4C8706DE}</Project>
+    <ProjectReference Include="D:\Projects\Cocos2dx\TestGame1\proj.win32\engine\external\clipper\ext_clipper.vcxproj">
+      <Project>{D420F8EE-F1DD-36AE-B313-CEEDD9C8F6A9}</Project>
       <Name>ext_clipper</Name>
     </ProjectReference>
-    <ProjectReference Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\proj.win32\engine\external\ConvertUTF\ext_convertUTF.vcxproj">
-      <Project>{C22D2BB7-67BB-329C-90F4-449482936E47}</Project>
+    <ProjectReference Include="D:\Projects\Cocos2dx\TestGame1\proj.win32\engine\external\ConvertUTF\ext_convertUTF.vcxproj">
+      <Project>{AA55C923-7F11-30D8-A6D8-C87275C140B0}</Project>
       <Name>ext_convertUTF</Name>
     </ProjectReference>
-    <ProjectReference Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\proj.win32\engine\external\edtaa3func\ext_edtaa3func.vcxproj">
-      <Project>{51A139E4-B51F-3478-A23D-C8574835D668}</Project>
+    <ProjectReference Include="D:\Projects\Cocos2dx\TestGame1\proj.win32\engine\external\edtaa3func\ext_edtaa3func.vcxproj">
+      <Project>{86AFF64C-CBDC-315C-BC9D-33D7E9677A5F}</Project>
       <Name>ext_edtaa3func</Name>
     </ProjectReference>
-    <ProjectReference Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\proj.win32\engine\external\md5\ext_md5.vcxproj">
-      <Project>{BCEEA221-20A9-3473-B15C-E798BE56FA92}</Project>
+    <ProjectReference Include="D:\Projects\Cocos2dx\TestGame1\proj.win32\engine\external\md5\ext_md5.vcxproj">
+      <Project>{301FB721-B609-30A9-8F34-41FE63A99F12}</Project>
       <Name>ext_md5</Name>
     </ProjectReference>
-    <ProjectReference Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\proj.win32\engine\external\poly2tri\ext_poly2tri.vcxproj">
-      <Project>{E0A31184-0D3D-3320-9A9E-5EFC8F2D2A7B}</Project>
+    <ProjectReference Include="D:\Projects\Cocos2dx\TestGame1\proj.win32\engine\external\poly2tri\ext_poly2tri.vcxproj">
+      <Project>{802101E3-3A9B-35CA-9FF1-D18D6EFC8520}</Project>
       <Name>ext_poly2tri</Name>
     </ProjectReference>
-    <ProjectReference Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\proj.win32\engine\external\recast\ext_recast.vcxproj">
-      <Project>{B3DB0766-26A6-3544-92E0-C7D860786706}</Project>
+    <ProjectReference Include="D:\Projects\Cocos2dx\TestGame1\proj.win32\engine\external\recast\ext_recast.vcxproj">
+      <Project>{F24AC411-F528-3804-A736-888CCAE0F63F}</Project>
       <Name>ext_recast</Name>
     </ProjectReference>
-    <ProjectReference Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\proj.win32\engine\external\tinyxml2\ext_tinyxml2.vcxproj">
-      <Project>{C5719D55-F183-3691-B816-80E302A58415}</Project>
+    <ProjectReference Include="D:\Projects\Cocos2dx\TestGame1\proj.win32\engine\external\tinyxml2\ext_tinyxml2.vcxproj">
+      <Project>{2FCB7830-56E7-328D-A2A0-3225633FB887}</Project>
       <Name>ext_tinyxml2</Name>
     </ProjectReference>
-    <ProjectReference Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\proj.win32\engine\external\unzip\ext_unzip.vcxproj">
-      <Project>{A53F7846-1B2C-3359-97C5-BCF3E1D4234D}</Project>
+    <ProjectReference Include="D:\Projects\Cocos2dx\TestGame1\proj.win32\engine\external\unzip\ext_unzip.vcxproj">
+      <Project>{EFE8E713-2F0D-3CDD-B902-02F1E03389B3}</Project>
       <Name>ext_unzip</Name>
     </ProjectReference>
-    <ProjectReference Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\proj.win32\engine\external\xxhash\ext_xxhash.vcxproj">
-      <Project>{834DF510-2267-3BD4-9543-AF86AF3CA5FE}</Project>
+    <ProjectReference Include="D:\Projects\Cocos2dx\TestGame1\proj.win32\engine\external\xxhash\ext_xxhash.vcxproj">
+      <Project>{A42E99B8-F4AD-3230-B3DD-2699CEF41C55}</Project>
       <Name>ext_xxhash</Name>
     </ProjectReference>
-    <ProjectReference Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\proj.win32\engine\external\xxtea\ext_xxtea.vcxproj">
-      <Project>{94A0E9A6-E102-33D0-AB68-EAF5677341E8}</Project>
+    <ProjectReference Include="D:\Projects\Cocos2dx\TestGame1\proj.win32\engine\external\xxtea\ext_xxtea.vcxproj">
+      <Project>{46F1E92D-BE21-3FB1-BE46-35AA6BA0316E}</Project>
       <Name>ext_xxtea</Name>
     </ProjectReference>
-    <ProjectReference Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\proj.win32\engine\external\external.vcxproj">
-      <Project>{EDA953E7-2BAE-3F1B-9D3A-E8736F605F35}</Project>
+    <ProjectReference Include="D:\Projects\Cocos2dx\TestGame1\proj.win32\engine\external\external.vcxproj">
+      <Project>{D33C4D5F-C260-34A0-BBFB-194F1F2503A8}</Project>
       <Name>external</Name>
     </ProjectReference>
   </ItemGroup>

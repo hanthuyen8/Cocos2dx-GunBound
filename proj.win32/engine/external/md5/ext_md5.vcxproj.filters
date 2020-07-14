@@ -1,16 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\cocos2d\external\md5\md5.c">
+    <ClCompile Include="D:\Projects\Cocos2dx\TestGame1\cocos2d\external\md5\md5.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\cocos2d\external\md5\CMakeLists.txt" />
+    <CustomBuild Include="D:\Projects\Cocos2dx\TestGame1\cocos2d\external\md5\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{9FCF290F-1D5D-39DF-B28B-0D103B668D9D}</UniqueIdentifier>
+      <UniqueIdentifier>{A6286DD0-469B-3021-A04E-A4101F9476F7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

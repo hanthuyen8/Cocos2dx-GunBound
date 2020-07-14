@@ -16,5 +16,6 @@ public:
 private:
 	Crate* crate{};
 	void onCut(EventMouse* ev);
+	void onCut2(EventMouse* ev);
 	DrawNode* drawNode{};
 };

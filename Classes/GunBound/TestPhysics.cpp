@@ -1,5 +1,6 @@
 ﻿#include "TestPhysics.h"
 #include "EarCut/earcut.hpp"
+#include "poly2tri/poly2tri.h"
 #include <cmath>
 
 using namespace ClipperLib;
@@ -7,7 +8,7 @@ namespace
 {
 	// Free Functions
 
-	Path vecToPath(const std::vector<Vec2>& vec)
+	Path vecToPath(const PolyVec& vec)
 	{
 		Path path{};
 		for (const auto v : vec)
@@ -17,22 +18,22 @@ namespace
 		return path;
 	}
 
-	std::vector<Vec2> pathToVec(const Path& path)
+	PolyVec pathToVec(const Path& path)
 	{
-		std::vector<Vec2> vec{};
+		PolyVec vec{};
 		for (const auto p : path)
 		{
-			vec.push_back(Vec2( p.X, p.Y ));
+			vec.push_back(Vec2(p.X, p.Y));
 		}
 		return vec;
 	}
 
-	std::vector<Vec2> getCircle(const Vec2& atPos, const float radius)
+	PolyVec getCircle(const Vec2& atPos, const float radius)
 	{
 		const int segment = 5;
 		float anglePerSegmentRad = 2 * std::_Pi / segment;
 
-		std::vector<Vec2> result{};
+		PolyVec result{};
 		result.reserve(segment);
 
 		for (int i{}; i < segment; i++)
@@ -50,15 +51,15 @@ namespace
 	/// <param name="currentPoly">Nhóm các điểm cần lọc ra</param>
 	/// <param name="triangleVertices">Nhóm các đỉnh tam giác</param>
 	/// <returns></returns>
-	std::vector<std::vector<Vec2>> getTrianglesFromPoly(const std::vector<Vec2>& currentPoly,
+	std::vector<PolyVec> getTrianglesFromPoly(const PolyVec& currentPoly,
 		const std::vector<uint32_t>& triangleVertices)
 	{
-		std::vector<std::vector<Vec2>> newTriangles{};
+		std::vector<PolyVec> newTriangles{};
 		newTriangles.reserve(triangleVertices.size() / 3);
 
 		for (int i{}; i < triangleVertices.size(); i += 3)
 		{
-			std::vector<Vec2> vert{};
+			PolyVec vert{};
 			vert.reserve(3);
 			for (int k{}; k < 3; k++)
 			{
@@ -72,7 +73,7 @@ namespace
 
 	void drawNodeToScreen(DrawNode* draw, Path& path, Color4F color)
 	{
-		std::vector<Vec2> vec{};
+		PolyVec vec{};
 		for (const auto point : path)
 		{
 			vec.push_back(Vec2(point.X, point.Y));
@@ -115,7 +116,7 @@ void TestPhysics::onCut(EventMouse* ev)
 	const auto draw = DrawNode::create();
 	const auto drawAtPos = ev->getLocationInView();
 	const auto circle = getCircle(drawAtPos, 30);
-	std::vector<Vec2> nodeSpaceCircle{};
+	PolyVec nodeSpaceCircle{};
 
 	// Chuyển đổi các điểm từ screen space -> local space của crate
 	for (const auto& vec : circle)
@@ -123,13 +124,13 @@ void TestPhysics::onCut(EventMouse* ev)
 		nodeSpaceCircle.push_back(crate->convertToNodeSpaceAR(vec));
 	}
 
-	drawNode->drawSolidPoly(circle.data(), circle.size(), Color4F::Color4F(Color3B::GREEN, 0.2f));
+	//drawNode->drawSolidPoly(circle.data(), circle.size(), Color4F::Color4F(Color3B::GREEN, 0.2f));
 
 	// Cho Clip trước rồi mới chuyển sang triangle;
 	Clipper clipper{};
 	clipper.AddPath(vecToPath(nodeSpaceCircle), PolyType::ptClip, true);
 
-	auto collisionShapes = crate->getCollisionPoints(circle);
+	auto collisionShapes = crate->getClippedPoly();
 	for (auto& shape : collisionShapes)
 	{
 		clipper.AddPath(vecToPath(shape), PolyType::ptSubject, true);
@@ -139,30 +140,80 @@ void TestPhysics::onCut(EventMouse* ev)
 	clipper.Execute(ClipType::ctDifference, result);
 
 	// Convert poly sang triangle
+
+	std::vector<PolyVec> newTriangles{};
 	for (auto& path : result)
 	{
 		const auto vec = pathToVec(path);
-		std::vector<std::vector<Vec2>> clipContainer{ vec };
+		std::vector<PolyVec> clipContainer{ vec };
 
 		std::vector<uint32_t> triangleIndices = mapbox::earcut<uint32_t>(clipContainer);
+		const auto tris = getTrianglesFromPoly(vec, triangleIndices);
+		newTriangles.insert(newTriangles.begin(), tris.begin(), tris.end());
+	}
+	crate->replaceShapes(newTriangles);
+	crate->eraseArea(nodeSpaceCircle);
+}
 
-		const auto newTriangles = getTrianglesFromPoly(vec, triangleIndices);
-		crate->addShapes(newTriangles);
+void TestPhysics::onCut2(EventMouse* ev)
+{
+	const auto draw = DrawNode::create();
+	const auto drawAtPos = ev->getLocationInView();
+	const auto circle = getCircle(drawAtPos, 30);
+	PolyVec nodeSpaceCircle{};
+
+	// Chuyển đổi các điểm từ screen space -> local space của crate
+	for (const auto& vec : circle)
+	{
+		nodeSpaceCircle.push_back(crate->convertToNodeSpaceAR(vec));
 	}
 
-	// Đây là list các tam giác có va chạm với circle
-	// Ta phải cho lần lượt các tam giác đó clip với circle
-	// Sau khi clip thì sẽ sinh ra nhiều tam giác nữa. Add lần lượt các tam giác đó vào lại crate.
+	drawNode->drawSolidPoly(circle.data(), circle.size(), Color4F::Color4F(Color3B::GREEN, 0.2f));
 
-	// Mình đang làm không đúng
-	// Không đúng ở chỗ khi đã tách 1 poly thành nhiều tris. Thì phải lưu lại tất cả các tris đó.
-	// Sau khi click thì lấy ra các tris nào va chạm với các điểm mới.
-	// Đồng thời remove các tris đó ra khỏi physicsBody.
+	const auto polyShapes = crate->getClippedPoly();
+	std::vector<p2t::Point*> polyline;
+	for (const auto& poly : polyShapes[0])
+	{
+		polyline.push_back(new p2t::Point(poly.x, poly.y));
+	}
 
-	// Từ các tris có va chạm thì clip nó với các điểm mới để tạo ra các tris mới khác.
-	// Thêm các tris mới đó vào physicBody.
+	// Hole
+	std::vector<p2t::Point*> holePolyline;
+	for (const auto& point : nodeSpaceCircle)
+	{
+		holePolyline.push_back(new p2t::Point(point.x, point.y));
+	}
 
-	// Việc lưu trữ các tris nhỏ nhỏ và lấy ra cái nào contains Point để xử lý có vẻ không ổn
-	// Bây giờ thử việc xóa hết tất cả các physicsShape rồi generate lại từ đầu
-	// Class Crate sẽ không chứa từng tris nhỏ nữa mà chứa một poly lớn luôn (Paths)
+	// Process
+	p2t::CDT cdt{ polyline };
+
+	if (holePolyline.size() > 0)
+		cdt.AddHole(holePolyline);
+
+	cdt.Triangulate();
+
+	std::vector<p2t::Triangle*> triangles = cdt.GetTriangles();
+
+	std::vector<PolyVec> result{};
+	for (const auto& tri : triangles)
+	{
+		PolyVec vec{};
+		for (int i{}; i < 3; i++)
+		{
+			const auto p = tri->GetPoint(i);
+			vec.push_back(Vec2(p->x, p->y));
+		}
+		result.push_back(vec);
+	}
+	crate->replaceShapes(result);
+
+	// Release Memory
+	for (auto& point : polyline)
+	{
+		delete point;
+	}
+	for (auto& point : holePolyline)
+	{
+		delete point;
+	}
 }
