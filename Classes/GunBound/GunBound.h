@@ -4,6 +4,8 @@
 
 USING_NS_CC;
 
+
+
 class GunBound : public Scene
 {
 public:

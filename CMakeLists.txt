@@ -54,31 +54,43 @@ if(APPLE OR WINDOWS)
     cocos_mark_multi_resources(common_res_files RES_TO "Resources" FOLDERS ${GAME_RES_FOLDER})
 endif()
 
-# add cross-platforms source files and header files 
+#Gun Bound Game
 list(APPEND GAME_SOURCE
-     Classes/AppDelegate.cpp
-     Classes/GameScene.cpp
-     Classes/Dino.cpp
-     Classes/Hockey/Hockey.cpp
-     Classes/Hockey/GameSprite.cpp
+    Classes/GunBound/GunBoundScene.cpp
+    Classes/GunBound/Character.cpp
      Classes/GunBound/GunBound.cpp
      Classes/GunBound/Gun.cpp
      Classes/GunBound/GameTerrain.cpp
      Classes/GunBound/TestPhysics.cpp
-     Classes/GunBound/Crate.cpp
+     Classes/GunBound/SpritePhysics.cpp
+     )
+list(APPEND GAME_HEADER
+    Classes/GunBound/GunBoundScene.h
+    Classes/GunBound/Character.h
+     Classes/GunBound/GunBound.h
+     Classes/GunBound/Gun.h
+     Classes/GunBound/GameTerrain.h
+     Classes/GunBound/TestPhysics.h
+     Classes/GunBound/SpritePhysics.h
+     )
+
+# add cross-platforms source files and header files 
+list(APPEND GAME_SOURCE
+     Classes/AppDelegate.cpp
+     Classes/Helper.cpp
+     Classes/GameScene.cpp
+     Classes/Dino.cpp
+     Classes/Hockey/Hockey.cpp
+     Classes/Hockey/GameSprite.cpp
      )
 list(APPEND GAME_HEADER
      Classes/AppDelegate.h
+     Classes/Helper.h
      Classes/EarCut/earcut.hpp
      Classes/GameScene.h
      Classes/Dino.h
      Classes/Hockey/Hockey.h
      Classes/Hockey/GameSprite.h
-     Classes/GunBound/GunBound.h
-     Classes/GunBound/Gun.h
-     Classes/GunBound/GameTerrain.h
-     Classes/GunBound/TestPhysics.h
-     Classes/GunBound/Crate.h
      )
 
 if(ANDROID)

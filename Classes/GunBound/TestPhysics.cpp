@@ -96,7 +96,7 @@ bool TestPhysics::init()
 	this->getPhysicsWorld()->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
 	this->setPhysics3DDebugCamera(Camera::getDefaultCamera());
 
-	crate = Crate::createCrate("GunBound/Crate.png");
+	crate = SpritePhysics::createInstance("GunBound/Crate.png", std::vector<PolyVec> {});
 	crate->setPosition(400, 350);
 	this->addChild(crate);
 

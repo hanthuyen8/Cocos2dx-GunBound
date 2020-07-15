@@ -1,7 +1,7 @@
 #pragma once
 
 #include "cocos2d.h"
-#include "Crate.h"
+#include "SpritePhysics.h"
 #include "clipper.hpp"
 
 USING_NS_CC;
@@ -14,7 +14,7 @@ public:
 	CREATE_FUNC(TestPhysics);
 
 private:
-	Crate* crate{};
+	SpritePhysics* crate{};
 	void onCut(EventMouse* ev);
 	void onCut2(EventMouse* ev);
 	DrawNode* drawNode{};

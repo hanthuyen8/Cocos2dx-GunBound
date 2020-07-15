@@ -157,4 +157,8 @@ tests/cpp-tests/Resources/audio
 # Ignore cocos2d engine folder
 cocos2d
 
+# Not Ignore cocos creator asset project folder
+!CreatorProject/assets
+!CreatorProject/packages
+
 # End of https://www.toptal.com/developers/gitignore/api/cocos2dx

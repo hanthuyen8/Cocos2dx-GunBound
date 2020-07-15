@@ -1,7 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <ClCompile Include="D:\Projects\Cocos2dx\TestGame1\Classes\GunBound\GunBoundScene.cpp">
+      <Filter>Source Files\Classes\GunBound</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Cocos2dx\TestGame1\Classes\GunBound\Character.cpp">
+      <Filter>Source Files\Classes\GunBound</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Cocos2dx\TestGame1\Classes\GunBound\GunBound.cpp">
+      <Filter>Source Files\Classes\GunBound</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Cocos2dx\TestGame1\Classes\GunBound\Gun.cpp">
+      <Filter>Source Files\Classes\GunBound</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Cocos2dx\TestGame1\Classes\GunBound\GameTerrain.cpp">
+      <Filter>Source Files\Classes\GunBound</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Cocos2dx\TestGame1\Classes\GunBound\TestPhysics.cpp">
+      <Filter>Source Files\Classes\GunBound</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Cocos2dx\TestGame1\Classes\GunBound\SpritePhysics.cpp">
+      <Filter>Source Files\Classes\GunBound</Filter>
+    </ClCompile>
     <ClCompile Include="D:\Projects\Cocos2dx\TestGame1\Classes\AppDelegate.cpp">
+      <Filter>Source Files\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Cocos2dx\TestGame1\Classes\Helper.cpp">
       <Filter>Source Files\Classes</Filter>
     </ClCompile>
     <ClCompile Include="D:\Projects\Cocos2dx\TestGame1\Classes\GameScene.cpp">
@@ -16,21 +40,6 @@
     <ClCompile Include="D:\Projects\Cocos2dx\TestGame1\Classes\Hockey\GameSprite.cpp">
       <Filter>Source Files\Classes\Hockey</Filter>
     </ClCompile>
-    <ClCompile Include="D:\Projects\Cocos2dx\TestGame1\Classes\GunBound\GunBound.cpp">
-      <Filter>Source Files\Classes\GunBound</Filter>
-    </ClCompile>
-    <ClCompile Include="D:\Projects\Cocos2dx\TestGame1\Classes\GunBound\Gun.cpp">
-      <Filter>Source Files\Classes\GunBound</Filter>
-    </ClCompile>
-    <ClCompile Include="D:\Projects\Cocos2dx\TestGame1\Classes\GunBound\GameTerrain.cpp">
-      <Filter>Source Files\Classes\GunBound</Filter>
-    </ClCompile>
-    <ClCompile Include="D:\Projects\Cocos2dx\TestGame1\Classes\GunBound\TestPhysics.cpp">
-      <Filter>Source Files\Classes\GunBound</Filter>
-    </ClCompile>
-    <ClCompile Include="D:\Projects\Cocos2dx\TestGame1\Classes\GunBound\Crate.cpp">
-      <Filter>Source Files\Classes\GunBound</Filter>
-    </ClCompile>
     <ClCompile Include="D:\Projects\Cocos2dx\TestGame1\proj.win32\main.cpp">
       <Filter>Source Files\proj.win32</Filter>
     </ClCompile>
@@ -39,7 +48,31 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Classes\GunBound\GunBoundScene.h">
+      <Filter>Source Files\Classes\GunBound</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Classes\GunBound\Character.h">
+      <Filter>Source Files\Classes\GunBound</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Classes\GunBound\GunBound.h">
+      <Filter>Source Files\Classes\GunBound</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Classes\GunBound\Gun.h">
+      <Filter>Source Files\Classes\GunBound</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Classes\GunBound\GameTerrain.h">
+      <Filter>Source Files\Classes\GunBound</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Classes\GunBound\TestPhysics.h">
+      <Filter>Source Files\Classes\GunBound</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Classes\GunBound\SpritePhysics.h">
+      <Filter>Source Files\Classes\GunBound</Filter>
+    </ClInclude>
     <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Classes\AppDelegate.h">
+      <Filter>Source Files\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Classes\Helper.h">
       <Filter>Source Files\Classes</Filter>
     </ClInclude>
     <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Classes\EarCut\earcut.hpp">
@@ -56,21 +89,6 @@
     </ClInclude>
     <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Classes\Hockey\GameSprite.h">
       <Filter>Source Files\Classes\Hockey</Filter>
-    </ClInclude>
-    <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Classes\GunBound\GunBound.h">
-      <Filter>Source Files\Classes\GunBound</Filter>
-    </ClInclude>
-    <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Classes\GunBound\Gun.h">
-      <Filter>Source Files\Classes\GunBound</Filter>
-    </ClInclude>
-    <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Classes\GunBound\GameTerrain.h">
-      <Filter>Source Files\Classes\GunBound</Filter>
-    </ClInclude>
-    <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Classes\GunBound\TestPhysics.h">
-      <Filter>Source Files\Classes\GunBound</Filter>
-    </ClInclude>
-    <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Classes\GunBound\Crate.h">
-      <Filter>Source Files\Classes\GunBound</Filter>
     </ClInclude>
     <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\proj.win32\main.h">
       <Filter>Source Files\proj.win32</Filter>
@@ -123,7 +141,22 @@
     <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Resources\Dino\Shadow.png">
       <Filter>Resources\Dino</Filter>
     </ClInclude>
+    <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Resources\GunBound\BackgroundLayer1.png">
+      <Filter>Resources\GunBound</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Resources\GunBound\BackgroundLayer2.png">
+      <Filter>Resources\GunBound</Filter>
+    </ClInclude>
     <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Resources\GunBound\Crate.png">
+      <Filter>Resources\GunBound</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Resources\GunBound\Player.png">
+      <Filter>Resources\GunBound</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Resources\GunBound\Terrain.png">
+      <Filter>Resources\GunBound</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Resources\GunBound\Tree.png">
       <Filter>Resources\GunBound</Filter>
     </ClInclude>
     <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Resources\HelloWorld.png">
