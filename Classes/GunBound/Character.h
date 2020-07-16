@@ -28,6 +28,7 @@ class Character : public Sprite
 {
 public:
 	static Character* createInstance(std::string_view fileName, float radius);
+	bool initWithFile(const std::string& filename, float radius);
 	CREATE_FUNC(Character);
 
 	// Character sẽ có các thuộc tính:

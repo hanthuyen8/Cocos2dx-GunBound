@@ -13,6 +13,24 @@ class Cannon : public DrawNode
 public:
 	static Cannon* createInstance();
 	virtual bool init() override;
-	void aiming(Vec2& direction, float force, float dt);
+
+private:
+	float angle{};
+	int isAiming{false};
+	float isCharging{ false };
+
+	CC_SYNTHESIZE(Vec2, fireDirection, FireDirection);
+	CC_SYNTHESIZE(float, force, Force);
+
+	DrawNode* aimMeter{};
+	DrawNode* chargeMeter{};
+	DrawNode* aimOnAir{};
+
+	virtual void update(float dt) override;
+
+	void drawPath(float dt);
+
+	void onKeyPressed(EventKeyboard::KeyCode, Event*);
+	void stopAiming(EventKeyboard::KeyCode, Event*);
 };
 

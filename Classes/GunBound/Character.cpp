@@ -5,28 +5,36 @@
 Character* Character::createInstance(std::string_view fileName, float radius)
 {
 	Character* instance = new Character();
-	if (instance && instance->initWithFile(std::string{ fileName }))
+	if (instance && instance->initWithFile(std::string{ fileName }, radius))
 	{
-		instance->radius = radius;
-		instance->moveSpeed = 6000;
-
-		const auto body = PhysicsBody::create();
-		const auto shape = PhysicsShapeCircle::create(radius, PhysicsMaterial::PhysicsMaterial(1, 0, 0));
-		body->addShape(shape);
-		body->setDynamic(true);
-		body->setGravityEnable(false);
-		instance->addComponent(body);
-		instance->physicsBody = body;
-
-		instance->cannon = Cannon::createInstance();
-		instance->addChild(instance->cannon);
-
 		instance->autorelease();
 		return instance;
 	}
 
 	CC_SAFE_DELETE(instance);
 	return nullptr;
+}
+
+bool Character::initWithFile(const std::string& filename, float radius)
+{
+	if (!Sprite::initWithFile(filename))
+		return false;
+
+	this->radius = radius;
+	moveSpeed = 6000;
+
+	physicsBody = PhysicsBody::create();
+	physicsBody->addShape(PhysicsShapeCircle::create(radius, PhysicsMaterial::PhysicsMaterial(1, 0, 0)));
+	physicsBody->setDynamic(true);
+	physicsBody->setGravityEnable(false);
+	this->addComponent(physicsBody);
+
+	cannon = Cannon::createInstance();
+	//cannon->setPosition(this->convertToNodeSpace(Vec2{ 0, radius * 2 }));
+	cannon->setPosition(this->convertToNodeSpace(Vec2::ZERO));
+	this->addChild(cannon);
+
+	return true;
 }
 
 void Character::setCollisionMask(int selfMask, int collideWith)
@@ -93,8 +101,6 @@ void Character::update(float dt)
 	}
 	else
 	{
-		//cannon->aiming(Vec2{ 0.5, 0.5 }.getNormalized(), 100, dt);
-		cannon->drawCircle(Vec2::ZERO, 10, 10, 10, true, Color4F::WHITE);
 	}
 
 	physicsBody->setVelocity(velocity);
