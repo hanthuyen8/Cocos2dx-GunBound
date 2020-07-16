@@ -11,7 +11,7 @@ class GameScene : public Scene
 {
 private:
 	Sprite* character{ nullptr };
-	const float moveSpeed{ 300 };
+	const float moveSpeed{ 1000 };
 
 public:
 	static Scene* createScene();

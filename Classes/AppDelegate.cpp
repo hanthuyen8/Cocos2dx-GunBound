@@ -28,6 +28,7 @@
 #include "GunBound/GameTerrain.h"
 #include "GunBound/TestPhysics.h"
 #include "GunBound/GunBoundScene.h"
+#include "GunBound/DebugScene.h"
 
 // #define USE_AUDIO_ENGINE 1
 

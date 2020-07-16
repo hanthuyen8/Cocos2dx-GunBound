@@ -19,4 +19,9 @@ namespace Helper
 	/// <param name="polyline">List các điểm rời rạc của 1 polygon</param>
 	/// <returns>Trả về list của: 1 list 3 đỉnh tam giác</returns>
 	std::vector<std::vector<Vec2>> getTrianglesFromPolyline(const std::vector<Vec2>& polyline);
+
+	void logVec2(const Vec2& point);
+
+	Vec2 rotatePointAroundOrigin(const Vec2 point, const float angle);
+	Vec2 rotateOffsetArountPoint(Vec2 point, const Vec2 offset, const float angle);
 }

@@ -22,6 +22,7 @@ bool GunBoundScene::init()
 	this->setPosition(winSize.width / 2, winSize.height / 2);
 
 	// Tất cả những thứ sẽ setup gồm:
+	GunBoundScene::acceleration = Vec2{ 0, -9.81f };
 
 	// Background (2 cái)
 	backgroundLayer1 = Sprite::create(PATH_BG_LAYER1);
@@ -34,24 +35,31 @@ bool GunBoundScene::init()
 	terrain = SpritePhysics::createInstance(PATH_TERRAIN, Helper::getTrianglesFromPolyline({
 		Vec2{96,120},Vec2{-283,32},Vec2{-434,-40},Vec2{-640,-40},Vec2{-640,-120},Vec2{640,-120},Vec2{640,-40},Vec2{565,-40},Vec2{264,-8},
 		}));
+	terrain->setName("Terrain");
 	addToScene(terrain, Vec2{ 0, -238 });
 
 	// Tree (1 cái) kèm physic body
 	tree = SpritePhysics::createInstance(PATH_TREE, Helper::getTrianglesFromPolyline({
 		Vec2{ -13,155 }, Vec2{ -38,139 }, Vec2{ -45,122 }, Vec2{ -67,116 }, Vec2{ -77,93 }, Vec2{ -106,83 }, Vec2{ -119,60 }, Vec2{ -113,27 }, Vec2{ -93,12 }, Vec2{ -100,-27 }, Vec2{ -81,-36 }, Vec2{ -77,-61 }, Vec2{ -59,-62 }, Vec2{ -56,-92 }, Vec2{ -31,-98 }, Vec2{ -31,-137 }, Vec2{ -57,-137 }, Vec2{ -69,-155 }, Vec2{ 54,-155 }, Vec2{ 46,-139 }, Vec2{ 27,-137 }, Vec2{ 27,-84 }, Vec2{ 46,-81 }, Vec2{ 49,-59 }, Vec2{ 72,-58 }, Vec2{ 75,-44 }, Vec2{ 112,-20 }, Vec2{ 111,-3 }, Vec2{ 95,6 }, Vec2{ 119,34 }, Vec2{ 113,68 }, Vec2{ 86,85 }, Vec2{ 57,133 }
 		}));
+	tree->setName("Tree");
 	addToScene(tree, Vec2{ -570, -140 });
 
 	// Player (1 cái) kèm physic body
 	player = Character::createInstance(PATH_PLAYER, 55);
 	player->setAnchorPoint(Vec2{ 0.45f, 0.5f });
 	player->setPosition(-537, 63);
-	player->setMoveSpeed(200);
 	player->setCollisionMask(COLLISION_MASK_CHARACTER, COLLISION_MASK_SPRITE_PHYSICS);
 	player->listenToKeyboardMovement();
+	player->setName("Player");
 	this->addChild(player);
 
 	return true;
+}
+
+Vec2 GunBoundScene::getAcceleration()
+{
+	return GunBoundScene::acceleration;
 }
 
 void GunBoundScene::addToScene(SpritePhysics* sprite, Vec2&& atPos)

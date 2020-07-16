@@ -17,6 +17,8 @@ public:
 	virtual bool init() override;
 	CREATE_FUNC(GunBoundScene);
 
+	static Vec2 getAcceleration();
+
 private:
 	// Tất cả những thứ sẽ setup gồm:
 	std::vector<SpritePhysics*> allSpritePhysics{};
@@ -33,6 +35,9 @@ private:
 
 	// Player (1 cái) kèm physic body
 	CC_SYNTHESIZE(Character*, player, Player);
+
+	// Các thuộc tính:
+	inline static Vec2 acceleration{};
 
 	void addToScene(SpritePhysics* sprite, Vec2&& atPos);
 

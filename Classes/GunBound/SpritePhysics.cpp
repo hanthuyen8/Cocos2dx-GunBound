@@ -57,5 +57,6 @@ void SpritePhysics::eraseArea(const PolyVec& area)
 void SpritePhysics::setCollisionMask(int selfMask, int collideWith)
 {
 	physicsBody->setCategoryBitmask(selfMask);
-	physicsBody->setCollisionBitmask(collideWith);
+	//physicsBody->setCollisionBitmask(collideWith);
+	physicsBody->setContactTestBitmask(collideWith);
 }

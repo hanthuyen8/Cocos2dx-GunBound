@@ -38,4 +38,46 @@ namespace Helper
 	{
 		return getTrianglesFromPoly(polyline, mapbox::earcut(std::vector<std::vector<Vec2>> {polyline}));
 	}
+
+	void logVec2(const Vec2& point)
+	{
+		cocos2d::log("Vector: (%f, %f)", point.x, point.y);
+	}
+
+	Vec2 rotatePointAroundOrigin(const Vec2 point, const float angle)
+	{
+		// Công thức counter-clockwise rotation:
+		// x2 = cosA * x1 − sinA * y1
+		// y2 = sinA * x1 + cosA * y1
+
+		// Công thức clockwise rotation:
+		// x2 = cosA * x1 + sinA * y1
+		// y2 = -sinA * x1 + cosA * y1
+
+		const auto rad{ CC_DEGREES_TO_RADIANS(-angle) };
+		const float cosA = std::cos(rad);
+		const float sinA = std::sin(rad);
+		Vec2 output{ 0,0 };
+		output.x = cosA * point.x - sinA * point.y;
+		output.y = sinA * point.x + cosA * point.y;
+		return output;
+	}
+
+	Vec2 rotateOffsetArountPoint(Vec2 point, const Vec2 offset, const float angle)
+	{
+		const auto rad{ CC_DEGREES_TO_RADIANS(angle) };
+		const float cosA = std::cos(rad);
+		const float sinA = std::sin(rad);
+
+		// Translate Point back to Origin
+		point -= offset;
+
+		Vec2 output{};
+		output.x = cosA * point.x - sinA * point.y;
+		output.y = sinA * point.x + cosA * point.y;
+
+		// Translate Point back to Offet
+		point += output + offset;
+		return point;
+	}
 }

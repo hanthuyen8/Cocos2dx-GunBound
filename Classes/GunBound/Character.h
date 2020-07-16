@@ -1,6 +1,7 @@
 ﻿#pragma once
 
 #include "cocos2d.h"
+#include "Cannon.h"
 #include <string_view>
 
 USING_NS_CC;
@@ -40,12 +41,17 @@ private:
 	CC_SYNTHESIZE_READONLY(PhysicsBody*, physicsBody, PhysicsBody);
 
 	float radius{};
-	float moveDirection{};
-	bool isKeyPressed{false};
+	float moveHorizontal{};
+	Vec2 groundNormal{ Vec2::ZERO };
+	float fallSpeed{ 10000 };
+	bool isKeyPressed{ false };
 	bool isFacingToLeft{ false };
+	bool isFireAndStopMoving{ false };
+	PhysicsShape* currentCollider{};
+	Cannon* cannon{};
 
 	virtual void update(float dt) override;
 	void onKeyPressed(EventKeyboard::KeyCode key, Event*);
-	void checkGroundDistance(float distance);
+	float checkGravity();
 };
 
