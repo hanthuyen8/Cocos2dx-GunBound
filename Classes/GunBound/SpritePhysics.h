@@ -1,20 +1,26 @@
 ﻿#pragma once
 
 #include "cocos2d.h"
+#include "IDamageable.h"
 
 USING_NS_CC;
 using PolyVec = std::vector<Vec2>;
 
 // Class này sẽ không quan tâm đến việc class khác xử lý thế nào với dữ liệu của nó
 // Nó chỉ làm việc lưu trữ Vec2
-class SpritePhysics : public ClippingNode
+class SpritePhysics : public ClippingNode, public IDamageable
 {
 public:
-	static SpritePhysics* createInstance(std::string_view fileName, std::vector<PolyVec>&& shape);
+	static inline int COLLISION_CATEGORY{ 0x00 };
+	static inline int COLLISION_WITH{ 0x00 };
+
+	static SpritePhysics* createInstance(std::string_view fileName, std::vector<PolyVec>& shape);
+	bool init(std::string_view fileName, std::vector<PolyVec>& shape);
+
 	std::vector<PolyVec> getClippedPoly();
 	void replaceShapes(const std::vector<PolyVec>& shapes);
 	void eraseArea(const PolyVec& area);
-	void setCollisionMask(int selfMask, int collideWith);
+	virtual void setDamage(const std::vector<Vec2>& damagedPoints) override;
 
 private:
 	Sprite* sprite{};

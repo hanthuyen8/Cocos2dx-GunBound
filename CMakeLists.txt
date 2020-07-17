@@ -59,6 +59,7 @@ list(APPEND GAME_SOURCE
     Classes/GunBound/GunBoundScene.cpp
     Classes/GunBound/Character.cpp
     Classes/GunBound/Cannon.cpp
+    Classes/GunBound/Ammo.cpp
      Classes/GunBound/GunBound.cpp
      Classes/GunBound/Gun.cpp
      Classes/GunBound/GameTerrain.cpp
@@ -67,9 +68,13 @@ list(APPEND GAME_SOURCE
      Classes/GunBound/DebugScene.cpp
      )
 list(APPEND GAME_HEADER
+#Interfaces
+    Classes/GunBound/IDamageable.h
+
     Classes/GunBound/GunBoundScene.h
     Classes/GunBound/Character.h
     Classes/GunBound/Cannon.h
+    Classes/GunBound/Ammo.h
      Classes/GunBound/GunBound.h
      Classes/GunBound/Gun.h
      Classes/GunBound/GameTerrain.h

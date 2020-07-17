@@ -1,10 +1,11 @@
 ﻿#pragma once
 
+#include <string_view>
 #include "cocos2d.h"
 
 namespace Helper
 {
-	using Vec2 = cocos2d::Vec2;
+	USING_NS_CC;
 	/// <summary>
 		/// Hàm này trả về list các tam giác được lấy ra từ 1 nhóm các điểm cho trước.
 		/// </summary>
@@ -24,4 +25,9 @@ namespace Helper
 
 	Vec2 rotatePointAroundOrigin(const Vec2 point, const float angle);
 	Vec2 rotateOffsetArountPoint(Vec2 point, const Vec2 offset, const float angle);
+	std::vector<Vec2> getCircle(const Vec2& atPos, const float radius);
 }
+
+#ifndef RETURN_FALSE_IF_NULL_PTR
+#define RETURN_FALSE_IF_NULL_PTR(p, message) do{if (!p){CCLOGERROR(message); return false;}}while(0)
+#endif // !RETURN_FALSE_IF_NULL_PTR

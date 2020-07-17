@@ -1,5 +1,4 @@
-﻿#include <vector>
-#include "Helper.h"
+﻿#include "Helper.h"
 #include "EarCut/earcut.hpp"
 
 namespace Helper
@@ -79,5 +78,22 @@ namespace Helper
 		// Translate Point back to Offet
 		point += output + offset;
 		return point;
+	}
+
+	std::vector<Vec2> getCircle(const Vec2& atPos, const float radius)
+	{
+		const int segment = 5;
+		float anglePerSegmentRad = 2 * std::_Pi / segment;
+
+		std::vector<Vec2> result{};
+		result.reserve(segment);
+
+		for (int i{}; i < segment; i++)
+		{
+			Vec2 unit{ std::cos(anglePerSegmentRad * i), std::sin(anglePerSegmentRad * i) };
+			result.push_back(atPos + (unit * radius));
+		}
+
+		return result;
 	}
 }

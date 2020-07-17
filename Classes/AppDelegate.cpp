@@ -120,12 +120,18 @@ bool AppDelegate::applicationDidFinishLaunching() {
     // create a scene. it's an autorelease object
     auto scene = GunBoundScene::createScene();
 
-    scene->getPhysicsWorld()->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
+    if (scene)
+    {
+        scene->getPhysicsWorld()->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
 
-    // run
-    director->runWithScene(scene);
-
-    return true;
+        // run
+        director->runWithScene(scene);
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }
 
 // This function will be called when the app is inactive. Note, when receiving a phone call it is invoked.

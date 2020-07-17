@@ -1,36 +1,47 @@
 #include "SpritePhysics.h"
+#include "Helper.h"
 
-SpritePhysics* SpritePhysics::createInstance(std::string_view fileName, std::vector<PolyVec>&& shape)
+SpritePhysics* SpritePhysics::createInstance(std::string_view fileName, std::vector<PolyVec>& shape)
 {
 	auto instance = new SpritePhysics();
-	if (instance)
+	if (instance && instance->init(fileName, shape))
 	{
 		instance->autorelease();
-
-		// Create Stencil
-		const auto stencil = DrawNode::create();
-		instance->stencil = stencil;
-		instance->addChild(stencil);
-		instance->setStencil(stencil);
-		instance->setInverted(true);
-
-		// Sprite
-		const auto sprite = Sprite::create(std::string{ fileName });
-		instance->sprite = sprite;
-		instance->addChild(sprite);
-
-		// Create polygon physics body shape
-		const auto physicsBody = PhysicsBody::create();
-		instance->physicsBody = physicsBody;
-		physicsBody->setDynamic(false);
-		instance->addComponent(physicsBody);
-		instance->replaceShapes(shape);
-
 		return instance;
 	}
 
 	CC_SAFE_DELETE(instance);
 	return nullptr;
+}
+
+bool SpritePhysics::init(std::string_view fileName, std::vector<PolyVec>& shape)
+{
+	if (!ClippingNode::init())
+		return false;
+
+	// Create Stencil
+	stencil = DrawNode::create();
+	this->addChild(stencil);
+	this->setStencil(stencil);
+	this->setInverted(true);
+
+	// Create Sprite
+	sprite = Sprite::create(std::string{ fileName });
+	RETURN_FALSE_IF_NULL_PTR(sprite, "SpritePhysics sprite");
+	this->sprite = sprite;
+	this->addChild(sprite);
+
+	// Create polygon physics body shape
+	physicsBody = PhysicsBody::create();
+	physicsBody->setDynamic(false);
+	physicsBody->setCategoryBitmask(COLLISION_CATEGORY);
+	physicsBody->setContactTestBitmask(COLLISION_WITH);
+	replaceShapes(shape);
+
+	this->physicsBody = physicsBody;
+	this->addComponent(physicsBody);
+
+	return true;
 }
 
 std::vector<PolyVec> SpritePhysics::getClippedPoly()
@@ -54,9 +65,7 @@ void SpritePhysics::eraseArea(const PolyVec& area)
 	stencil->drawSolidPoly(area.data(), area.size(), Color4F::BLACK);
 }
 
-void SpritePhysics::setCollisionMask(int selfMask, int collideWith)
+void SpritePhysics::setDamage(const std::vector<Vec2>& damagedPoints)
 {
-	physicsBody->setCategoryBitmask(selfMask);
-	//physicsBody->setCollisionBitmask(collideWith);
-	physicsBody->setContactTestBitmask(collideWith);
+	CCLOG("SP get dmg");
 }

@@ -6,8 +6,9 @@
 
 USING_NS_CC;
 
-constexpr int COLLISION_MASK_CHARACTER = 0x01;;
-constexpr int COLLISION_MASK_SPRITE_PHYSICS = 0x02;;
+constexpr int COLLISION_MASK_CHARACTER = 0x01;
+constexpr int COLLISION_MASK_SPRITE_PHYSICS = 0x02;
+constexpr int COLLISION_MASK_AMMO = 0x03;
 
 // Class này sẽ đảm nhiệm việc setup mọi thứ lên scene
 class GunBoundScene : public Scene

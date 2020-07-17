@@ -2,10 +2,10 @@
 #include "Helper.h"
 #include <algorithm>
 
-Character* Character::createInstance(std::string_view fileName, float radius)
+Character* Character::create(std::string_view fileName, float radius)
 {
-	Character* instance = new Character();
-	if (instance && instance->initWithFile(std::string{ fileName }, radius))
+	Character* instance = new(std::nothrow) Character();
+	if (instance && instance->init(fileName, radius))
 	{
 		instance->autorelease();
 		return instance;
@@ -15,9 +15,9 @@ Character* Character::createInstance(std::string_view fileName, float radius)
 	return nullptr;
 }
 
-bool Character::initWithFile(const std::string& filename, float radius)
+bool Character::init(std::string_view fileName, float radius)
 {
-	if (!Sprite::initWithFile(filename))
+	if (!Sprite::initWithFile(std::string{ fileName }))
 		return false;
 
 	this->radius = radius;
@@ -27,21 +27,19 @@ bool Character::initWithFile(const std::string& filename, float radius)
 	physicsBody->addShape(PhysicsShapeCircle::create(radius, PhysicsMaterial::PhysicsMaterial(1, 0, 0)));
 	physicsBody->setDynamic(true);
 	physicsBody->setGravityEnable(false);
+
+	physicsBody->setCategoryBitmask(COLLISION_CATEGORY);
+	physicsBody->setContactTestBitmask(COLLISION_WITH);
+
 	this->addComponent(physicsBody);
 
-	cannon = Cannon::createInstance();
-	//cannon->setPosition(this->convertToNodeSpace(Vec2{ 0, radius * 2 }));
+	cannon = Cannon::create();
+	RETURN_FALSE_IF_NULL_PTR(cannon, "Character cannon");
+
 	cannon->setPosition(this->convertToNodeSpace(Vec2::ZERO));
 	this->addChild(cannon);
 
 	return true;
-}
-
-void Character::setCollisionMask(int selfMask, int collideWith)
-{
-	physicsBody->setCategoryBitmask(selfMask);
-	//physicsBody->setCollisionBitmask(collideWith);
-	physicsBody->setContactTestBitmask(collideWith);
 }
 
 void Character::listenToKeyboardMovement()
@@ -56,6 +54,11 @@ void Character::listenToKeyboardMovement()
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(keyboardListener, this);
 
 	this->scheduleUpdate();
+}
+
+void Character::setDamage(const std::vector<Vec2>& damagedPoints)
+{
+	CCLOG("character get dmg");
 }
 
 void Character::onKeyPressed(EventKeyboard::KeyCode key, Event*)
@@ -101,6 +104,7 @@ void Character::update(float dt)
 	}
 	else
 	{
+		// Write here
 	}
 
 	physicsBody->setVelocity(velocity);
@@ -113,7 +117,6 @@ a.  0: đứng yên
 b. -1 -> 0: rơi xuống
 c.  0 -> 1: bay lên
 */
-
 float Character::checkGravity()
 {
 	const auto scene = this->getScene();

@@ -1,5 +1,7 @@
 ﻿#pragma once
 #include "cocos2d.h"
+#include "Ammo.h"
+
 USING_NS_CC;
 
 class Cannon : public DrawNode
@@ -11,7 +13,7 @@ class Cannon : public DrawNode
 	// Vậy trước mắt chỉ cần có variable DrawNode
 
 public:
-	static Cannon* createInstance();
+	static Cannon* create();
 	virtual bool init() override;
 
 private:
@@ -19,18 +21,18 @@ private:
 	int isAiming{false};
 	float isCharging{ false };
 
-	CC_SYNTHESIZE(Vec2, fireDirection, FireDirection);
-	CC_SYNTHESIZE(float, force, Force);
-
 	DrawNode* aimMeter{};
 	DrawNode* chargeMeter{};
-	DrawNode* aimOnAir{};
+	DrawNode* ammoPath{};
+	Ammo* ammo{};
 
 	virtual void update(float dt) override;
 
 	void drawPath(float dt);
 
+	void fire();
+
 	void onKeyPressed(EventKeyboard::KeyCode, Event*);
-	void stopAiming(EventKeyboard::KeyCode, Event*);
+	void onKeyReleased(EventKeyboard::KeyCode, Event*);
 };
 

@@ -1,14 +1,15 @@
 ﻿#include "Cannon.h"
 #include "GunBound/GunBoundScene.h"
+#include "Helper.h";
 
 const float MIN_ANGLE = 0;
 const float MAX_ANGLE = 180;
 const float AIM_SPEED = 200;
 const float CHARGE_SPEED = 70;
 
-Cannon* Cannon::createInstance()
+Cannon* Cannon::create()
 {
-	Cannon* cannon = new Cannon();
+	Cannon* cannon = new(std::nothrow) Cannon();
 	if (cannon && cannon->init())
 	{
 		cannon->autorelease();
@@ -28,8 +29,8 @@ bool Cannon::init()
 	this->setCascadeOpacityEnabled(true);
 	this->setOpacity(0);
 
-	aimOnAir = DrawNode::create();
-	this->addChild(aimOnAir);
+	ammoPath = DrawNode::create();
+	this->addChild(ammoPath);
 
 	aimMeter = DrawNode::create();
 	this->addChild(aimMeter);
@@ -37,9 +38,16 @@ bool Cannon::init()
 	chargeMeter = DrawNode::create();
 	this->addChild(chargeMeter);
 
+	ammo = Ammo::create();
+	RETURN_FALSE_IF_NULL_PTR(ammo, "Cannon ammo");
+	this->addChild(ammo);
+
 	const auto keyboardListener = EventListenerKeyboard::create();
+	if (!keyboardListener)
+		return false;
+
 	keyboardListener->onKeyPressed = CC_CALLBACK_2(Cannon::onKeyPressed, this);
-	keyboardListener->onKeyReleased = CC_CALLBACK_2(Cannon::stopAiming, this);
+	keyboardListener->onKeyReleased = CC_CALLBACK_2(Cannon::onKeyReleased, this);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(keyboardListener, this);
 
 	return true;
@@ -50,10 +58,10 @@ void Cannon::update(float dt)
 	if (isAiming)
 	{
 		angle = clampf(angle + isAiming * AIM_SPEED * dt, MIN_ANGLE, MAX_ANGLE);
-		const auto rad{ CC_DEGREES_TO_RADIANS(angle) };
-		aimOnAir->clear();
-		aimOnAir->setLineWidth(5);
-		aimOnAir->drawLine(Vec2::ZERO, Vec2::ZERO + Vec2{ std::cos(rad), std::sin(rad) } *30, Color4F::GREEN);
+		const float rad{ CC_DEGREES_TO_RADIANS(angle) };
+		aimMeter->clear();
+		aimMeter->setLineWidth(5);
+		aimMeter->drawLine(Vec2::ZERO, Vec2::ZERO + Vec2{ std::cos(rad), std::sin(rad) } *30, Color4F::GREEN);
 	}
 
 	if (isCharging)
@@ -63,39 +71,22 @@ void Cannon::update(float dt)
 		chargeMeter->drawLine(Vec2{ -50, -50 }, Vec2{ 50, -50 }, Color4F::WHITE);
 
 		isCharging = clampf(isCharging + CHARGE_SPEED * dt, 0, 100);
-		log("%f", isCharging);
 		const auto charge = MathUtil::lerp(-50, 50, isCharging / 100);
 		chargeMeter->drawLine(Vec2{ -50, -50 }, Vec2{ charge, -50 }, Color4F::GREEN);
+
+		const auto path = ammo->drawPath(angle, isCharging, dt);
+		ammoPath->clear();
+   		for (const auto& point : path)
+		{
+			ammoPath->drawDot(point, 10, Color4F::RED);
+		}
 	}
 }
 
-void Cannon::drawPath(float dt)
+void Cannon::fire()
 {
-	this->clear();
-
-	// Vẽ lên các chấm tròn biểu thị cho projectile của 1 viên cannon ball.
-	// Số chấm cần vẽ là 10.
-	const int numberOfDot{ 50 };
-	Vec2 velocity{ fireDirection * force };
-	Vec2 start{ this->getPosition() };
-	Vec2 acceleration{ GunBoundScene::getAcceleration() };
-	int i{ };
-	this->drawCircle(Vec2::ZERO, 10, 10, 10, false, Color4F::WHITE);
-	return;
-
-	do
-	{
-		velocity += acceleration * dt;
-		start += velocity * dt;
-
-		if (i++ % numberOfDot != 0)
-			continue;
-
-		// Draw Dot
-		this->drawSolidCircle(start, 10, 360, 10, 1, 1, Color4F::WHITE);
-	} while (start.y > 0);
+	ammo->fire(angle, isCharging);
 }
-
 
 void Cannon::onKeyPressed(EventKeyboard::KeyCode key, Event*)
 {
@@ -128,9 +119,16 @@ void Cannon::onKeyPressed(EventKeyboard::KeyCode key, Event*)
 	}
 }
 
-void Cannon::stopAiming(EventKeyboard::KeyCode, Event*)
+void Cannon::onKeyReleased(EventKeyboard::KeyCode key, Event*)
 {
+	if (key == cocos2d::EventKeyboard::KeyCode::KEY_SPACE)
+	{
+		fire();
+	}
+
+	isCharging = false;
 	isAiming = false;
+	ammoPath->clear();
 	this->unscheduleUpdate();
 	const auto fadeOut = FadeOut::create(2);
 	fadeOut->setTag(0);

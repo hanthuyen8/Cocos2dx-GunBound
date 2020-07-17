@@ -3,6 +3,7 @@
 #include "cocos2d.h"
 #include "Cannon.h"
 #include <string_view>
+#include "IDamageable.h"
 
 USING_NS_CC;
 
@@ -24,19 +25,21 @@ USING_NS_CC;
 	-> Vậy tóm gọn lại là gán luôn angle của mặt đất cho Character
 
 */
-class Character : public Sprite
+class Character : public Sprite, public IDamageable
 {
 public:
-	static Character* createInstance(std::string_view fileName, float radius);
-	bool initWithFile(const std::string& filename, float radius);
-	CREATE_FUNC(Character);
+	static inline int COLLISION_CATEGORY{ 0x00 };
+	static inline int COLLISION_WITH{ 0x00 };
+
+	static Character* create(std::string_view fileName, float radius);
+	bool init(std::string_view fileName, float radius);
 
 	// Character sẽ có các thuộc tính:
 	CC_SYNTHESIZE(float, moveSpeed, MoveSpeed);
 
 	// Character sẽ có các hàm di chuyển:
 	void listenToKeyboardMovement();
-	void setCollisionMask(int selfMask, int collideWith);
+	virtual void setDamage(const std::vector<Vec2>& damagedPoints) override;
 
 private:
 	CC_SYNTHESIZE_READONLY(PhysicsBody*, physicsBody, PhysicsBody);
