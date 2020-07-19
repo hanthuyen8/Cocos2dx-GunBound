@@ -22,6 +22,7 @@ bool Ammo::init()
 	if (!Sprite::initWithFile(PATH_AMMO))
 		return false;
 
+	this->setName("Ammo");
 	this->setOpacity(0);
 
 	const auto size = this->getBoundingBox().size;
@@ -43,9 +44,8 @@ bool Ammo::init()
 
 	this->unscheduleUpdate();
 
-
 	const auto collisionListener = EventListenerPhysicsContact::create();
-	collisionListener->onContactBegin = CC_CALLBACK_1(Ammo::onCollisionEnter, this);
+	collisionListener->onContactPreSolve = CC_CALLBACK_2(Ammo::onCollisionEnter, this);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(collisionListener, this);
 
 	return true;
@@ -68,19 +68,30 @@ void Ammo::fire(float angle, float speed, Vec2& startPoint, float deadZoneRadius
 
 	// Set vị trí này để Ammo không va phạm trúng Character đã bắn nó
 	startPoint = this->getParent()->convertToNodeSpace(startPoint);
-	this->setPosition(startPoint + direction * (deadZoneRadius + radius));
+	this->setPosition(startPoint + direction * (deadZoneRadius + radius * 10));
 	this->setOpacity(255);
 
 	physicsBody->setVelocity(direction * speed);
-	physicsBody->setEnabled(true);
 	this->scheduleUpdate();
+	physicsBody->setEnabled(true);
 }
 
-bool Ammo::onCollisionEnter(PhysicsContact& contact)
+bool Ammo::onCollisionEnter(PhysicsContact& contact, PhysicsContactPreSolve& solve)
 {
-	Node* collider = contact.getShapeB()->getBody()->getNode();
+	const auto ammoCat = physicsBody->getCategoryBitmask();
+	auto ammo = contact.getShapeA();
+	auto collider = contact.getShapeB();
 
-	IDamageable* target = dynamic_cast<IDamageable*>(collider);
+	if (ammo->getCategoryBitmask() != ammoCat)
+	{
+		ammo = contact.getShapeB();
+		collider = contact.getShapeA();
+
+		if (ammo->getCategoryBitmask() != ammoCat)
+			return true;
+	}
+
+	IDamageable* target = dynamic_cast<IDamageable*>(collider->getBody()->getNode());
 	if (!target)
 		return false;
 
@@ -93,5 +104,5 @@ bool Ammo::onCollisionEnter(PhysicsContact& contact)
 	this->setOpacity(0);
 	physicsBody->setEnabled(false);
 
-	return true;
+	return false;
 }

@@ -34,12 +34,10 @@ bool SpritePhysics::init(std::string_view fileName, std::vector<PolyVec>& shape)
 	// Create polygon physics body shape
 	physicsBody = PhysicsBody::create();
 	physicsBody->setDynamic(false);
-	physicsBody->setCategoryBitmask(COLLISION_CATEGORY);
-	physicsBody->setContactTestBitmask(COLLISION_WITH);
 	replaceShapes(shape);
 
 	this->physicsBody = physicsBody;
-	this->setPhysicsBody(physicsBody);
+	this->addComponent(physicsBody);
 
 	return true;
 }
@@ -58,6 +56,8 @@ void SpritePhysics::replaceShapes(const std::vector<PolyVec>& shapes)
 	{
 		physicsBody->addShape(PhysicsShapePolygon::create(points.data(), points.size()));
 	}
+	physicsBody->setCategoryBitmask(COLLISION_CATEGORY);
+	physicsBody->setContactTestBitmask(COLLISION_WITH);
 }
 
 void SpritePhysics::eraseArea(const PolyVec& area)

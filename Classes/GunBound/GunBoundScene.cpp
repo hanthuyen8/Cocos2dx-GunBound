@@ -4,6 +4,7 @@
 #include "CustomAnimation.h"
 
 // Resource Paths
+const auto PATH_EMPTY = "Empty.png";
 const auto PATH_BG_LAYER1 = "GunBound/BackgroundLayer1.png";
 const auto PATH_BG_LAYER2 = "GunBound/BackgroundLayer2.png";
 const auto PATH_TERRAIN = "GunBound/Terrain.png";
@@ -23,7 +24,7 @@ bool GunBoundScene::init()
 
 	// Add SpriteSheet
 	CustomAnimation::addPlistFile("GunBound/Animations/AnimationSmoke.plist", "AnimationSmoke");
-	
+
 	// Set collision masks
 	Ammo::COLLISION_CATEGORY = COLLISION_MASK_AMMO;
 	Ammo::COLLISION_WITH = COLLISION_MASK_CHARACTER | COLLISION_MASK_SPRITE_PHYSICS;
@@ -33,6 +34,11 @@ bool GunBoundScene::init()
 
 	SpritePhysics::COLLISION_CATEGORY = COLLISION_MASK_SPRITE_PHYSICS;
 	SpritePhysics::COLLISION_WITH = COLLISION_MASK_CHARACTER | COLLISION_MASK_AMMO;
+
+	const auto collisionListener = EventListenerPhysicsContact::create();
+	collisionListener->onContactBegin = CC_CALLBACK_1(GunBoundScene::physicsCollisionFilterRules, this);
+
+	_eventDispatcher->addEventListenerWithSceneGraphPriority(collisionListener, this);
 
 	// Get window size
 	const auto winSize = Director::getInstance()->getVisibleSize();
@@ -89,4 +95,16 @@ void GunBoundScene::addToScene(SpritePhysics* sprite, Vec2&& atPos)
 	this->addChild(sprite);
 	sprite->setPosition(atPos);
 	allSpritePhysics.push_back(sprite);
+}
+
+bool GunBoundScene::physicsCollisionFilterRules(PhysicsContact& contact)
+{
+	const auto shapeA = contact.getShapeA();
+	const auto shapeB = contact.getShapeB();
+
+	if (((shapeA->getCategoryBitmask() & shapeB->getContactTestBitmask()) == 0) ||
+		((shapeA->getContactTestBitmask() & shapeB->getCategoryBitmask()) == 0))
+		return false;
+
+	return true;
 }

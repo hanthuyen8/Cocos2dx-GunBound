@@ -58,9 +58,11 @@ bool CustomAnimation::init(std::string_view keyName)
 	animation = Animation::create();
 	for (int i{}; i < size; i++)
 	{
-		animation->addSpriteFrame(cache->getSpriteFrameByName(StringUtils::format("%s%d", pattern, i)));
+		const auto sf = cache->getSpriteFrameByName(pattern + std::to_string(i));
+		if (sf)
+			animation->addSpriteFrame(sf);
 	}
-	animation->setDelayPerUnit(1.0f / size);
+	animation->setDelayPerUnit(0.5f / size);
 	animation->setRestoreOriginalFrame(true);
 	CC_SAFE_RETAIN(animation);
 

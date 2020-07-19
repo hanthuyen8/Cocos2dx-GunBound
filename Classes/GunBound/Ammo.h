@@ -32,5 +32,5 @@ private:
 	float explosionRadius{ 50 };
 	PhysicsBody* physicsBody{};
 	CustomAnimation* explosionEffect{};
-	bool onCollisionEnter(PhysicsContact& contact);
+	bool onCollisionEnter(PhysicsContact& contact, PhysicsContactPreSolve& solve);
 };
