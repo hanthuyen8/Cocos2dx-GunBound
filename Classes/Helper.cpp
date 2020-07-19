@@ -80,6 +80,12 @@ namespace Helper
 		return point;
 	}
 
+	/// <summary>
+	/// Tạo ra tọa độ hình tròn
+	/// </summary>
+	/// <param name="atPos">tại điểm</param>
+	/// <param name="radius">bán kính</param>
+	/// <returns>Danh sách các điểm cần vẽ</returns>
 	std::vector<Vec2> getCircle(const Vec2& atPos, const float radius)
 	{
 		const int segment = 5;
@@ -95,5 +101,119 @@ namespace Helper
 		}
 
 		return result;
+	}
+}
+
+namespace ProjectileMotion2D
+{
+	Vec2 calc_unitVector(float angle)
+	{
+		const auto rad{ CC_DEGREES_TO_RADIANS(angle) };
+		return Vec2{ std::cos(rad), std::sin(rad) };
+	}
+
+	/// <summary>
+	/// Convert từ Tốc độ "khởi điểm" (pixel/s) sang Vận tốc "khởi điểm" (x pixel/s, y pixel/s)
+	/// </summary>
+	/// <param name="initSpeed">Tốc độ "khởi điểm" cần chuyển đổi</param>
+	/// <param name="angle">Góc bắn</param>
+	Vec2 convert_speedToVelocity(float initSpeed, float angle)
+	{
+		const auto rad{ CC_DEGREES_TO_RADIANS(angle) };
+		return Vec2{ initSpeed * std::cos(rad), (initSpeed * std::sin(rad)) };
+	}
+
+	/// <summary>
+	/// Convert từ Vận tốc "khởi điểm" (x pixel/s, y pixel/s) sang Tốc độ (pixel/s)
+	/// </summary>
+	/// <param name="initVelocity">Vận tốc "khởi điểm"</param>
+	float convert_velocityToSpeed(const Vec2& initVelocity)
+	{
+		return initVelocity.length();
+	}
+
+	/// <summary>
+	/// Giải phương trình bậc 2 : Ax^2 + Bx + C = 0;
+	/// </summary>
+	/// <returns>Nghiệm trả về có 2 giá trị. Trả về <0, 0> nếu giải ko được</returns>
+	std::pair<float, float> solve_quadrantEquation(float A, float B, float C)
+	{
+		const auto delta{ std::sqrt(std::pow(B, 2) - (4 * A * C)) };
+		// Nếu delta > 0: phương trình 2 nghiệm
+		// Nếu delta == 0: phương trình chỉ có 1 nghiệm
+		// Nếu delta < 0: phương trình số phức (xem như không có nghiệm)
+
+		if (delta < 0)
+			return std::make_pair(0.0f, 0.0f);
+
+		const auto result1 = (-B + delta) / (2 * A);
+		const auto result2 = (-B - delta) / (2 * A);
+
+		return std::make_pair(result1, result2);
+	}
+
+	/// <summary>
+	/// Tìm thời gian mà vật rơi xuống đất (T). Biết trước: cao độ (d_oy) và vận tốc ban đầu (v_oy)
+	/// </summary>
+	/// <param name="d_oy">Nếu bắn từ trên xuống thì d_oy sẽ dương. Nếu bắn từ dưới lên thì d_oy sẽ âm</param>
+	/// <param name="v_oy">Vận tốc khởi điểm theo phương Oy</param>
+	/// <param name="a_y">Gia tốc theo phương Oy</param>
+	/// <returns></returns>
+	float find_t(float d_oy, float v_oy, float a_y = -9.81f)
+	{
+		// Phương trình Công thức (phương trình bậc 2):
+		// H + V.y * T - (0.5 * g * T^2) = 0
+		// đưa về phương trình: Ax^2 + Bx + C = 0 để giải: (-0.5 * g)T^2 + (V.y)T + H = 0;
+		// Kết quả: x = (-B +- sqrt(B^2 - 4AC)) / 2A
+
+		const float A = 0.5f * a_y;
+		const float B = v_oy;
+		const float C = d_oy;
+
+		const auto result{ solve_quadrantEquation(A, B, C) };
+
+		// Vì thời gian là đại lượng không thể âm. Cho nên chỉ lấy ra giá trị nào không âm
+		return MAX(result.first, result.second);
+	}
+
+	/// <summary>
+	/// Tìm thời gian mà vật rơi xuống đất (T). Biết trước: displacement (d_o) và vận tốc ban đầu(v_o)
+	/// </summary>
+	/// <param name="d_o">Displacement khởi điểm. Nếu bắn từ trên xuống thì d_o.y sẽ dương. Nếu bắn từ dưới lên thì d_o.y sẽ âm</param>
+	/// <param name="v_o">Vận tốc khởi điểm</param>
+	/// <param name="a">Gia tốc</param>
+	/// <returns></returns>
+	float find_t(const Vec2& d_o, const Vec2& v_o, const Vec2& a)
+	{
+		return find_t(d_o.y, v_o.y, a.y);
+	}
+
+	/// <summary>
+	/// Tìm displacement theo một phương nhất định (Ox hoặc Oy) là bao nhiêu tại thời điểm t
+	/// </summary>
+	/// <param name="v_o">Vận tốc khởi điểm theo phương nhất định</param>
+	/// <param name="a">Gia tốc theo phương nhất định</param>
+	/// <param name="t">Thời điểm t</param>
+	/// <param name="d_o">Displacement khởi điểm theo phương nhất định (nếu có)</param>
+	/// <returns></returns>
+	float find_d(float v_o, float a, float t, float d_o = 0)
+	{
+		return (0.5f * a * std::pow(t, 2)) + (v_o * t) + d_o;
+	}
+
+	/// <summary>
+	/// Tìm displacement theo cả 2 phương là bao nhiêu tại thời điểm t
+	/// </summary>
+	/// <param name="v_o">Vận tốc khởi điểm</param>
+	/// <param name="a">Gia tốc</param>
+	/// <param name="t">Thời điểm t</param>
+	/// <param name="d_o">Displacement khởi điểm (nếu có)</param>
+	/// <returns></returns>
+	Vec2 find_d(const Vec2& v_o, const Vec2& a, float t, const Vec2& d_o = Vec2::ZERO)
+	{
+		const auto d_x{ find_d(v_o.x, a.x, t, d_o.x) };
+		const auto d_y{ find_d(v_o.y, a.y, t, d_o.y) };
+
+		return Vec2{ d_x, d_y };
 	}
 }

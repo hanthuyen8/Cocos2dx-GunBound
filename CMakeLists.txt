@@ -60,11 +60,13 @@ list(APPEND GAME_SOURCE
     Classes/GunBound/Character.cpp
     Classes/GunBound/Cannon.cpp
     Classes/GunBound/Ammo.cpp
+    Classes/GunBound/CustomAnimation.cpp
+     Classes/GunBound/SpritePhysics.cpp
+
      Classes/GunBound/GunBound.cpp
      Classes/GunBound/Gun.cpp
      Classes/GunBound/GameTerrain.cpp
      Classes/GunBound/TestPhysics.cpp
-     Classes/GunBound/SpritePhysics.cpp
      Classes/GunBound/DebugScene.cpp
      )
 list(APPEND GAME_HEADER
@@ -75,11 +77,13 @@ list(APPEND GAME_HEADER
     Classes/GunBound/Character.h
     Classes/GunBound/Cannon.h
     Classes/GunBound/Ammo.h
+    Classes/GunBound/CustomAnimation.h
+     Classes/GunBound/SpritePhysics.h
+
      Classes/GunBound/GunBound.h
      Classes/GunBound/Gun.h
      Classes/GunBound/GameTerrain.h
      Classes/GunBound/TestPhysics.h
-     Classes/GunBound/SpritePhysics.h
      Classes/GunBound/DebugScene.h
      )
 

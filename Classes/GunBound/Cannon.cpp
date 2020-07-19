@@ -6,11 +6,12 @@ const float MIN_ANGLE = 0;
 const float MAX_ANGLE = 180;
 const float AIM_SPEED = 200;
 const float CHARGE_SPEED = 70;
+const float MAX_SPEED = 1350;
 
-Cannon* Cannon::create()
+Cannon* Cannon::create(float deadZoneRadius)
 {
 	Cannon* cannon = new(std::nothrow) Cannon();
-	if (cannon && cannon->init())
+	if (cannon && cannon->init(deadZoneRadius))
 	{
 		cannon->autorelease();
 		return cannon;
@@ -20,14 +21,15 @@ Cannon* Cannon::create()
 	return nullptr;
 }
 
-bool Cannon::init()
+bool Cannon::init(float deadZoneRadius)
 {
 	if (!DrawNode::init())
 		return false;
 
+	this->deadZoneRadius = deadZoneRadius;
 	this->drawSolidCircle(Vec2::ZERO, 30, 0, 10, Color4F::Color4F(1, 1, 1, 1));
 	this->setCascadeOpacityEnabled(true);
-	this->setOpacity(0);
+	//this->setOpacity(0);
 
 	ammoPath = DrawNode::create();
 	this->addChild(ammoPath);
@@ -37,10 +39,6 @@ bool Cannon::init()
 
 	chargeMeter = DrawNode::create();
 	this->addChild(chargeMeter);
-
-	ammo = Ammo::create();
-	RETURN_FALSE_IF_NULL_PTR(ammo, "Cannon ammo");
-	this->addChild(ammo);
 
 	const auto keyboardListener = EventListenerKeyboard::create();
 	if (!keyboardListener)
@@ -74,9 +72,9 @@ void Cannon::update(float dt)
 		const auto charge = MathUtil::lerp(-50, 50, isCharging / 100);
 		chargeMeter->drawLine(Vec2{ -50, -50 }, Vec2{ charge, -50 }, Color4F::GREEN);
 
-		const auto path = ammo->drawPath(angle, isCharging, dt);
+		const auto path = drawPath(angle, isCharging / 100 * MAX_SPEED);
 		ammoPath->clear();
-   		for (const auto& point : path)
+		for (const auto& point : path)
 		{
 			ammoPath->drawDot(point, 10, Color4F::RED);
 		}
@@ -85,7 +83,9 @@ void Cannon::update(float dt)
 
 void Cannon::fire()
 {
-	ammo->fire(angle, isCharging);
+	tryToCreateAmmo();
+	auto startPoint = convertToWorldSpace(Vec2::ZERO);
+	ammo->fire(angle, isCharging / 100 * MAX_SPEED, startPoint, deadZoneRadius);
 }
 
 void Cannon::onKeyPressed(EventKeyboard::KeyCode key, Event*)
@@ -114,8 +114,8 @@ void Cannon::onKeyPressed(EventKeyboard::KeyCode key, Event*)
 	if (isAiming || isCharging)
 	{
 		this->scheduleUpdate();
-		this->stopActionByTag(0);
-		this->setOpacity(255);
+		//this->stopActionByTag(0);
+		//this->setOpacity(255);
 	}
 }
 
@@ -128,9 +128,40 @@ void Cannon::onKeyReleased(EventKeyboard::KeyCode key, Event*)
 
 	isCharging = false;
 	isAiming = false;
-	ammoPath->clear();
+	//ammoPath->clear();
 	this->unscheduleUpdate();
-	const auto fadeOut = FadeOut::create(2);
-	fadeOut->setTag(0);
-	this->runAction(fadeOut);
+	//const auto fadeOut = FadeOut::create(2);
+	//fadeOut->setTag(0);
+	//this->runAction(fadeOut);
+}
+
+std::vector<Vec2> Cannon::drawPath(float angle, float speed)
+{
+	tryToCreateAmmo();
+	const Vec2 unitVector{ ProjectileMotion2D::calc_unitVector(angle) };
+	const Vec2 diffFromWorldSpace{ this->convertToWorldSpaceAR(Vec2::ZERO) };
+	const Vec2 initDisplacement{ unitVector * (deadZoneRadius + ammo->getRadius()) };
+	const Vec2 initVelocity{ unitVector * speed };
+	const Vec2& acceleration = Ammo::ACCELERATION;
+	// B1. Tìm thời gian mà đạn sẽ tiếp đất
+	// B2. Dựa vào thời gian đó, chia nhỏ ra mỗi 1 giây sẽ vẽ 1 chấm tương ứng với vị trí nào
+
+	const auto totalTime = ProjectileMotion2D::find_t(initDisplacement.y + diffFromWorldSpace.y, initVelocity.y, acceleration.y);
+
+	std::vector<Vec2> path{};
+	for (float sec{ 0 }; sec < totalTime; sec += 0.1f)
+	{
+		const auto point = ProjectileMotion2D::find_d(initVelocity, acceleration, sec, initDisplacement);
+		path.push_back(point);
+	}
+	return path;
+}
+
+void Cannon::tryToCreateAmmo()
+{
+	if (!ammo)
+	{
+		ammo = Ammo::create();
+		Director::getInstance()->getRunningScene()->addChild(ammo);
+	}
 }

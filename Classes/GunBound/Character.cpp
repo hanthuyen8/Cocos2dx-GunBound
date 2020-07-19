@@ -2,6 +2,8 @@
 #include "Helper.h"
 #include <algorithm>
 
+const float MOVE_SPEED = 450;
+
 Character* Character::create(std::string_view fileName, float radius)
 {
 	Character* instance = new(std::nothrow) Character();
@@ -24,16 +26,16 @@ bool Character::init(std::string_view fileName, float radius)
 	moveSpeed = 6000;
 
 	physicsBody = PhysicsBody::create();
-	physicsBody->addShape(PhysicsShapeCircle::create(radius, PhysicsMaterial::PhysicsMaterial(1, 0, 0)));
+	physicsBody->addShape(PhysicsShapeCircle::create(radius, PhysicsMaterial::PhysicsMaterial(0, 0, 0)));
 	physicsBody->setDynamic(true);
 	physicsBody->setGravityEnable(false);
 
 	physicsBody->setCategoryBitmask(COLLISION_CATEGORY);
 	physicsBody->setContactTestBitmask(COLLISION_WITH);
 
-	this->addComponent(physicsBody);
+	this->setPhysicsBody(physicsBody);
 
-	cannon = Cannon::create();
+	cannon = Cannon::create(radius);
 	RETURN_FALSE_IF_NULL_PTR(cannon, "Character cannon");
 
 	cannon->setPosition(this->convertToNodeSpace(Vec2::ZERO));

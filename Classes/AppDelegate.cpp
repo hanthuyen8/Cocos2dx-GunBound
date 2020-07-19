@@ -119,6 +119,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
 
     // create a scene. it's an autorelease object
     auto scene = GunBoundScene::createScene();
+    //auto scene = DebugScene::createScene();
 
     if (scene)
     {

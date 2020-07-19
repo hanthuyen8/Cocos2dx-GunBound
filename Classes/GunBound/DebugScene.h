@@ -10,13 +10,8 @@ public:
 	CREATE_FUNC(DebugScene);
 
 private:
-	DrawNode* drawNode{};
-	Label* lblAngleDeg{};
-	Label* lblAngleRad{};
-	Label* lblNormal{};
-	Label* lblXAxisAngle{};
-
-	float angle{};
+	PhysicsBody* physicsBody{};
+	virtual void update(float dt) override;
 
 };
 

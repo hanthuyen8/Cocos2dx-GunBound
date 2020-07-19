@@ -1,6 +1,7 @@
 ﻿#include "GunBoundScene.h"
 #include "Helper.h"
 #include "Ammo.h"
+#include "CustomAnimation.h"
 
 // Resource Paths
 const auto PATH_BG_LAYER1 = "GunBound/BackgroundLayer1.png";
@@ -8,6 +9,7 @@ const auto PATH_BG_LAYER2 = "GunBound/BackgroundLayer2.png";
 const auto PATH_TERRAIN = "GunBound/Terrain.png";
 const auto PATH_TREE = "GunBound/Tree.png";
 const auto PATH_PLAYER = "GunBound/Player.png";
+const auto PATH_ANIM_SMOKE = "GunBound/Animations/AnimationSmoke.plist";
 
 Scene* GunBoundScene::createScene()
 {
@@ -18,6 +20,9 @@ bool GunBoundScene::init()
 {
 	if (!Scene::initWithPhysics())
 		return false;
+
+	// Add SpriteSheet
+	CustomAnimation::addPlistFile("GunBound/Animations/AnimationSmoke.plist", "AnimationSmoke");
 	
 	// Set collision masks
 	Ammo::COLLISION_CATEGORY = COLLISION_MASK_AMMO;

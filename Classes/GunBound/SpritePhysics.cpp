@@ -39,7 +39,7 @@ bool SpritePhysics::init(std::string_view fileName, std::vector<PolyVec>& shape)
 	replaceShapes(shape);
 
 	this->physicsBody = physicsBody;
-	this->addComponent(physicsBody);
+	this->setPhysicsBody(physicsBody);
 
 	return true;
 }

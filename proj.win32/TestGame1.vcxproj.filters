@@ -1,266 +1,281 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\GunBound\GunBoundScene.cpp">
+    <ClCompile Include="D:\Projects\Cocos2dx\TestGame1\Classes\GunBound\GunBoundScene.cpp">
       <Filter>Source Files\Classes\GunBound</Filter>
     </ClCompile>
-    <ClCompile Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\GunBound\Character.cpp">
+    <ClCompile Include="D:\Projects\Cocos2dx\TestGame1\Classes\GunBound\Character.cpp">
       <Filter>Source Files\Classes\GunBound</Filter>
     </ClCompile>
-    <ClCompile Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\GunBound\Cannon.cpp">
+    <ClCompile Include="D:\Projects\Cocos2dx\TestGame1\Classes\GunBound\Cannon.cpp">
       <Filter>Source Files\Classes\GunBound</Filter>
     </ClCompile>
-    <ClCompile Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\GunBound\Ammo.cpp">
+    <ClCompile Include="D:\Projects\Cocos2dx\TestGame1\Classes\GunBound\Ammo.cpp">
       <Filter>Source Files\Classes\GunBound</Filter>
     </ClCompile>
-    <ClCompile Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\GunBound\GunBound.cpp">
+    <ClCompile Include="D:\Projects\Cocos2dx\TestGame1\Classes\GunBound\CustomAnimation.cpp">
       <Filter>Source Files\Classes\GunBound</Filter>
     </ClCompile>
-    <ClCompile Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\GunBound\Gun.cpp">
+    <ClCompile Include="D:\Projects\Cocos2dx\TestGame1\Classes\GunBound\SpritePhysics.cpp">
       <Filter>Source Files\Classes\GunBound</Filter>
     </ClCompile>
-    <ClCompile Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\GunBound\GameTerrain.cpp">
+    <ClCompile Include="D:\Projects\Cocos2dx\TestGame1\Classes\GunBound\GunBound.cpp">
       <Filter>Source Files\Classes\GunBound</Filter>
     </ClCompile>
-    <ClCompile Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\GunBound\TestPhysics.cpp">
+    <ClCompile Include="D:\Projects\Cocos2dx\TestGame1\Classes\GunBound\Gun.cpp">
       <Filter>Source Files\Classes\GunBound</Filter>
     </ClCompile>
-    <ClCompile Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\GunBound\SpritePhysics.cpp">
+    <ClCompile Include="D:\Projects\Cocos2dx\TestGame1\Classes\GunBound\GameTerrain.cpp">
       <Filter>Source Files\Classes\GunBound</Filter>
     </ClCompile>
-    <ClCompile Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\GunBound\DebugScene.cpp">
+    <ClCompile Include="D:\Projects\Cocos2dx\TestGame1\Classes\GunBound\TestPhysics.cpp">
       <Filter>Source Files\Classes\GunBound</Filter>
     </ClCompile>
-    <ClCompile Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\AppDelegate.cpp">
+    <ClCompile Include="D:\Projects\Cocos2dx\TestGame1\Classes\GunBound\DebugScene.cpp">
+      <Filter>Source Files\Classes\GunBound</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Cocos2dx\TestGame1\Classes\AppDelegate.cpp">
       <Filter>Source Files\Classes</Filter>
     </ClCompile>
-    <ClCompile Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\Helper.cpp">
+    <ClCompile Include="D:\Projects\Cocos2dx\TestGame1\Classes\Helper.cpp">
       <Filter>Source Files\Classes</Filter>
     </ClCompile>
-    <ClCompile Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\GameScene.cpp">
+    <ClCompile Include="D:\Projects\Cocos2dx\TestGame1\Classes\GameScene.cpp">
       <Filter>Source Files\Classes</Filter>
     </ClCompile>
-    <ClCompile Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\Dino.cpp">
+    <ClCompile Include="D:\Projects\Cocos2dx\TestGame1\Classes\Dino.cpp">
       <Filter>Source Files\Classes</Filter>
     </ClCompile>
-    <ClCompile Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\Hockey\Hockey.cpp">
+    <ClCompile Include="D:\Projects\Cocos2dx\TestGame1\Classes\Hockey\Hockey.cpp">
       <Filter>Source Files\Classes\Hockey</Filter>
     </ClCompile>
-    <ClCompile Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\Hockey\GameSprite.cpp">
+    <ClCompile Include="D:\Projects\Cocos2dx\TestGame1\Classes\Hockey\GameSprite.cpp">
       <Filter>Source Files\Classes\Hockey</Filter>
     </ClCompile>
-    <ClCompile Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\proj.win32\main.cpp">
+    <ClCompile Include="D:\Projects\Cocos2dx\TestGame1\proj.win32\main.cpp">
       <Filter>Source Files\proj.win32</Filter>
     </ClCompile>
-    <ClCompile Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\cocos2d\cocos\precheader.cpp">
+    <ClCompile Include="D:\Projects\Cocos2dx\TestGame1\cocos2d\cocos\precheader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\GunBound\IDamageable.h">
+    <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Classes\GunBound\IDamageable.h">
       <Filter>Source Files\Classes\GunBound</Filter>
     </ClInclude>
-    <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\GunBound\GunBoundScene.h">
+    <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Classes\GunBound\GunBoundScene.h">
       <Filter>Source Files\Classes\GunBound</Filter>
     </ClInclude>
-    <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\GunBound\Character.h">
+    <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Classes\GunBound\Character.h">
       <Filter>Source Files\Classes\GunBound</Filter>
     </ClInclude>
-    <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\GunBound\Cannon.h">
+    <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Classes\GunBound\Cannon.h">
       <Filter>Source Files\Classes\GunBound</Filter>
     </ClInclude>
-    <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\GunBound\Ammo.h">
+    <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Classes\GunBound\Ammo.h">
       <Filter>Source Files\Classes\GunBound</Filter>
     </ClInclude>
-    <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\GunBound\GunBound.h">
+    <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Classes\GunBound\CustomAnimation.h">
       <Filter>Source Files\Classes\GunBound</Filter>
     </ClInclude>
-    <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\GunBound\Gun.h">
+    <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Classes\GunBound\SpritePhysics.h">
       <Filter>Source Files\Classes\GunBound</Filter>
     </ClInclude>
-    <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\GunBound\GameTerrain.h">
+    <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Classes\GunBound\GunBound.h">
       <Filter>Source Files\Classes\GunBound</Filter>
     </ClInclude>
-    <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\GunBound\TestPhysics.h">
+    <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Classes\GunBound\Gun.h">
       <Filter>Source Files\Classes\GunBound</Filter>
     </ClInclude>
-    <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\GunBound\SpritePhysics.h">
+    <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Classes\GunBound\GameTerrain.h">
       <Filter>Source Files\Classes\GunBound</Filter>
     </ClInclude>
-    <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\GunBound\DebugScene.h">
+    <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Classes\GunBound\TestPhysics.h">
       <Filter>Source Files\Classes\GunBound</Filter>
     </ClInclude>
-    <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\AppDelegate.h">
+    <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Classes\GunBound\DebugScene.h">
+      <Filter>Source Files\Classes\GunBound</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Classes\AppDelegate.h">
       <Filter>Source Files\Classes</Filter>
     </ClInclude>
-    <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\Helper.h">
+    <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Classes\Helper.h">
       <Filter>Source Files\Classes</Filter>
     </ClInclude>
-    <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\EarCut\earcut.hpp">
+    <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Classes\EarCut\earcut.hpp">
       <Filter>Source Files\Classes\EarCut</Filter>
     </ClInclude>
-    <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\GameScene.h">
+    <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Classes\GameScene.h">
       <Filter>Source Files\Classes</Filter>
     </ClInclude>
-    <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\Dino.h">
+    <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Classes\Dino.h">
       <Filter>Source Files\Classes</Filter>
     </ClInclude>
-    <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\Hockey\Hockey.h">
+    <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Classes\Hockey\Hockey.h">
       <Filter>Source Files\Classes\Hockey</Filter>
     </ClInclude>
-    <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\Hockey\GameSprite.h">
+    <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Classes\Hockey\GameSprite.h">
       <Filter>Source Files\Classes\Hockey</Filter>
     </ClInclude>
-    <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\proj.win32\main.h">
+    <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\proj.win32\main.h">
       <Filter>Source Files\proj.win32</Filter>
     </ClInclude>
-    <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\proj.win32\resource.h">
+    <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\proj.win32\resource.h">
       <Filter>Source Files\proj.win32</Filter>
     </ClInclude>
-    <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Resources\Background.png">
+    <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Resources\Background.png">
       <Filter>Resources</Filter>
     </ClInclude>
-    <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Resources\Cannon\Cannon.plist">
+    <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Resources\Cannon\Cannon.plist">
       <Filter>Resources\Cannon</Filter>
     </ClInclude>
-    <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Resources\Cannon\Cannon.png">
+    <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Resources\Cannon\Cannon.png">
       <Filter>Resources\Cannon</Filter>
     </ClInclude>
-    <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Resources\CloseNormal.png">
+    <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Resources\CloseNormal.png">
       <Filter>Resources</Filter>
     </ClInclude>
-    <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Resources\CloseSelected.png">
+    <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Resources\CloseSelected.png">
       <Filter>Resources</Filter>
     </ClInclude>
-    <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Resources\Dino\Dino.txt">
+    <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Resources\Dino\Dino.txt">
       <Filter>Resources\Dino</Filter>
     </ClInclude>
-    <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Resources\Dino\DinoDoux.plist">
+    <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Resources\Dino\DinoDoux.plist">
       <Filter>Resources\Dino</Filter>
     </ClInclude>
-    <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Resources\Dino\DinoDoux.png">
+    <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Resources\Dino\DinoDoux.png">
       <Filter>Resources\Dino</Filter>
     </ClInclude>
-    <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Resources\Dino\DinoMort.plist">
+    <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Resources\Dino\DinoMort.plist">
       <Filter>Resources\Dino</Filter>
     </ClInclude>
-    <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Resources\Dino\DinoMort.png">
+    <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Resources\Dino\DinoMort.png">
       <Filter>Resources\Dino</Filter>
     </ClInclude>
-    <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Resources\Dino\DinoTart.plist">
+    <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Resources\Dino\DinoTart.plist">
       <Filter>Resources\Dino</Filter>
     </ClInclude>
-    <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Resources\Dino\DinoTart.png">
+    <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Resources\Dino\DinoTart.png">
       <Filter>Resources\Dino</Filter>
     </ClInclude>
-    <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Resources\Dino\DinoVita.plist">
+    <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Resources\Dino\DinoVita.plist">
       <Filter>Resources\Dino</Filter>
     </ClInclude>
-    <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Resources\Dino\DinoVita.png">
+    <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Resources\Dino\DinoVita.png">
       <Filter>Resources\Dino</Filter>
     </ClInclude>
-    <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Resources\Dino\Shadow.png">
+    <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Resources\Dino\Shadow.png">
       <Filter>Resources\Dino</Filter>
     </ClInclude>
-    <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Resources\GunBound\BackgroundLayer1.png">
+    <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Resources\GunBound\Animations\AnimationSmoke.plist">
+      <Filter>Resources\GunBound\Animations</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Resources\GunBound\Animations\AnimationSmoke.png">
+      <Filter>Resources\GunBound\Animations</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Resources\GunBound\BackgroundLayer1.png">
       <Filter>Resources\GunBound</Filter>
     </ClInclude>
-    <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Resources\GunBound\BackgroundLayer2.png">
+    <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Resources\GunBound\BackgroundLayer2.png">
       <Filter>Resources\GunBound</Filter>
     </ClInclude>
-    <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Resources\GunBound\Bullet.png">
+    <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Resources\GunBound\Bullet.png">
       <Filter>Resources\GunBound</Filter>
     </ClInclude>
-    <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Resources\GunBound\Crate.png">
+    <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Resources\GunBound\Crate.png">
       <Filter>Resources\GunBound</Filter>
     </ClInclude>
-    <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Resources\GunBound\Player.png">
+    <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Resources\GunBound\Player.png">
       <Filter>Resources\GunBound</Filter>
     </ClInclude>
-    <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Resources\GunBound\Terrain.png">
+    <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Resources\GunBound\Terrain.png">
       <Filter>Resources\GunBound</Filter>
     </ClInclude>
-    <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Resources\GunBound\Tree.png">
+    <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Resources\GunBound\Tree.png">
       <Filter>Resources\GunBound</Filter>
     </ClInclude>
-    <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Resources\HelloWorld.png">
+    <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Resources\HelloWorld.png">
       <Filter>Resources</Filter>
     </ClInclude>
-    <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Resources\Hockey\Hockey.plist">
+    <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Resources\Hockey\Hockey.plist">
       <Filter>Resources\Hockey</Filter>
     </ClInclude>
-    <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Resources\Hockey\Hockey.png">
+    <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Resources\Hockey\Hockey.png">
       <Filter>Resources\Hockey</Filter>
     </ClInclude>
-    <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Resources\UI\Button_Disable.png">
+    <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Resources\UI\Button_Disable.png">
       <Filter>Resources\UI</Filter>
     </ClInclude>
-    <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Resources\UI\Button_Normal.png">
+    <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Resources\UI\Button_Normal.png">
       <Filter>Resources\UI</Filter>
     </ClInclude>
-    <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Resources\UI\Button_Press.png">
+    <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Resources\UI\Button_Press.png">
       <Filter>Resources\UI</Filter>
     </ClInclude>
-    <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Resources\fonts\Marker Felt.ttf">
+    <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Resources\fonts\Marker Felt.ttf">
       <Filter>Resources\fonts</Filter>
     </ClInclude>
-    <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Resources\fonts\arial.ttf">
+    <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Resources\fonts\arial.ttf">
       <Filter>Resources\fonts</Filter>
     </ClInclude>
-    <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Resources\res\.gitkeep">
+    <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Resources\res\.gitkeep">
       <Filter>Resources\res</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\CMakeLists.txt" />
+    <CustomBuild Include="D:\Projects\Cocos2dx\TestGame1\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\proj.win32\game.rc">
+    <ResourceCompile Include="D:\Projects\Cocos2dx\TestGame1\proj.win32\game.rc">
       <Filter>Source Files\proj.win32</Filter>
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Resources">
-      <UniqueIdentifier>{7A39A91B-D251-3485-B733-6D75662D604D}</UniqueIdentifier>
+      <UniqueIdentifier>{681095B2-0DB0-3631-A3DA-19260467DC1D}</UniqueIdentifier>
     </Filter>
     <Filter Include="Resources\Cannon">
-      <UniqueIdentifier>{9CADD285-0499-3F7B-AF24-BF65C6BCE38D}</UniqueIdentifier>
+      <UniqueIdentifier>{045CC4AC-327D-3FA6-9101-73BA40CF896E}</UniqueIdentifier>
     </Filter>
     <Filter Include="Resources\Dino">
-      <UniqueIdentifier>{97972ADF-247D-3B00-A3B7-BB6A33367539}</UniqueIdentifier>
+      <UniqueIdentifier>{789029B7-2290-3E0A-B330-DE00A83483E3}</UniqueIdentifier>
     </Filter>
     <Filter Include="Resources\GunBound">
-      <UniqueIdentifier>{BAF77AF6-C1CA-3593-8D92-17D1BC753714}</UniqueIdentifier>
+      <UniqueIdentifier>{B24C92EC-1AE5-328A-B4FF-19ECDA471546}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources\GunBound\Animations">
+      <UniqueIdentifier>{2ABEF5A6-06A9-3387-A45E-0A64E5B7B19D}</UniqueIdentifier>
     </Filter>
     <Filter Include="Resources\Hockey">
-      <UniqueIdentifier>{CE6F3D47-8EA9-35AD-A75A-F4564EAE88ED}</UniqueIdentifier>
+      <UniqueIdentifier>{B5686327-6088-3BB0-B7C1-F3329C87A6CA}</UniqueIdentifier>
     </Filter>
     <Filter Include="Resources\UI">
-      <UniqueIdentifier>{8565F622-1E09-35B8-B5BE-4F3A60B7FFF3}</UniqueIdentifier>
+      <UniqueIdentifier>{1D093A2F-A21E-34A9-98D1-88AA6EB0CEA2}</UniqueIdentifier>
     </Filter>
     <Filter Include="Resources\fonts">
-      <UniqueIdentifier>{06970BD9-DCDA-3E81-8E36-D1E30AE86EF8}</UniqueIdentifier>
+      <UniqueIdentifier>{1AF88857-954B-36FF-9BB6-7152666F14F7}</UniqueIdentifier>
     </Filter>
     <Filter Include="Resources\res">
-      <UniqueIdentifier>{82260579-44A9-3850-90FB-D050A659BCEA}</UniqueIdentifier>
+      <UniqueIdentifier>{54995601-D9D7-3A93-B4CC-449869CD080B}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{9FCF290F-1D5D-39DF-B28B-0D103B668D9D}</UniqueIdentifier>
+      <UniqueIdentifier>{A6286DD0-469B-3021-A04E-A4101F9476F7}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Classes">
-      <UniqueIdentifier>{CF9FA752-8CE9-30F6-91C3-1F8A8637C448}</UniqueIdentifier>
+      <UniqueIdentifier>{12E40912-90DB-338E-A66E-41483419EC57}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Classes\EarCut">
-      <UniqueIdentifier>{3521227E-190E-3BF8-B71B-4DFDC9579A4D}</UniqueIdentifier>
+      <UniqueIdentifier>{B2D47533-39B8-3566-ADBF-77E41CBD669F}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Classes\GunBound">
-      <UniqueIdentifier>{4A34A852-DAA0-308C-BB6F-3B2FE5A205AF}</UniqueIdentifier>
+      <UniqueIdentifier>{48182B51-57E5-33DC-AA45-4158770AA57F}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Classes\Hockey">
-      <UniqueIdentifier>{0862C5C0-9E9D-33DA-B1B3-B21DC1586908}</UniqueIdentifier>
+      <UniqueIdentifier>{39F670B9-D946-3934-BCFF-5A43F88AF4FB}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\proj.win32">
-      <UniqueIdentifier>{757E611C-780F-3739-B0BD-71AA4F003940}</UniqueIdentifier>
+      <UniqueIdentifier>{F8E482E0-BD56-3468-A3B8-6681A0F7B32C}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

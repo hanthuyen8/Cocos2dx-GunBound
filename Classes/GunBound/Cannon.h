@@ -13,12 +13,13 @@ class Cannon : public DrawNode
 	// Vậy trước mắt chỉ cần có variable DrawNode
 
 public:
-	static Cannon* create();
-	virtual bool init() override;
+	static Cannon* create(float deadZoneRadius);
+	bool init(float deadZoneRadius);
 
 private:
 	float angle{};
-	int isAiming{false};
+	float deadZoneRadius{};
+	int isAiming{ false };
 	float isCharging{ false };
 
 	DrawNode* aimMeter{};
@@ -28,11 +29,11 @@ private:
 
 	virtual void update(float dt) override;
 
-	void drawPath(float dt);
-
 	void fire();
 
 	void onKeyPressed(EventKeyboard::KeyCode, Event*);
 	void onKeyReleased(EventKeyboard::KeyCode, Event*);
+	std::vector<Vec2> drawPath(float angle, float speed);
+	void tryToCreateAmmo();
 };
 
