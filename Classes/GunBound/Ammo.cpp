@@ -68,7 +68,7 @@ void Ammo::fire(float angle, float speed, Vec2& startPoint, float deadZoneRadius
 
 	// Set vị trí này để Ammo không va phạm trúng Character đã bắn nó
 	startPoint = this->getParent()->convertToNodeSpace(startPoint);
-	this->setPosition(startPoint + direction * (deadZoneRadius + radius * 10));
+	this->setPosition(startPoint + direction * (deadZoneRadius + radius));
 	this->setOpacity(255);
 
 	physicsBody->setVelocity(direction * speed);
@@ -95,14 +95,22 @@ bool Ammo::onCollisionEnter(PhysicsContact& contact, PhysicsContactPreSolve& sol
 	if (!target)
 		return false;
 
-	const auto pos = contact.getContactData()->points[0];
+	// Vì lý do PhysicsWorld nó là 1 thành phần gắn liền với 1 Scene cụ thể
+	// Cho nên vị trí của Physics Points là vị trí World Space Position + Anchor Position của Scene đó.
+	// Vì Scene đã được chuyển sang nằm giữa màn hình thay vì nằm vị trí (0,0)
+	// Cho nên phải làm thêm bước convert nữa
+
+	const auto worldSpaceAR_CollisionPoint = contact.getContactData()->points[0];
+	const auto sceneAnchor = Director::getInstance()->getRunningScene()->getAnchorPointInPoints();
+	const auto worldSpace_CollisionPoint = worldSpaceAR_CollisionPoint - sceneAnchor;
+
 	explosionEffect->playAnimation();
 
-	Helper::logVec2(pos);
-	target->setDamage(Helper::getCircle(pos, explosionRadius));
 	this->unscheduleUpdate();
 	this->setOpacity(0);
 	physicsBody->setEnabled(false);
+
+	target->receiveDamage(Helper::getCircle(worldSpace_CollisionPoint, explosionRadius));
 
 	return false;
 }

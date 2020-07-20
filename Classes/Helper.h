@@ -2,6 +2,7 @@
 
 #include <string_view>
 #include "cocos2d.h"
+#include <clipper.hpp>
 
 USING_NS_CC;
 namespace Helper
@@ -98,6 +99,30 @@ namespace ProjectileMotion2D
 	/// <param name="d_o">Displacement khởi điểm (nếu có)</param>
 	/// <returns></returns>
 	Vec2 find_d(const Vec2& v_o, const Vec2& a, float t, const Vec2& d_o);
+}
+
+namespace ClipperLib
+{
+	/// <summary>
+	/// Chuyển đổi các điểm Vec2 thành các điểm IntPoints để sử dụng cho thư viện clipper
+	/// </summary>
+	Path vecToPath(const std::vector<Vec2>& points);
+
+	/// <summary>
+	/// Chuyển đổi Path do clipper xuất ra thành các điểm Vec2
+	/// </summary>
+	std::vector<Vec2> pathToVec(const Path& path);
+}
+
+namespace mapbox
+{
+	/// <summary>
+	/// Hàm này trả về list các tam giác được lấy ra từ 1 nhóm các điểm cho trước.
+	/// </summary>
+	/// <param name="currentPoly">Nhóm các điểm cần lọc ra</param>
+	/// <param name="triangleVertices">Nhóm các đỉnh tam giác</param>
+	/// <returns></returns>
+	std::vector<std::vector<Vec2>> getTrianglesFromPoly(const std::vector<Vec2>& currentPoly, const std::vector<uint32_t>& triangleVertices);
 }
 
 #ifndef RETURN_FALSE_IF_NULL_PTR

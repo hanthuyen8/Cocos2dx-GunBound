@@ -130,7 +130,7 @@ void TestPhysics::onCut(EventMouse* ev)
 	Clipper clipper{};
 	clipper.AddPath(vecToPath(nodeSpaceCircle), PolyType::ptClip, true);
 
-	auto collisionShapes = crate->getClippedPoly();
+	auto collisionShapes = crate->getShapes();
 	for (auto& shape : collisionShapes)
 	{
 		clipper.AddPath(vecToPath(shape), PolyType::ptSubject, true);
@@ -151,8 +151,8 @@ void TestPhysics::onCut(EventMouse* ev)
 		const auto tris = getTrianglesFromPoly(vec, triangleIndices);
 		newTriangles.insert(newTriangles.begin(), tris.begin(), tris.end());
 	}
-	crate->replaceShapes(newTriangles);
-	crate->eraseArea(nodeSpaceCircle);
+	//crate->replaceShapes(newTriangles);
+	//crate->eraseArea(nodeSpaceCircle);
 }
 
 void TestPhysics::onCut2(EventMouse* ev)
@@ -170,7 +170,7 @@ void TestPhysics::onCut2(EventMouse* ev)
 
 	drawNode->drawSolidPoly(circle.data(), circle.size(), Color4F::Color4F(Color3B::GREEN, 0.2f));
 
-	const auto polyShapes = crate->getClippedPoly();
+	const auto polyShapes = crate->getShapes();
 	std::vector<p2t::Point*> polyline;
 	for (const auto& poly : polyShapes[0])
 	{
@@ -205,7 +205,7 @@ void TestPhysics::onCut2(EventMouse* ev)
 		}
 		result.push_back(vec);
 	}
-	crate->replaceShapes(result);
+	//crate->replaceShapes(result);
 
 	// Release Memory
 	for (auto& point : polyline)

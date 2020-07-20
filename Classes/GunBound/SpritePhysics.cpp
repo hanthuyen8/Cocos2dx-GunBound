@@ -1,5 +1,7 @@
-#include "SpritePhysics.h"
+﻿#include "SpritePhysics.h"
 #include "Helper.h"
+#include "clipper.hpp"
+#include "EarCut/earcut.hpp"
 
 SpritePhysics* SpritePhysics::createInstance(std::string_view fileName, std::vector<PolyVec>& shape)
 {
@@ -34,7 +36,8 @@ bool SpritePhysics::init(std::string_view fileName, std::vector<PolyVec>& shape)
 	// Create polygon physics body shape
 	physicsBody = PhysicsBody::create();
 	physicsBody->setDynamic(false);
-	replaceShapes(shape);
+	shapes = shape;
+	replaceShapes();
 
 	this->physicsBody = physicsBody;
 	this->addComponent(physicsBody);
@@ -42,16 +45,23 @@ bool SpritePhysics::init(std::string_view fileName, std::vector<PolyVec>& shape)
 	return true;
 }
 
-std::vector<PolyVec> SpritePhysics::getClippedPoly()
+void SpritePhysics::update(float dt)
 {
-	return clippedPoly;
+	if (replaceShapeAtNextFrame)
+	{
+		replaceShapes();
+		replaceShapeAtNextFrame = false;
+	}
 }
 
-void SpritePhysics::replaceShapes(const std::vector<PolyVec>& shapes)
+std::vector<PolyVec> SpritePhysics::getShapes()
+{
+	return shapes;
+}
+
+void SpritePhysics::replaceShapes()
 {
 	physicsBody->removeAllShapes();
-	clippedPoly.clear();
-	clippedPoly = shapes;
 	for (const auto& points : shapes)
 	{
 		physicsBody->addShape(PhysicsShapePolygon::create(points.data(), points.size()));
@@ -60,12 +70,55 @@ void SpritePhysics::replaceShapes(const std::vector<PolyVec>& shapes)
 	physicsBody->setContactTestBitmask(COLLISION_WITH);
 }
 
-void SpritePhysics::eraseArea(const PolyVec& area)
+void SpritePhysics::cutSpriteArea(const PolyVec& area)
 {
-	stencil->drawSolidPoly(area.data(), area.size(), Color4F::BLACK);
+	stencil->drawSolidPoly(area.data(), area.size(), Color4F::WHITE);
 }
 
-void SpritePhysics::setDamage(const std::vector<Vec2>& damagedPoints)
+void SpritePhysics::cutShapeArea(const PolyVec& area)
 {
+	// Cho Clip trước rồi mới chuyển sang triangle;
+	ClipperLib::Clipper clipper{};
+	clipper.AddPath(ClipperLib::vecToPath(area), ClipperLib::PolyType::ptClip, true);
+
+	for (auto& shape : shapes)
+	{
+		clipper.AddPath(ClipperLib::vecToPath(shape), ClipperLib::PolyType::ptSubject, true);
+	}
+
+	ClipperLib::Paths result;
+	clipper.Execute(ClipperLib::ClipType::ctDifference, result);
+
+	// Sau khi Clip xong thì Convert poly sang triangle
+
+	std::vector<PolyVec> newTriangles{};
+	for (auto& path : result)
+	{
+		const auto vec = ClipperLib::pathToVec(path);
+		std::vector<PolyVec> clipContainer{ vec };
+
+		std::vector<uint32_t> triangleIndices = mapbox::earcut<uint32_t>(clipContainer);
+		const auto tris = mapbox::getTrianglesFromPoly(vec, triangleIndices);
+		newTriangles.insert(newTriangles.begin(), tris.begin(), tris.end());
+	}
+
+	shapes.clear();
+	shapes = newTriangles;
+	replaceShapeAtNextFrame = true;
+}
+
+void SpritePhysics::receiveDamage(const std::vector<Vec2>& damagedPoints)
+{
+	const auto parent = this->getParent();
+	PolyVec area = {};
+	area.reserve(damagedPoints.size());
+
+	for (auto vec : damagedPoints)
+	{
+		area.push_back(this->convertToNodeSpace(vec));
+	}
+
+	cutSpriteArea(area);
+	cutShapeArea(area);
 	CCLOG("SP get dmg");
 }

@@ -217,3 +217,49 @@ namespace ProjectileMotion2D
 		return Vec2{ d_x, d_y };
 	}
 }
+
+namespace ClipperLib
+{
+	Path vecToPath(const std::vector<Vec2>& points)
+	{
+		Path path{};
+		for (const auto point : points)
+		{
+			path.push_back(IntPoint(point.x, point.y));
+		}
+		return path;
+	}
+
+	std::vector<Vec2> pathToVec(const Path& path)
+	{
+		std::vector<Vec2> points{};
+		for (const auto point : path)
+		{
+			points.push_back(Vec2(point.X, point.Y));
+		}
+		return points;
+	}
+}
+
+namespace mapbox
+{
+	std::vector<std::vector<Vec2>> getTrianglesFromPoly(const std::vector<Vec2>& currentPoly,
+		const std::vector<uint32_t>& triangleVertices)
+	{
+		std::vector<std::vector<Vec2>> newTriangles{};
+		newTriangles.reserve(triangleVertices.size() / 3);
+
+		for (int i{}; i < triangleVertices.size(); i += 3)
+		{
+			std::vector<Vec2> vert{};
+			vert.reserve(3);
+			for (int k{}; k < 3; k++)
+			{
+				auto index = triangleVertices[i + k];
+				vert.push_back(currentPoly[index]);
+			}
+			newTriangles.push_back(vert);
+		}
+		return newTriangles;
+	}
+}

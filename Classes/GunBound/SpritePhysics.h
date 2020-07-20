@@ -17,15 +17,17 @@ public:
 	static SpritePhysics* createInstance(std::string_view fileName, std::vector<PolyVec>& shape);
 	bool init(std::string_view fileName, std::vector<PolyVec>& shape);
 
-	std::vector<PolyVec> getClippedPoly();
-	void replaceShapes(const std::vector<PolyVec>& shapes);
-	void eraseArea(const PolyVec& area);
-	virtual void setDamage(const std::vector<Vec2>& damagedPoints) override;
+	std::vector<PolyVec> getShapes();
+	void replaceShapes();
+	void cutSpriteArea(const PolyVec& area);
+	void cutShapeArea(const PolyVec& area);
+	virtual void receiveDamage(const std::vector<Vec2>& damagedPoints) override;
 
 private:
 	Sprite* sprite{};
 	DrawNode* stencil{};
 	CC_SYNTHESIZE_READONLY(PhysicsBody*, physicsBody, PhysicsBody);
-	std::vector<PolyVec> clippedPoly{};
+	std::vector<PolyVec> shapes{};
+	bool replaceShapeAtNextFrame{ false };
+	virtual void update(float dt) override;
 };
-

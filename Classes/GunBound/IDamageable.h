@@ -4,5 +4,5 @@
 class IDamageable
 {
 public:
-	virtual void setDamage(const std::vector<cocos2d::Vec2>& damagedPoints) = 0;
+	virtual void receiveDamage(const std::vector<cocos2d::Vec2>& damagedPoints) = 0;
 };

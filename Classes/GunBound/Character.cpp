@@ -58,7 +58,7 @@ void Character::listenToKeyboardMovement()
 	this->scheduleUpdate();
 }
 
-void Character::setDamage(const std::vector<Vec2>& damagedPoints)
+void Character::receiveDamage(const std::vector<Vec2>& damagedPoints)
 {
 	CCLOG("character get dmg");
 }

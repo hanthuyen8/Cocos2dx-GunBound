@@ -39,7 +39,7 @@ public:
 
 	// Character sẽ có các hàm di chuyển:
 	void listenToKeyboardMovement();
-	virtual void setDamage(const std::vector<Vec2>& damagedPoints) override;
+	virtual void receiveDamage(const std::vector<Vec2>& damagedPoints) override;
 
 private:
 	CC_SYNTHESIZE_READONLY(PhysicsBody*, physicsBody, PhysicsBody);
