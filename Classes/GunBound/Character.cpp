@@ -1,8 +1,9 @@
 ﻿#include "Character.h"
 #include "Helper.h"
 #include <algorithm>
+#include "SpritePhysics.h"
 
-const float MOVE_SPEED = 450;
+const int FALL_SPEED = 981;
 
 Character* Character::create(std::string_view fileName, float radius)
 {
@@ -23,7 +24,6 @@ bool Character::init(std::string_view fileName, float radius)
 		return false;
 
 	this->radius = radius;
-	moveSpeed = 6000;
 
 	physicsBody = PhysicsBody::create();
 	physicsBody->addShape(PhysicsShapeCircle::create(radius, PhysicsMaterial::PhysicsMaterial(0, 0, 0)));
@@ -32,6 +32,10 @@ bool Character::init(std::string_view fileName, float radius)
 
 	physicsBody->setCategoryBitmask(COLLISION_CATEGORY);
 	physicsBody->setContactTestBitmask(COLLISION_WITH);
+
+	/*const auto collisionListener = EventListenerPhysicsContact::create();
+	collisionListener->onContactPreSolve = CC_CALLBACK_2(Character::onCollisionEnter, this);
+	_eventDispatcher->addEventListenerWithSceneGraphPriority(collisionListener, this);*/
 
 	this->setPhysicsBody(physicsBody);
 
@@ -44,23 +48,27 @@ bool Character::init(std::string_view fileName, float radius)
 	return true;
 }
 
-void Character::listenToKeyboardMovement()
+void Character::update(float dt)
 {
-	const auto keyboardListener = EventListenerKeyboard::create();
-	keyboardListener->onKeyPressed = CC_CALLBACK_2(Character::onKeyPressed, this);
-	keyboardListener->onKeyReleased = [this](EventKeyboard::KeyCode, Event*) {
-		moveHorizontal = 0;
-		isFireAndStopMoving = false;
-	};
+	Vec2 velocity = {};
 
-	_eventDispatcher->addEventListenerWithSceneGraphPriority(keyboardListener, this);
+	if (!isFireAndStopMoving)
+	{
+		if (moveHorizontal != 0)
+		{
+			velocity.x = moveHorizontal * moveSpeed;
+			this->setFlippedX(moveHorizontal < 0);
+		}
+		velocity.y = checkGravity() * FALL_SPEED;
+		if (std::fabs(velocity.y) < 0.1f)
+			velocity.y = 0;
+	}
+	else
+	{
+		// Write here
+	}
 
-	this->scheduleUpdate();
-}
-
-void Character::receiveDamage(const std::vector<Vec2>& damagedPoints)
-{
-	CCLOG("character get dmg");
+	physicsBody->applyForce(velocity);
 }
 
 void Character::onKeyPressed(EventKeyboard::KeyCode key, Event*)
@@ -87,29 +95,23 @@ void Character::onKeyPressed(EventKeyboard::KeyCode key, Event*)
 	}
 }
 
-void Character::update(float dt)
+void Character::listenToKeyboardMovement()
 {
-	Vec2 velocity = {};
+	const auto keyboardListener = EventListenerKeyboard::create();
+	keyboardListener->onKeyPressed = CC_CALLBACK_2(Character::onKeyPressed, this);
+	keyboardListener->onKeyReleased = [this](EventKeyboard::KeyCode, Event*) {
+		moveHorizontal = 0;
+		isFireAndStopMoving = false;
+	};
 
-	if (!isFireAndStopMoving)
-	{
-		if (moveHorizontal != 0)
-		{
-			velocity.x = moveHorizontal * moveSpeed * dt;
-			physicsBody->setVelocity(Vec2{ moveHorizontal * moveSpeed * dt, 0 });
+	_eventDispatcher->addEventListenerWithSceneGraphPriority(keyboardListener, this);
 
-			this->setFlippedX(moveHorizontal < 0);
-		}
-		velocity.y = checkGravity() * fallSpeed * dt;
-		if (std::fabs(velocity.y) < 0.1f)
-			velocity.y = 0;
-	}
-	else
-	{
-		// Write here
-	}
+	this->scheduleUpdate();
+}
 
-	physicsBody->setVelocity(velocity);
+void Character::receiveDamage(const std::vector<Vec2>& damagedPoints)
+{
+	CCLOG("character get dmg");
 }
 
 // Chỉ bắn ra 1 raycast từ tâm hướng xuống đất
@@ -126,56 +128,41 @@ float Character::checkGravity()
 		return 0;
 
 	bool hit{ false };
-	std::vector<PhysicsRayCastInfo> raycastInfos;
-	auto raycastCallback = [&hit, &raycastInfos, this](PhysicsWorld& world, const PhysicsRayCastInfo& info, void* data) {
+
+	PhysicsRayCastInfo raycastInfo;
+	auto raycastCallback = [&hit, &raycastInfo, this](PhysicsWorld& world, const PhysicsRayCastInfo& info, void* data) {
 		if (info.shape->getBody() == physicsBody)
 		{
 			// self hit
 			return true;
 		}
 		hit = true;
-		raycastInfos.push_back(info);
+		raycastInfo = info;
 		return false;
 	};
 
-	const Vec2 rayLength{ Vec2::UNIT_Y * 1 };
-	const Vec2 bottomPoint{ physicsBody->getPosition() - Vec2::UNIT_Y * (radius + 1) };
-	const Vec2 lastNormalPoint{ physicsBody->getPosition() - groundNormal * (radius + 1) };
+	const Vec2 origin{ physicsBody->getPosition() };
+	const Vec2 startPoint{ origin + raycastDirection * (radius) };
+	const Vec2 endPoint{ origin + raycastDirection * (radius + FALL_SPEED) };
 
-	const auto world = scene->getPhysicsWorld();
-
-	// Bắn 2 phát, phát nào có fraction nhỏ hơn thì lấy
-
-	if (!groundNormal.isZero())
-		world->rayCast(raycastCallback, lastNormalPoint, lastNormalPoint - rayLength, nullptr);
-
-	world->rayCast(raycastCallback, bottomPoint, bottomPoint - rayLength, nullptr);
+	scene->getPhysicsWorld()->rayCast(raycastCallback, startPoint, endPoint, nullptr);
 
 	if (hit)
 	{
-		PhysicsRayCastInfo* bestRay = &*std::min_element(raycastInfos.begin(), raycastInfos.end(),
-			[](PhysicsRayCastInfo& ray1, PhysicsRayCastInfo& ray2) {
-				return ray1.fraction < ray2.fraction;
-			});
-
 		// Chạm đất
-		if (!currentCollider)
-			currentCollider = bestRay->shape;
-
-		else if (currentCollider != bestRay->shape)
+		if (raycastInfo.fraction == 0)
 		{
-			currentCollider = bestRay->shape;
-
 			// Lấy ra angle của mặt đất rồi gán nó cho Character
-			// Theo nghiên cứu thì normal của mặt đất chỉ nằm trong khoảng quadrent 1 và 2:
-			// Tức là trong khoảng [(-1, 0) -> (1,0)] (y luôn luôn dương)
-			// Đổi sang độ là (xoay ngược chiều kim) : 0 - 180 hoặc 0pi - 1pi
+		// Theo nghiên cứu thì normal của mặt đất chỉ nằm trong khoảng quadrent 1 và 2:
+		// Tức là trong khoảng [(-1, 0) -> (1,0)] (y luôn luôn dương)
+		// Đổi sang độ là (xoay ngược chiều kim) : 0 - 180 hoặc 0pi - 1pi
 
-			const auto& normal = bestRay->normal;
+			const auto& normal = raycastInfo.normal;
+			raycastDirection = normal * -1;
+
 			if (normal.y < 0)
 			{
 				this->setRotation(0);
-				groundNormal = Vec2{ 0,1 };
 			}
 			else
 			{
@@ -188,14 +175,27 @@ float Character::checkGravity()
 				const auto xAxisAngle = MATH_RAD_TO_DEG(normal.getAngle());
 				const auto diffVsBaseAngle = baseAngle - xAxisAngle;
 				this->setRotation(diffVsBaseAngle);
-				groundNormal = normal;
 			}
 		}
-		return -bestRay->fraction;
+		return -raycastInfo.fraction;
 	}
-	else
+	return -1;
+}
+
+bool Character::onCollisionEnter(PhysicsContact& contact, PhysicsContactPreSolve& solve)
+{
+	PhysicsShape* self{};
+	PhysicsShape* other{};
+	if (!Helper::detectWhichCollider(contact, self, other, Character::COLLISION_CATEGORY))
+		return true;
+
+	if (other)
 	{
-		return -1;
+		const SpritePhysics* terrain = dynamic_cast<SpritePhysics*>(other->getBody()->getNode());
+		if (!terrain)
+			return true;
+
+		physicsBody->setVelocity(Vec2::ZERO);
 	}
-	return 0;
+	return true;
 }

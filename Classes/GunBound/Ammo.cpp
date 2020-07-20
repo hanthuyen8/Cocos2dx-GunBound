@@ -79,15 +79,15 @@ void Ammo::fire(float angle, float speed, Vec2& startPoint, float deadZoneRadius
 bool Ammo::onCollisionEnter(PhysicsContact& contact, PhysicsContactPreSolve& solve)
 {
 	const auto ammoCat = physicsBody->getCategoryBitmask();
-	auto ammo = contact.getShapeA();
+	auto self = contact.getShapeA();
 	auto collider = contact.getShapeB();
 
-	if (ammo->getCategoryBitmask() != ammoCat)
+	if (self->getCategoryBitmask() != ammoCat)
 	{
-		ammo = contact.getShapeB();
+		self = contact.getShapeB();
 		collider = contact.getShapeA();
 
-		if (ammo->getCategoryBitmask() != ammoCat)
+		if (self->getCategoryBitmask() != ammoCat)
 			return true;
 	}
 

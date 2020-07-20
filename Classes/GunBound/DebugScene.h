@@ -11,7 +11,9 @@ public:
 
 private:
 	PhysicsBody* physicsBody{};
+	Sprite* sprite{};
+	Sprite* sample{};
 	virtual void update(float dt) override;
-
+	int moveHorizontal{};
 };
 

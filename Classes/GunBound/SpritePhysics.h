@@ -11,8 +11,8 @@ using PolyVec = std::vector<Vec2>;
 class SpritePhysics : public ClippingNode, public IDamageable
 {
 public:
-	static inline int COLLISION_CATEGORY{ 0x00 };
-	static inline int COLLISION_WITH{ 0x00 };
+	static inline int COLLISION_CATEGORY{ 0 };
+	static inline int COLLISION_WITH{ 0 };
 
 	static SpritePhysics* createInstance(std::string_view fileName, std::vector<PolyVec>& shape);
 	bool init(std::string_view fileName, std::vector<PolyVec>& shape);

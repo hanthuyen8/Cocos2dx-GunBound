@@ -7,20 +7,7 @@
 USING_NS_CC;
 namespace Helper
 {
-	/// <summary>
-	/// Hàm này trả về list các tam giác được lấy ra từ 1 nhóm các điểm cho trước.
-	/// </summary>
-	/// <param name="polyline">Nhóm các điểm cần lọc ra</param>
-	/// <param name="triangleIndices">Nhóm các đỉnh tam giác</param>
-	/// <returns>Trả về 1 list của: 1 list 3 đỉnh tam giác</returns>
-	std::vector<std::vector<Vec2>> getTrianglesFromPoly(const std::vector<Vec2>& polyline, const std::vector<uint32_t>& triangleIndices);
-
-	/// <summary>
-	/// Hàm này trả về list các tam giác được tính toán từ 1 list các điểm rời rạc của 1 polygon.
-	/// </summary>
-	/// <param name="polyline">List các điểm rời rạc của 1 polygon</param>
-	/// <returns>Trả về list của: 1 list 3 đỉnh tam giác</returns>
-	std::vector<std::vector<Vec2>> getTrianglesFromPolyline(const std::vector<Vec2>& polyline);
+	
 	void logVec2(const Vec2& point);
 	Vec2 rotatePointAroundOrigin(const Vec2 point, const float angle);
 	Vec2 rotateOffsetArountPoint(Vec2 point, const Vec2 offset, const float angle);
@@ -32,6 +19,16 @@ namespace Helper
 	/// <param name="radius">bán kính</param>
 	/// <returns>Danh sách các điểm cần vẽ</returns>
 	std::vector<Vec2> getCircle(const Vec2& atPos, const float radius);
+
+	/// <summary>
+	/// Hàm này chỉ là 1 hàm gói gọn lại những dòng lệnh xác định shapeA hoặc shapeB là gì
+	/// </summary>
+	/// <param name="contact">Physics Contact khi có va chạm xảy ra</param>
+	/// <param name="self">Object có Category Mask trùng khớp với selfMask</param>
+	/// <param name="other">Object còn lại</param>
+	/// <param name="selfMask">Category Mask cần tìm</param>
+	/// <returns></returns>
+	bool detectWhichCollider(const PhysicsContact & contact, PhysicsShape* self, PhysicsShape* other, int selfMask);
 }
 
 namespace ProjectileMotion2D
@@ -116,6 +113,13 @@ namespace ClipperLib
 
 namespace mapbox
 {
+	/// <summary>
+	/// Hàm này trả về list các tam giác được tính toán từ 1 list các điểm rời rạc của 1 polygon.
+	/// </summary>
+	/// <param name="polyline">List các điểm rời rạc của 1 polygon</param>
+	/// <returns>Trả về list của: 1 list 3 đỉnh tam giác</returns>
+	std::vector<std::vector<Vec2>> getTrianglesFromPolyline(const std::vector<Vec2>& polyline);
+
 	/// <summary>
 	/// Hàm này trả về list các tam giác được lấy ra từ 1 nhóm các điểm cho trước.
 	/// </summary>

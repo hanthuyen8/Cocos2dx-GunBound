@@ -64,10 +64,10 @@ void SpritePhysics::replaceShapes()
 	physicsBody->removeAllShapes();
 	for (const auto& points : shapes)
 	{
-		physicsBody->addShape(PhysicsShapePolygon::create(points.data(), points.size()));
+		physicsBody->addShape(PhysicsShapePolygon::create(points.data(), points.size(), PhysicsMaterial::PhysicsMaterial(0, 0, 0)));
 	}
-	physicsBody->setCategoryBitmask(COLLISION_CATEGORY);
-	physicsBody->setContactTestBitmask(COLLISION_WITH);
+	physicsBody->setCategoryBitmask(SpritePhysics::COLLISION_CATEGORY);
+	physicsBody->setContactTestBitmask(SpritePhysics::COLLISION_WITH);
 }
 
 void SpritePhysics::cutSpriteArea(const PolyVec& area)
@@ -91,19 +91,18 @@ void SpritePhysics::cutShapeArea(const PolyVec& area)
 
 	// Sau khi Clip xong thì Convert poly sang triangle
 
-	std::vector<PolyVec> newTriangles{};
+	std::vector<PolyVec> triangles{};
 	for (auto& path : result)
 	{
 		const auto vec = ClipperLib::pathToVec(path);
 		std::vector<PolyVec> clipContainer{ vec };
 
-		std::vector<uint32_t> triangleIndices = mapbox::earcut<uint32_t>(clipContainer);
-		const auto tris = mapbox::getTrianglesFromPoly(vec, triangleIndices);
-		newTriangles.insert(newTriangles.begin(), tris.begin(), tris.end());
+		const auto one_triangle = mapbox::getTrianglesFromPoly(vec, mapbox::earcut<uint32_t>(clipContainer));
+		triangles.insert(triangles.begin(), one_triangle.begin(), one_triangle.end());
 	}
 
 	shapes.clear();
-	shapes = newTriangles;
+	shapes = triangles;
 	replaceShapeAtNextFrame = true;
 }
 

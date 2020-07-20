@@ -47,8 +47,6 @@ private:
 
 };
 
-
-
 /*
 Vấn đề bây giờ là tính toán thế nào để việc đạn bay và di chuyển nhân vật trở nên hợp lý
 Kích thước  resolution bây giờ đang là 1280x720.
