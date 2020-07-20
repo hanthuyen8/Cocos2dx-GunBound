@@ -28,14 +28,15 @@ bool Character::init(std::string_view fileName, float radius)
 	physicsBody = PhysicsBody::create();
 	physicsBody->addShape(PhysicsShapeCircle::create(radius, PhysicsMaterial::PhysicsMaterial(0, 0, 0)));
 	physicsBody->setDynamic(true);
-	physicsBody->setGravityEnable(false);
+	physicsBody->setGravityEnable(true);
+	physicsBody->setRotationEnable(true);
 
 	physicsBody->setCategoryBitmask(COLLISION_CATEGORY);
 	physicsBody->setContactTestBitmask(COLLISION_WITH);
 
-	/*const auto collisionListener = EventListenerPhysicsContact::create();
+	const auto collisionListener = EventListenerPhysicsContact::create();
 	collisionListener->onContactPreSolve = CC_CALLBACK_2(Character::onCollisionEnter, this);
-	_eventDispatcher->addEventListenerWithSceneGraphPriority(collisionListener, this);*/
+	_eventDispatcher->addEventListenerWithSceneGraphPriority(collisionListener, this);
 
 	this->setPhysicsBody(physicsBody);
 
@@ -50,25 +51,32 @@ bool Character::init(std::string_view fileName, float radius)
 
 void Character::update(float dt)
 {
-	Vec2 velocity = {};
-
 	if (!isFireAndStopMoving)
 	{
 		if (moveHorizontal != 0)
 		{
-			velocity.x = moveHorizontal * moveSpeed;
+			Vec2 velocity = {};
 			this->setFlippedX(moveHorizontal < 0);
+
+			// Để di chuyển được tới phía trước thì phải sinh ra 1 lực y lớn hơn Gravity và tạo thành 1 vector(x,y) sao cho song song với mặt đất
+			// Vậy đầu tiên phải lấy ra được hướng song song với mặt đất, chính là góc của Character
+			velocity.x = moveHorizontal * moveSpeed * dt;
+			physicsBody->applyImpulse(velocity);
+			physicsBody->applyImpulse(physicsBody->getWorld()->getGravity() * -dt);
+			this->setRotation(angle);
+			Helper::logVec2(physicsBody->getVelocity());
 		}
-		velocity.y = checkGravity() * FALL_SPEED;
-		if (std::fabs(velocity.y) < 0.1f)
-			velocity.y = 0;
+		else
+		{
+			const auto distanceVsGround = checkGround();
+			if (distanceVsGround >= 0 && distanceVsGround < 2)
+				physicsBody->setVelocity(Vec2::ZERO);
+		}
 	}
 	else
 	{
 		// Write here
 	}
-
-	physicsBody->applyForce(velocity);
 }
 
 void Character::onKeyPressed(EventKeyboard::KeyCode key, Event*)
@@ -114,20 +122,14 @@ void Character::receiveDamage(const std::vector<Vec2>& damagedPoints)
 	CCLOG("character get dmg");
 }
 
-// Chỉ bắn ra 1 raycast từ tâm hướng xuống đất
-// Lấy ra normal của điểm va chạm để biết hướng của mặt đất.
-/* Trả về: factor để x với speed
-a.  0: đứng yên
-b. -1 -> 0: rơi xuống
-c.  0 -> 1: bay lên
-*/
-float Character::checkGravity()
+float Character::checkGround()
 {
-	const auto scene = this->getScene();
-	if (!scene)
+	const auto world = this->getScene()->getPhysicsWorld();
+	if (!world)
 		return 0;
 
 	bool hit{ false };
+	const auto gravityForce = -world->getGravity().y;
 
 	PhysicsRayCastInfo raycastInfo;
 	auto raycastCallback = [&hit, &raycastInfo, this](PhysicsWorld& world, const PhysicsRayCastInfo& info, void* data) {
@@ -142,44 +144,16 @@ float Character::checkGravity()
 	};
 
 	const Vec2 origin{ physicsBody->getPosition() };
-	const Vec2 startPoint{ origin + raycastDirection * (radius) };
-	const Vec2 endPoint{ origin + raycastDirection * (radius + FALL_SPEED) };
+	const Vec2 startPoint{ origin - groundNormal * (radius) };
+	const Vec2 endPoint{ origin - groundNormal * (radius + gravityForce) };
 
-	scene->getPhysicsWorld()->rayCast(raycastCallback, startPoint, endPoint, nullptr);
+	world->rayCast(raycastCallback, startPoint, endPoint, nullptr);
 
 	if (hit)
 	{
-		// Chạm đất
-		if (raycastInfo.fraction == 0)
-		{
-			// Lấy ra angle của mặt đất rồi gán nó cho Character
-		// Theo nghiên cứu thì normal của mặt đất chỉ nằm trong khoảng quadrent 1 và 2:
-		// Tức là trong khoảng [(-1, 0) -> (1,0)] (y luôn luôn dương)
-		// Đổi sang độ là (xoay ngược chiều kim) : 0 - 180 hoặc 0pi - 1pi
-
-			const auto& normal = raycastInfo.normal;
-			raycastDirection = normal * -1;
-
-			if (normal.y < 0)
-			{
-				this->setRotation(0);
-			}
-			else
-			{
-				// Mình sẽ map như thế này
-				// Nếu mặt đất nằm ngang thì normalVec của nó sẽ là hướng lên trời (angle == 90)
-				// Lúc này thì Character sẽ phải có angle == 0 (vì hình nhân vật luôn đứng thẳng mà hình mặt đất lại luôn nằm ngang)
-				// Cho nên sẽ có 1 bước map từ 90deg của mặt đất sang 0deg của Character.
-				// Lưu ý: Hàm setRotation xoay theo chiều kim đồng hồ.
-				const float baseAngle = 90;
-				const auto xAxisAngle = MATH_RAD_TO_DEG(normal.getAngle());
-				const auto diffVsBaseAngle = baseAngle - xAxisAngle;
-				this->setRotation(diffVsBaseAngle);
-			}
-		}
-		return -raycastInfo.fraction;
+		return raycastInfo.fraction * gravityForce;
 	}
-	return -1;
+	return -gravityForce;
 }
 
 bool Character::onCollisionEnter(PhysicsContact& contact, PhysicsContactPreSolve& solve)
@@ -189,13 +163,24 @@ bool Character::onCollisionEnter(PhysicsContact& contact, PhysicsContactPreSolve
 	if (!Helper::detectWhichCollider(contact, self, other, Character::COLLISION_CATEGORY))
 		return true;
 
-	if (other)
-	{
-		const SpritePhysics* terrain = dynamic_cast<SpritePhysics*>(other->getBody()->getNode());
-		if (!terrain)
-			return true;
+	const SpritePhysics* terrain = dynamic_cast<SpritePhysics*>(other->getBody()->getNode());
+	if (!terrain)
+		return true;
 
-		physicsBody->setVelocity(Vec2::ZERO);
+	const auto characterPos = physicsBody->getPosition();
+	const auto collisionPos = contact.getContactData()->points[0];
+
+	if (characterPos.y > collisionPos.y)
+	{
+		// Đã chạm đất. Lấy hướng của mặt đất và xoay Character
+		// Mình sẽ map như thế này
+		// Nếu mặt đất nằm ngang thì normalVec của nó sẽ là hướng lên trời (angle == 90)
+		// Lúc này thì Character sẽ phải có angle == 0 (vì hình nhân vật luôn đứng thẳng mà hình mặt đất lại luôn nằm ngang)
+		// Cho nên sẽ có 1 bước map từ 90deg của mặt đất sang 0deg của Character.
+		// Lưu ý: Hàm setRotation xoay theo chiều kim đồng hồ.
+		groundNormal = (characterPos - collisionPos).getNormalized();
+		angle = 90 - MATH_RAD_TO_DEG(groundNormal.getAngle());
 	}
+
 	return true;
 }

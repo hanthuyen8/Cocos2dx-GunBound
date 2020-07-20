@@ -28,14 +28,16 @@ private:
 
 	float radius{};
 	float moveHorizontal{};
-	Vec2 raycastDirection{ 0, -1 };
+	float angle{ };
+	Vec2 forwardDirection{ Vec2{1, -1}.getNormalized() };
+	Vec2 groundNormal{ 0,-1 };
 	bool isKeyPressed{ false };
 	bool isFireAndStopMoving{ false };
 	Cannon* cannon{};
 
 	virtual void update(float dt) override;
 	void onKeyPressed(EventKeyboard::KeyCode key, Event*);
-	float checkGravity();
+	float checkGround();
 	bool onCollisionEnter(PhysicsContact& contact, PhysicsContactPreSolve& solve);
 };
 

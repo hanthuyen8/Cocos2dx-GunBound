@@ -12,6 +12,8 @@ const auto PATH_TREE = "GunBound/Tree.png";
 const auto PATH_PLAYER = "GunBound/Player.png";
 const auto PATH_ANIM_SMOKE = "GunBound/Animations/AnimationSmoke.plist";
 
+const auto GRAVITY = 981;
+
 Scene* GunBoundScene::createScene()
 {
 	return GunBoundScene::create();
@@ -46,6 +48,7 @@ bool GunBoundScene::init()
 
 	// Tất cả những thứ sẽ setup gồm:
 	GunBoundScene::acceleration = Vec2{ 0, -9.81f };
+	this->getPhysicsWorld()->setGravity(Vec2{ 0,-GRAVITY });
 
 	// Background (2 cái)
 	backgroundLayer1 = Sprite::create(PATH_BG_LAYER1);

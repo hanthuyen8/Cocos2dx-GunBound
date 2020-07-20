@@ -68,7 +68,7 @@ namespace Helper
 		return result;
 	}
 
-	bool detectWhichCollider(const PhysicsContact & contact, PhysicsShape* self, PhysicsShape* other, int selfMask)
+	bool detectWhichCollider(const PhysicsContact & contact, PhysicsShape*& self, PhysicsShape*& other, int selfMask)
 	{
 		self = contact.getShapeA();
 		other = contact.getShapeB();

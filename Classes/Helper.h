@@ -28,7 +28,7 @@ namespace Helper
 	/// <param name="other">Object còn lại</param>
 	/// <param name="selfMask">Category Mask cần tìm</param>
 	/// <returns></returns>
-	bool detectWhichCollider(const PhysicsContact & contact, PhysicsShape* self, PhysicsShape* other, int selfMask);
+	bool detectWhichCollider(const PhysicsContact & contact, PhysicsShape*& self, PhysicsShape*& other, int selfMask);
 }
 
 namespace ProjectileMotion2D
