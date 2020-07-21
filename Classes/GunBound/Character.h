@@ -23,6 +23,8 @@ public:
 	void listenToKeyboardMovement();
 	virtual void receiveDamage(const std::vector<Vec2>& damagedPoints) override;
 
+	bool raycastHit(PhysicsWorld& world, const PhysicsRayCastInfo& info, void* data);
+
 private:
 	CC_SYNTHESIZE_READONLY(PhysicsBody*, physicsBody, PhysicsBody);
 
@@ -34,7 +36,6 @@ private:
 	float moveHorizontal{};
 	float angle{ };
 	Vec2 groundNormal{ 0,1 };
-	bool isFirstMove{ true };
 	bool isKeyPressed{ false };
 	bool isFireAndStopMoving{ false };
 

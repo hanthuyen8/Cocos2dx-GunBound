@@ -4,6 +4,7 @@
 #include "SpritePhysics.h"
 
 const int FALL_SPEED = 981;
+const int MAX_SLOPE_ANGLE = 60;
 
 Character* Character::create(std::string_view fileName, float radius, Vec2 anchor)
 {
@@ -68,25 +69,19 @@ void Character::update(float dt)
 		sprite->setFlippedX(moveHorizontal < 0);
 
 		// Gravity nghiêng theo mặt đất
+		Helper::logVec2(groundNormal);
 		auto gravity = FALL_SPEED * -1 * groundNormal;
 		physicsBody->applyForce(gravity);
 
 		// clamp velocity.x không cho vượt quá moveSpeed
 		auto velocity_x = std::abs(velocity.x);
-
-		if (isFirstMove)
-			velocity_x = (moveSpeed * 10 - velocity_x) * moveHorizontal;
-		else
-			velocity_x = (moveSpeed - velocity_x) * moveHorizontal;
+		velocity_x = (moveSpeed - velocity_x) * moveHorizontal;
 
 		physicsBody->applyForce(Vec2{ velocity_x ,0 });
-
-		isFirstMove = false;
 	}
 	else
 	{
 		// Khi Character không có lệnh di chuyển -> đứng yên
-		isFirstMove = true;
 
 		if (!isTouchGround && groundDistance > 2)
 		{
@@ -144,55 +139,107 @@ void Character::receiveDamage(const std::vector<Vec2>& damagedPoints)
 	CCLOG("character get dmg");
 }
 
+bool Character::raycastHit(PhysicsWorld& world, const PhysicsRayCastInfo& info, void* data)
+{
+	if (info.shape->getBody() == physicsBody)
+	{
+		// self groundDetected
+		return true;
+	}
+	*(static_cast<PhysicsRayCastInfo*>(data)) = info;
+	return false;
+}
+
 float Character::findGroundDistanceAndNormal()
 {
 	const auto world = this->getScene()->getPhysicsWorld();
 	if (!world)
 		return 0;
 
-	bool hit{ false };
 	const auto rayLength = 100;
 
-	PhysicsRayCastInfo raycastInfo;
-	auto raycastCallback = [&hit, &raycastInfo, this](PhysicsWorld& world, const PhysicsRayCastInfo& info, void* data) {
-		if (info.shape->getBody() == physicsBody)
-		{
-			// self hit
-			return true;
-		}
-		hit = true;
-		raycastInfo = info;
-		return false;
-	};
+	PhysicsRayCastInfo groundInfo{};
+	PhysicsRayCastInfo slopeInfo{};
 
 	const Vec2 origin{ physicsBody->getPosition() };
+	const auto func = CC_CALLBACK_3(Character::raycastHit, this);
+
+	/*
+	Cách hoạt động:
+	- Bắn 2 raycast để lấy ground & slope.
+	- Kẻ 1 đường nối 2 điểm contact đó, đường đó được xem như là ground mới.
+	- Lấy groundNormal và fraction như sau:
+		- Nếu slope fraction <= 0 thì lấy normal và fraction của ground;
+		- Nếu slope normal == groundNormal thì lấy normal và fraction của ground;
+		- Nếu slope normal != groundNormal thì lấy normal mới và trung bình cộng của 2 fraction.
+	*/
+
+	if (moveHorizontal)
+	{
+		// Raycast to detect Slope
+		const Vec2 rayToSlopeStart{ origin + Vec2::UNIT_X * (radius + 1) * moveHorizontal };
+		const Vec2 rayToSlopeEnd{ rayToSlopeStart - groundNormal * rayLength };
+		world->rayCast(func, rayToSlopeStart, rayToSlopeEnd, &slopeInfo);
+	}
+
+	// Raycast to detect Ground
 	const Vec2 rayToGroundStart{ origin - Vec2::UNIT_Y * (radius + 1) };
 	const Vec2 rayToGroundEnd{ Vec2{rayToGroundStart.x, rayToGroundStart.y - rayLength} };
 	//const Vec2 rayToGroundEnd{ origin - Vec2::UNIT_Y * (radius + rayLength) };
+	world->rayCast(func, rayToGroundStart, rayToGroundEnd, &groundInfo);
 
-	world->rayCast(raycastCallback, rayToGroundStart, rayToGroundEnd, nullptr);
+	/*
+		- Nếu slope fraction <= 0 thì lấy normal và fraction của ground;
+		- Nếu slope normal == groundNormal thì lấy normal và fraction của ground;
+		- Nếu slope normal != groundNormal thì lấy normal mới và trung bình cộng của 2 fraction.
+	*/
+	Vec2 resultNormal{};
+	float resultFraction{};
 
-	// Slope detect
-	if (moveHorizontal)
+	const auto setResult = [&resultNormal, &resultFraction, rayLength](PhysicsRayCastInfo& info) {
+		resultNormal = info.normal;
+		resultFraction = info.fraction * rayLength;
+	};
+
+	const bool groundDetected{ groundInfo.shape != nullptr && groundInfo.normal.y > 0 };
+	const bool slopeDetected{ slopeInfo.shape != nullptr && slopeInfo.normal.y > 0 };
+
+	if (!groundDetected)
 	{
-		const Vec2 rayToSlopeStart{ origin + Vec2::UNIT_X * (radius + 1) * moveHorizontal };
-		const Vec2 rayToSlopeEnd{ Vec2{rayToSlopeStart.x, rayToGroundEnd.y} };
+		// Ko groundDetected trúng Ground -> Lấy gravity
+		resultNormal = Vec2::UNIT_Y;
+		resultFraction = rayLength;
 	}
-	
-
-	if (hit)
+	else
 	{
-		if (raycastInfo.normal.y > 0)
+		if (!slopeDetected || slopeInfo.normal == groundInfo.normal)
 		{
-			groundNormal = raycastInfo.normal;
-			angle = 90 - MATH_RAD_TO_DEG(groundNormal.getAngle());
+			// Nếu không bắn trúng Slope
+			// Hoặc bắn trúng nhưng Slope và Ground cùng phương
+			setResult(groundInfo);
 		}
-		return raycastInfo.fraction * rayLength;
+		else
+		{
+			// Slope và Ground khác phương
+			// Sinh ra groundNormal mới dựa vào kết quả của 2 raycast
+			const auto newGround = (slopeInfo.normal - groundInfo.normal).getNormalized();
+
+			if (newGround.x > 0)
+				resultNormal = Vec2{ -newGround.y, newGround.x };
+			else
+				resultNormal = Vec2{ newGround.y, -newGround.x };
+
+			// Nếu slope quá dốc thì bỏ qua slope
+			if (MATH_RAD_TO_DEG(resultNormal.getAngle()) > MAX_SLOPE_ANGLE)
+				setResult(groundInfo);
+			else
+				resultFraction = (groundInfo.fraction + slopeInfo.fraction) / 2 * rayLength;
+		}
 	}
 
-	groundNormal = Vec2::UNIT_Y;
-	angle = 90 - MATH_RAD_TO_DEG(groundNormal.getAngle());
-	return rayLength;
+	groundNormal = resultNormal;
+	angle = 90 - MATH_RAD_TO_DEG(resultNormal.getAngle());
+	return resultFraction;
 }
 
 // Mục đích của hàm này là xác định Character đã chạm đất hay chưa thôi
