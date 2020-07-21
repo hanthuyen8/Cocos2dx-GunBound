@@ -23,7 +23,7 @@ public:
 	static Scene* createScene();
 	CREATE_FUNC(Hockey);
 
-	virtual bool init() override;
+	virtual bool init () override;
 
 private:
 	void touchBegin(const std::vector<Touch*>& touches, Event* ev);

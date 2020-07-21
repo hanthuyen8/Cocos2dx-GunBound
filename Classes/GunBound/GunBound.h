@@ -9,7 +9,7 @@ class GunBound : public Scene
 public:
 	static Scene* createScene();
 	CREATE_FUNC(GunBound);
-	virtual bool init() override;
+	virtual bool init () override;
 
 private:
 	int force{ 70 };

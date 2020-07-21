@@ -13,8 +13,8 @@ class Cannon : public DrawNode
 	// Vậy trước mắt chỉ cần có variable DrawNode
 
 public:
-	static Cannon* create(float deadZoneRadius);
-	bool init(float deadZoneRadius);
+	static Cannon* create (float deadZoneRadius);
+	bool init (float deadZoneRadius);
 
 private:
 	float angle{};

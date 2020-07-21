@@ -15,7 +15,7 @@ private:
 
 public:
 	static Scene* createScene();
-	virtual bool init() override;
+	virtual bool init () override;
 
 	virtual void update(float dt) override;
 	CREATE_FUNC(GameScene);

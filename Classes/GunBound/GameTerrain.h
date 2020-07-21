@@ -4,7 +4,7 @@
 
 USING_NS_CC;
 
-class GameTerrain: public Scene
+class GameTerrain : public Scene
 {
 public:
 	static Scene* createScene();

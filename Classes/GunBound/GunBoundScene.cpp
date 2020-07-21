@@ -76,10 +76,9 @@ bool GunBoundScene::init()
 	addToScene(tree, Vec2{ -570, -140 });
 
 	// Player (1 cái) kèm physic body
-	player = Character::create(PATH_PLAYER, 55);
+	player = Character::create(PATH_PLAYER, 55, Vec2{ 0.45f, 0.5f });
 	RETURN_FALSE_IF_NULL_PTR(player, "GunBoundScene player");
 
-	player->setAnchorPoint(Vec2{ 0.45f, 0.5f });
 	player->setMoveSpeed(450);
 	player->setPosition(-537, 100);
 	player->listenToKeyboardMovement();

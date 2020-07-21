@@ -16,7 +16,7 @@ class GunBoundScene : public Scene
 {
 public:
 	static Scene* createScene();
-	virtual bool init() override;
+	virtual bool init () override;
 	CREATE_FUNC(GunBoundScene);
 
 	static Vec2 getAcceleration();

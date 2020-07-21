@@ -84,10 +84,10 @@ namespace
 
 Scene* TestPhysics::createScene()
 {
-	return TestPhysics::create();
+	return TestPhysics::create ();
 }
 
-bool TestPhysics::init()
+bool TestPhysics::init ()
 {
 	if (!Scene::initWithPhysics())
 		return false;
@@ -100,11 +100,11 @@ bool TestPhysics::init()
 	crate->setPosition(400, 350);
 	this->addChild(crate);
 
-	drawNode = DrawNode::create();
+	drawNode = DrawNode::create ();
 	this->addChild(drawNode);
 
 	// Click and deform crate
-	const auto mouseEvListener = EventListenerMouse::create();
+	const auto mouseEvListener = EventListenerMouse::create ();
 	mouseEvListener->onMouseDown = CC_CALLBACK_1(TestPhysics::onCut, this);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(mouseEvListener, this);
 
@@ -113,7 +113,7 @@ bool TestPhysics::init()
 
 void TestPhysics::onCut(EventMouse* ev)
 {
-	const auto draw = DrawNode::create();
+	const auto draw = DrawNode::create ();
 	const auto drawAtPos = ev->getLocationInView();
 	const auto circle = getCircle(drawAtPos, 30);
 	PolyVec nodeSpaceCircle{};
@@ -157,7 +157,7 @@ void TestPhysics::onCut(EventMouse* ev)
 
 void TestPhysics::onCut2(EventMouse* ev)
 {
-	const auto draw = DrawNode::create();
+	const auto draw = DrawNode::create ();
 	const auto drawAtPos = ev->getLocationInView();
 	const auto circle = getCircle(drawAtPos, 30);
 	PolyVec nodeSpaceCircle{};

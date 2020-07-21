@@ -80,12 +80,10 @@ bool AppDelegate::applicationDidFinishLaunching() {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
         glview = GLViewImpl::createWithRect("TestGame1", cocos2d::Rect(0, 0, designResolutionSize.width, designResolutionSize.height));
 #else
-        glview = GLViewImpl::create("TestGame1");
+        glview = GLViewImpl::create ("TestGame1");
 #endif
         director->setOpenGLView(glview);
     }
-
-    
 
     // turn on display FPS
     //director->setDisplayStats(true);
@@ -118,8 +116,8 @@ bool AppDelegate::applicationDidFinishLaunching() {
     register_all_packages();
 
     // create a scene. it's an autorelease object
-    auto scene = GunBoundScene::createScene();
-    //auto scene = DebugScene::createScene();
+    const auto scene = GunBoundScene::createScene();
+    //const auto scene = DebugScene::createScene();
 
     if (scene)
     {

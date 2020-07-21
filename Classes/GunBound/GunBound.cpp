@@ -24,12 +24,12 @@ namespace
 
 Scene* GunBound::createScene()
 {
-	return GunBound::create();
+	return GunBound::create ();
 }
 
-bool GunBound::init()
+bool GunBound::init ()
 {
-	if (!Scene::init())
+	if (!Scene::init ())
 		return false;
 
 	const auto winSize = Director::getInstance()->getWinSize();
@@ -47,7 +47,7 @@ bool GunBound::init()
 	normalizeLabel->setPosition(winSize.width - 100, winSize.height - 150);
 	this->addChild(normalizeLabel);
 
-	const auto increaseForce = ui::Button::create();
+	const auto increaseForce = ui::Button::create ();
 	increaseForce->setTitleFontSize(30);
 	increaseForce->setTitleText("+");
 	increaseForce->setPosition(Vec2{ winSize.width - 50, winSize.height - 50 });
@@ -59,7 +59,7 @@ bool GunBound::init()
 		});
 	this->addChild(increaseForce);
 
-	const auto decreaseForce = ui::Button::create();
+	const auto decreaseForce = ui::Button::create ();
 	decreaseForce->setTitleFontSize(30);
 	decreaseForce->setTitleText("-");
 	decreaseForce->setPosition(Vec2{ winSize.width - 150, winSize.height - 50 });
@@ -81,10 +81,10 @@ bool GunBound::init()
 
 	// Cliping Mask
 	// Stencil là hình sẽ cắt bớt đi hình chính
-	const auto stencilNode = DrawNode::create();
+	const auto stencilNode = DrawNode::create ();
 	stencilNode->drawSolidCircle(Vec2{ 100, 100 }, 30, 360, 12, Color4F::Color4F(0, 0, 0, 0));
 
-	const auto clipNode = ClippingNode::create(stencilNode);
+	const auto clipNode = ClippingNode::create (stencilNode);
 
 	// DrawNode là hình sẽ bị cắt bớt đi.
 	const auto drawNode = Sprite::createWithSpriteFrameName("CannonWheel.png");
@@ -95,7 +95,7 @@ bool GunBound::init()
 	this->addChild(clipNode);
 
 	// Mouse Events
-	const auto mouseListener = EventListenerMouse::create();
+	const auto mouseListener = EventListenerMouse::create ();
 	mouseListener->onMouseMove = [this](EventMouse* ev) {
 		const auto value = getUnitVector(ev->getCursorX(), ev->getCursorY());
 		direction = value.first;
@@ -134,7 +134,7 @@ void GunBound::update(float dt)
 			continue;
 
 		// Draw Dot
-		const auto dot = cocos2d::DrawNode::create();
+		const auto dot = cocos2d::DrawNode::create ();
 		dot->drawSolidCircle(position, 10, 360, 12, 1, 1, Color4F::WHITE);
 		dots.push_back(dot);
 		this->addChild(dot);

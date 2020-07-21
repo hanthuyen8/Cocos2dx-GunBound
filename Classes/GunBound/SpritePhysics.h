@@ -15,7 +15,7 @@ public:
 	static inline int COLLISION_WITH{ 0 };
 
 	static SpritePhysics* createInstance(std::string_view fileName, std::vector<PolyVec>& shape);
-	bool init(std::string_view fileName, std::vector<PolyVec>& shape);
+	bool init (std::string_view fileName, std::vector<PolyVec>& shape);
 
 	std::vector<PolyVec> getShapes();
 	void replaceShapes();

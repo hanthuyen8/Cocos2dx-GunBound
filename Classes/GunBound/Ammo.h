@@ -12,8 +12,8 @@ public:
 	static inline int COLLISION_WITH{ 0x00 };
 	static inline Vec2 ACCELERATION{ Vec2{0, -981} };
 
-	static Ammo* create();
-	virtual bool init() override;
+	static Ammo* create ();
+	virtual bool init () override;
 	virtual void update(float dt) override;
 
 	/// <summary>
