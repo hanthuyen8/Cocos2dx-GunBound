@@ -3,6 +3,7 @@
 #include "cocos2d.h"
 #include "SpritePhysics.h"
 #include "Character.h"
+#include "BackgroundLayer.h"
 
 USING_NS_CC;
 
@@ -26,14 +27,7 @@ private:
 	std::vector<SpritePhysics*> allSpritePhysics{};
 
 	// Background (2 cái)
-	Sprite* backgroundLayer1{};
-	Sprite* backgroundLayer2{};
-
-	// Terrain (1 cái) kèm physic body
-	CC_SYNTHESIZE_READONLY(SpritePhysics*, terrain, SpriteTerrain);
-
-	// Tree (1 cái) kèm physic body
-	CC_SYNTHESIZE_READONLY(SpritePhysics*, tree, SpriteTree);
+	BackgroundLayer* backgroundLayer{};
 
 	// Player (1 cái) kèm physic body
 	CC_SYNTHESIZE(Character*, player, Player);
@@ -41,10 +35,14 @@ private:
 	// Các thuộc tính:
 	inline static Vec2 acceleration{};
 
+	// Khác:
+	Camera* camera;
+
 	void addToScene(SpritePhysics* sprite, Vec2&& atPos);
 
 	bool physicsCollisionFilterRules(PhysicsContact& contact);
 
+	void moveCameraByCharacter(Vec2 characterWPos);
 };
 
 /*

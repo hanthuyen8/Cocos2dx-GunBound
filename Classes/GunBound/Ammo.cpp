@@ -4,7 +4,7 @@
 
 const std::string PATH_AMMO = "GunBound/Bullet.png";
 
-Ammo* Ammo::create ()
+Ammo* Ammo::create(  ()
 {
 	Ammo* instance = new(std::nothrow) Ammo();
 	if (instance && instance->init ())
@@ -38,13 +38,13 @@ bool Ammo::init ()
 
 	this->setPhysicsBody(physicsBody);
 
-	explosionEffect = CustomAnimation::create ("AnimationSmoke");
+	explosionEffect = CustomAnimation::create(  ("AnimationSmoke");
 	RETURN_FALSE_IF_NULL_PTR(explosionEffect, "AnimationSmoke không khởi tạo được");
 	this->addChild(explosionEffect);
 
 	this->unscheduleUpdate();
 
-	const auto collisionListener = EventListenerPhysicsContact::create ();
+	const auto collisionListener = EventListenerPhysicsContact::create(  ();
 	collisionListener->onContactPreSolve = CC_CALLBACK_2(Ammo::onCollisionEnter, this);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(collisionListener, this);
 

@@ -6,10 +6,10 @@
 const int FALL_SPEED = 981;
 const int MAX_SLOPE_ANGLE = 60;
 
-Character* Character::create(std::string_view fileName, float radius, Vec2 anchor)
+Character* Character::create(std::string_view name, Vec2& spriteAnchor, Size& spriteSize, float physicsRadius)
 {
 	Character* instance = new(std::nothrow) Character();
-	if (instance && instance->init(fileName, radius, anchor))
+	if (instance && instance->init(name, spriteAnchor, spriteSize, physicsRadius))
 	{
 		instance->autorelease();
 		return instance;
@@ -19,16 +19,18 @@ Character* Character::create(std::string_view fileName, float radius, Vec2 ancho
 	return nullptr;
 }
 
-bool Character::init(std::string_view fileName, float radius, Vec2 anchor)
+bool Character::init(std::string_view name, Vec2& spriteAnchor, Size& spriteSize, float physicsRadius)
 {
 	if (!Node::init())
 		return false;
 
-	this->radius = radius;
+	this->name = name;
+	this->radius = physicsRadius;
 
-	sprite = Sprite::create(std::string{ fileName });
+	sprite = Sprite::create();
 	CC_ASSERT(sprite);
-	sprite->setAnchorPoint(anchor);
+	sprite->setContentSize(spriteSize);
+	sprite->setAnchorPoint(spriteAnchor);
 	this->addChild(sprite);
 
 	physicsBody = PhysicsBody::create();
@@ -85,6 +87,8 @@ void Character::update(float dt)
 			force_x = (moveSpeed - force_x) * moveHorizontal;
 		}
 		physicsBody->applyForce(Vec2{ force_x ,0 });
+		doPlayerMovementCallback();
+		changeAnimation(AnimState::Walk, true);
 	}
 	else
 	{
@@ -99,12 +103,20 @@ void Character::update(float dt)
 			float x = -std::abs(velocity.x);
 
 			physicsBody->applyForce(Vec2{ x, y });
+			doPlayerMovementCallback();
+			changeAnimation(AnimState::Walk, true);
 		}
 		else
 		{
 			physicsBody->setVelocity(Vec2::ZERO);
+			changeAnimation(AnimState::Idle, true);
 		}
 	}
+}
+
+void Character::receiveDamage(const std::vector<Vec2>& damagedPoints)
+{
+	CCLOG("character get dmg");
 }
 
 #pragma region Key Board Movement
@@ -115,20 +127,20 @@ void Character::onKeyPressed(EventKeyboard::KeyCode key, Event*)
 
 	switch (key)
 	{
-	case cocos2d::EventKeyboard::KeyCode::KEY_SPACE:
-		isFireAndStopMoving = true;
-		break;
+		case cocos2d::EventKeyboard::KeyCode::KEY_SPACE:
+			isFireAndStopMoving = true;
+			break;
 
-	case cocos2d::EventKeyboard::KeyCode::KEY_LEFT_ARROW:
-		moveHorizontal = -1;
-		break;
+		case cocos2d::EventKeyboard::KeyCode::KEY_LEFT_ARROW:
+			moveHorizontal = -1;
+			break;
 
-	case cocos2d::EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
-		moveHorizontal = 1;
-		break;
+		case cocos2d::EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
+			moveHorizontal = 1;
+			break;
 
-	default:
-		break;
+		default:
+			break;
 	}
 }
 
@@ -136,18 +148,18 @@ void Character::onKeyReleased(EventKeyboard::KeyCode key, Event*)
 {
 	switch (key)
 	{
-	case cocos2d::EventKeyboard::KeyCode::KEY_LEFT_ARROW:
-		if (moveHorizontal == -1)
-			moveHorizontal = 0;
-		break;
+		case cocos2d::EventKeyboard::KeyCode::KEY_LEFT_ARROW:
+			if (moveHorizontal == -1)
+				moveHorizontal = 0;
+			break;
 
-	case cocos2d::EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
-		if (moveHorizontal == 1)
-			moveHorizontal = 0;
-		break;
+		case cocos2d::EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
+			if (moveHorizontal == 1)
+				moveHorizontal = 0;
+			break;
 
-	default:
-		break;
+		default:
+			break;
 	}
 }
 
@@ -161,12 +173,58 @@ void Character::listenToKeyboardMovement()
 	this->scheduleUpdate();
 }
 
+void Character::setOnCharacterMovementCallback(std::function<void(Vec2 characterWPos)> callback)
+{
+	if (callback)
+		characterMovementCallback.push_back(callback);
+}
+
+void Character::doPlayerMovementCallback()
+{
+	const auto pos = convertToWorldSpaceAR(Vec2::ZERO);
+	for (const auto cb : characterMovementCallback)
+	{
+		if (cb)
+			cb(pos);
+	}
+}
+
+void Character::changeAnimation(AnimState state, bool loop)
+{
+	const auto cache = AnimationCache::getInstance();
+	Animation* anim{};
+	switch (state)
+	{
+		case AnimState::Idle:
+			anim = cache->getAnimation(name + "_Idle");
+			break;
+
+		case AnimState::Walk:
+			anim = cache->getAnimation(name + "_Walk");
+			break;
+
+		case AnimState::Attack:
+			anim = cache->getAnimation(name + "_Attack");
+			break;
+	}
+
+	if (anim)
+	{
+		if (animateAction)
+		{
+			sprite->stopAction(animateAction);
+		}
+		animateAction = Animate::create(anim);
+		if (loop)
+			sprite->runAction(RepeatForever::create(animateAction));
+		else
+			sprite->runAction(animateAction);
+	}
+}
+
 #pragma endregion
 
-void Character::receiveDamage(const std::vector<Vec2>& damagedPoints)
-{
-	CCLOG("character get dmg");
-}
+#pragma region Collision And Find Paths
 
 bool Character::raycastHit(PhysicsWorld& world, const PhysicsRayCastInfo& info, void* data)
 {
@@ -299,3 +357,5 @@ void Character::onCollisionExit(PhysicsContact& contact)
 	if (isTouchGround && other == isTouchGround)
 		isTouchGround = nullptr;
 }
+
+#pragma endregion

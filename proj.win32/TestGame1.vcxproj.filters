@@ -19,6 +19,12 @@
     <ClCompile Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\GunBound\SpritePhysics.cpp">
       <Filter>Source Files\Classes\GunBound</Filter>
     </ClCompile>
+    <ClCompile Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\GunBound\GameLayer.cpp">
+      <Filter>Source Files\Classes\GunBound</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\GunBound\BackgroundLayer.cpp">
+      <Filter>Source Files\Classes\GunBound</Filter>
+    </ClCompile>
     <ClCompile Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\GunBound\DebugScene.cpp">
       <Filter>Source Files\Classes\GunBound</Filter>
     </ClCompile>
@@ -67,6 +73,12 @@
       <Filter>Source Files\Classes\GunBound</Filter>
     </ClInclude>
     <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\GunBound\SpritePhysics.h">
+      <Filter>Source Files\Classes\GunBound</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\GunBound\GameLayer.h">
+      <Filter>Source Files\Classes\GunBound</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\GunBound\BackgroundLayer.h">
       <Filter>Source Files\Classes\GunBound</Filter>
     </ClInclude>
     <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\GunBound\DebugScene.h">
@@ -153,6 +165,12 @@
     <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Resources\GunBound\Animations\AnimationSmoke.png">
       <Filter>Resources\GunBound\Animations</Filter>
     </ClInclude>
+    <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Resources\GunBound\Animations\Character_SteamMan.plist">
+      <Filter>Resources\GunBound\Animations</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Resources\GunBound\Animations\Character_SteamMan.png">
+      <Filter>Resources\GunBound\Animations</Filter>
+    </ClInclude>
     <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Resources\GunBound\BackgroundLayer1.png">
       <Filter>Resources\GunBound</Filter>
     </ClInclude>
@@ -168,7 +186,10 @@
     <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Resources\GunBound\Player.png">
       <Filter>Resources\GunBound</Filter>
     </ClInclude>
-    <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Resources\GunBound\Terrain.png">
+    <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Resources\GunBound\Terrain1.png">
+      <Filter>Resources\GunBound</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Resources\GunBound\Terrain2.png">
       <Filter>Resources\GunBound</Filter>
     </ClInclude>
     <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Resources\GunBound\Tree.png">

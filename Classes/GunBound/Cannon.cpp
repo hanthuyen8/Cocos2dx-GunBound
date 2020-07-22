@@ -8,7 +8,7 @@ const float AIM_SPEED = 200;
 const float CHARGE_SPEED = 70;
 const float MAX_SPEED = 1350;
 
-Cannon* Cannon::create (float deadZoneRadius)
+Cannon* Cannon::create(  (float deadZoneRadius)
 {
 	Cannon* cannon = new(std::nothrow) Cannon();
 	if (cannon && cannon->init (deadZoneRadius))
@@ -31,16 +31,16 @@ bool Cannon::init (float deadZoneRadius)
 	this->setCascadeOpacityEnabled(true);
 	//this->setOpacity(0);
 
-	ammoPath = DrawNode::create ();
+	ammoPath = DrawNode::create(  ();
 	this->addChild(ammoPath);
 
-	aimMeter = DrawNode::create ();
+	aimMeter = DrawNode::create(  ();
 	this->addChild(aimMeter);
 
-	chargeMeter = DrawNode::create ();
+	chargeMeter = DrawNode::create(  ();
 	this->addChild(chargeMeter);
 
-	const auto keyboardListener = EventListenerKeyboard::create ();
+	const auto keyboardListener = EventListenerKeyboard::create(  ();
 	if (!keyboardListener)
 		return false;
 
@@ -161,7 +161,7 @@ void Cannon::tryToCreateAmmo()
 {
 	if (!ammo)
 	{
-		ammo = Ammo::create ();
+		ammo = Ammo::create(  ();
 		Director::getInstance()->getRunningScene()->addChild(ammo);
 	}
 }

@@ -22,19 +22,19 @@ bool SpritePhysics::init (std::string_view fileName, std::vector<PolyVec>& shape
 		return false;
 
 	// Create Stencil
-	stencil = DrawNode::create ();
+	stencil = DrawNode::create(  ();
 	this->addChild(stencil);
 	this->setStencil(stencil);
 	this->setInverted(true);
 
 	// Create Sprite
-	sprite = Sprite::create (std::string{ fileName });
+	sprite = Sprite::create(  (std::string{ fileName });
 	RETURN_FALSE_IF_NULL_PTR(sprite, "SpritePhysics sprite");
 	this->sprite = sprite;
 	this->addChild(sprite);
 
 	// Create polygon physics body shape
-	physicsBody = PhysicsBody::create ();
+	physicsBody = PhysicsBody::create(  ();
 	physicsBody->setDynamic(false);
 	shapes = shape;
 	replaceShapes();
@@ -64,7 +64,7 @@ void SpritePhysics::replaceShapes()
 	physicsBody->removeAllShapes();
 	for (const auto& points : shapes)
 	{
-		physicsBody->addShape(PhysicsShapePolygon::create (points.data(), points.size(), PhysicsMaterial::PhysicsMaterial(0, 0, 0)));
+		physicsBody->addShape(PhysicsShapePolygon::create(  (points.data(), points.size(), PhysicsMaterial::PhysicsMaterial(0, 0, 0)));
 	}
 	physicsBody->setCategoryBitmask(SpritePhysics::COLLISION_CATEGORY);
 	physicsBody->setContactTestBitmask(SpritePhysics::COLLISION_WITH);

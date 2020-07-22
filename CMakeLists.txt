@@ -62,6 +62,8 @@ list(APPEND GAME_SOURCE
     Classes/GunBound/Ammo.cpp
     Classes/GunBound/CustomAnimation.cpp
      Classes/GunBound/SpritePhysics.cpp
+     Classes/GunBound/GameLayer.cpp
+     Classes/GunBound/BackgroundLayer.cpp
 
      Classes/GunBound/DebugScene.cpp
      )
@@ -75,6 +77,8 @@ list(APPEND GAME_HEADER
     Classes/GunBound/Ammo.h
     Classes/GunBound/CustomAnimation.h
      Classes/GunBound/SpritePhysics.h
+     Classes/GunBound/GameLayer.h
+     Classes/GunBound/BackgroundLayer.h
 
      Classes/GunBound/DebugScene.h
      )

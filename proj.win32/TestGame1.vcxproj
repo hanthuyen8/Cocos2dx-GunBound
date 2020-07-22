@@ -807,6 +807,8 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\GunBound\Ammo.h" />
     <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\GunBound\CustomAnimation.h" />
     <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\GunBound\SpritePhysics.h" />
+    <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\GunBound\GameLayer.h" />
+    <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\GunBound\BackgroundLayer.h" />
     <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\GunBound\DebugScene.h" />
     <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\AppDelegate.h" />
     <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\Helper.h" />
@@ -823,6 +825,8 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\GunBound\Ammo.cpp" />
     <ClCompile Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\GunBound\CustomAnimation.cpp" />
     <ClCompile Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\GunBound\SpritePhysics.cpp" />
+    <ClCompile Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\GunBound\GameLayer.cpp" />
+    <ClCompile Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\GunBound\BackgroundLayer.cpp" />
     <ClCompile Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\GunBound\DebugScene.cpp" />
     <ClCompile Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\AppDelegate.cpp" />
     <ClCompile Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\Helper.cpp" />
@@ -850,12 +854,15 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Resources\Empty.png" />
     <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Resources\GunBound\Animations\AnimationSmoke.plist" />
     <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Resources\GunBound\Animations\AnimationSmoke.png" />
+    <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Resources\GunBound\Animations\Character_SteamMan.plist" />
+    <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Resources\GunBound\Animations\Character_SteamMan.png" />
     <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Resources\GunBound\BackgroundLayer1.png" />
     <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Resources\GunBound\BackgroundLayer2.png" />
     <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Resources\GunBound\Bullet.png" />
     <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Resources\GunBound\Crate.png" />
     <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Resources\GunBound\Player.png" />
-    <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Resources\GunBound\Terrain.png" />
+    <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Resources\GunBound\Terrain1.png" />
+    <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Resources\GunBound\Terrain2.png" />
     <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Resources\GunBound\Tree.png" />
     <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Resources\HelloWorld.png" />
     <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Resources\Hockey\Hockey.plist" />

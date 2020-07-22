@@ -23,10 +23,6 @@
  ****************************************************************************/
 
 #include "AppDelegate.h"
-#include "Hockey/Hockey.h"
-#include "GunBound/GunBound.h"
-#include "GunBound/GameTerrain.h"
-#include "GunBound/TestPhysics.h"
 #include "GunBound/GunBoundScene.h"
 #include "GunBound/DebugScene.h"
 
@@ -80,7 +76,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
         glview = GLViewImpl::createWithRect("TestGame1", cocos2d::Rect(0, 0, designResolutionSize.width, designResolutionSize.height));
 #else
-        glview = GLViewImpl::create ("TestGame1");
+        glview = GLViewImpl::create(  ("TestGame1");
 #endif
         director->setOpenGLView(glview);
     }
