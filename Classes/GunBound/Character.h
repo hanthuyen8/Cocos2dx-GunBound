@@ -18,12 +18,10 @@ public:
 
 	// Character sẽ có các thuộc tính:
 	CC_SYNTHESIZE(float, moveSpeed, MoveSpeed);
+	bool cameraFollow{ true };
 
-	// Character sẽ có các hàm di chuyển:
 	void listenToKeyboardMovement();
 	virtual void receiveDamage(const std::vector<Vec2>& damagedPoints) override;
-
-	bool raycastHit(PhysicsWorld& world, const PhysicsRayCastInfo& info, void* data);
 
 private:
 	CC_SYNTHESIZE_READONLY(PhysicsBody*, physicsBody, PhysicsBody);
@@ -41,8 +39,10 @@ private:
 
 	virtual void update(float dt) override;
 	void onKeyPressed(EventKeyboard::KeyCode key, Event*);
+	void onKeyReleased(EventKeyboard::KeyCode key, Event*);
 	float findGroundDistanceAndNormal();
 	bool onCollisionEnter(PhysicsContact& contact, PhysicsContactPreSolve& solve);
 	void onCollisionExit(PhysicsContact& contact);
+	bool raycastHit(PhysicsWorld& world, const PhysicsRayCastInfo& info, void* data);
 };
 

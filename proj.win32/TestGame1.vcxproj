@@ -807,10 +807,6 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\GunBound\Ammo.h" />
     <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\GunBound\CustomAnimation.h" />
     <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\GunBound\SpritePhysics.h" />
-    <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\GunBound\GunBound.h" />
-    <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\GunBound\Gun.h" />
-    <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\GunBound\GameTerrain.h" />
-    <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\GunBound\TestPhysics.h" />
     <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\GunBound\DebugScene.h" />
     <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\AppDelegate.h" />
     <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\Helper.h" />
@@ -827,10 +823,6 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\GunBound\Ammo.cpp" />
     <ClCompile Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\GunBound\CustomAnimation.cpp" />
     <ClCompile Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\GunBound\SpritePhysics.cpp" />
-    <ClCompile Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\GunBound\GunBound.cpp" />
-    <ClCompile Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\GunBound\Gun.cpp" />
-    <ClCompile Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\GunBound\GameTerrain.cpp" />
-    <ClCompile Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\GunBound\TestPhysics.cpp" />
     <ClCompile Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\GunBound\DebugScene.cpp" />
     <ClCompile Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\AppDelegate.cpp" />
     <ClCompile Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\Helper.cpp" />

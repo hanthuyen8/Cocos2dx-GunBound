@@ -19,18 +19,6 @@
     <ClCompile Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\GunBound\SpritePhysics.cpp">
       <Filter>Source Files\Classes\GunBound</Filter>
     </ClCompile>
-    <ClCompile Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\GunBound\GunBound.cpp">
-      <Filter>Source Files\Classes\GunBound</Filter>
-    </ClCompile>
-    <ClCompile Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\GunBound\Gun.cpp">
-      <Filter>Source Files\Classes\GunBound</Filter>
-    </ClCompile>
-    <ClCompile Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\GunBound\GameTerrain.cpp">
-      <Filter>Source Files\Classes\GunBound</Filter>
-    </ClCompile>
-    <ClCompile Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\GunBound\TestPhysics.cpp">
-      <Filter>Source Files\Classes\GunBound</Filter>
-    </ClCompile>
     <ClCompile Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\GunBound\DebugScene.cpp">
       <Filter>Source Files\Classes\GunBound</Filter>
     </ClCompile>
@@ -79,18 +67,6 @@
       <Filter>Source Files\Classes\GunBound</Filter>
     </ClInclude>
     <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\GunBound\SpritePhysics.h">
-      <Filter>Source Files\Classes\GunBound</Filter>
-    </ClInclude>
-    <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\GunBound\GunBound.h">
-      <Filter>Source Files\Classes\GunBound</Filter>
-    </ClInclude>
-    <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\GunBound\Gun.h">
-      <Filter>Source Files\Classes\GunBound</Filter>
-    </ClInclude>
-    <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\GunBound\GameTerrain.h">
-      <Filter>Source Files\Classes\GunBound</Filter>
-    </ClInclude>
-    <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\GunBound\TestPhysics.h">
       <Filter>Source Files\Classes\GunBound</Filter>
     </ClInclude>
     <ClInclude Include="D:\Projects\Cocos2dx\Cocos2dx-TestGame1\Classes\GunBound\DebugScene.h">

@@ -60,24 +60,31 @@ void Character::update(float dt)
 {
 	const auto groundDistance = findGroundDistanceAndNormal();
 	sprite->setRotation(clampf(angle, -90, 90));
+	const auto velocity = physicsBody->getVelocity();
 
 	if (moveHorizontal != 0)
 	{
 		// Khi Character có lệnh di chuyển
 
-		const auto velocity = physicsBody->getVelocity();
-		sprite->setFlippedX(moveHorizontal < 0);
-
 		// Gravity nghiêng theo mặt đất
-		Helper::logVec2(groundNormal);
 		auto gravity = FALL_SPEED * -1 * groundNormal;
 		physicsBody->applyForce(gravity);
 
 		// clamp velocity.x không cho vượt quá moveSpeed
-		auto velocity_x = std::abs(velocity.x);
-		velocity_x = (moveSpeed - velocity_x) * moveHorizontal;
-
-		physicsBody->applyForce(Vec2{ velocity_x ,0 });
+		auto force_x = std::abs(velocity.x);
+		if (sprite->isFlippedX() != (moveHorizontal < 0))
+		{
+			// Phát hiện chuyển hướng
+			// Quất ngay 1 lực hướng ngược lại để chống trượt dài theo velocity cũ
+			force_x = velocity.x * -1 / dt;
+			sprite->setFlippedX(moveHorizontal < 0);
+		}
+		else
+		{
+			// Không phát hiện chuyển hướng
+			force_x = (moveSpeed - force_x) * moveHorizontal;
+		}
+		physicsBody->applyForce(Vec2{ force_x ,0 });
 	}
 	else
 	{
@@ -86,8 +93,12 @@ void Character::update(float dt)
 		if (!isTouchGround && groundDistance > 2)
 		{
 			// Gravity hút xuống đất
-			auto gravity = FALL_SPEED * -1 * Vec2::UNIT_Y;
-			physicsBody->applyForce(gravity);
+			float y = -FALL_SPEED;
+
+			// hãm lại x
+			float x = -std::abs(velocity.x);
+
+			physicsBody->applyForce(Vec2{ x, y });
 		}
 		else
 		{
@@ -96,9 +107,10 @@ void Character::update(float dt)
 	}
 }
 
+#pragma region Key Board Movement
+
 void Character::onKeyPressed(EventKeyboard::KeyCode key, Event*)
 {
-	moveHorizontal = 0;
 	isFireAndStopMoving = false;
 
 	switch (key)
@@ -120,19 +132,36 @@ void Character::onKeyPressed(EventKeyboard::KeyCode key, Event*)
 	}
 }
 
+void Character::onKeyReleased(EventKeyboard::KeyCode key, Event*)
+{
+	switch (key)
+	{
+	case cocos2d::EventKeyboard::KeyCode::KEY_LEFT_ARROW:
+		if (moveHorizontal == -1)
+			moveHorizontal = 0;
+		break;
+
+	case cocos2d::EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
+		if (moveHorizontal == 1)
+			moveHorizontal = 0;
+		break;
+
+	default:
+		break;
+	}
+}
+
 void Character::listenToKeyboardMovement()
 {
 	const auto keyboardListener = EventListenerKeyboard::create();
 	keyboardListener->onKeyPressed = CC_CALLBACK_2(Character::onKeyPressed, this);
-	keyboardListener->onKeyReleased = [this](EventKeyboard::KeyCode, Event*) {
-		moveHorizontal = 0;
-		isFireAndStopMoving = false;
-	};
-
+	keyboardListener->onKeyReleased = CC_CALLBACK_2(Character::onKeyReleased, this);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(keyboardListener, this);
 
 	this->scheduleUpdate();
 }
+
+#pragma endregion
 
 void Character::receiveDamage(const std::vector<Vec2>& damagedPoints)
 {
@@ -206,7 +235,7 @@ float Character::findGroundDistanceAndNormal()
 
 	if (!groundDetected)
 	{
-		// Ko groundDetected trúng Ground -> Lấy gravity
+		// Ko groundDetected trúng Ground -> Lấy y
 		resultNormal = Vec2::UNIT_Y;
 		resultFraction = rayLength;
 	}
@@ -221,19 +250,10 @@ float Character::findGroundDistanceAndNormal()
 		else
 		{
 			// Slope và Ground khác phương
-			// Sinh ra groundNormal mới dựa vào kết quả của 2 raycast
-			const auto newGround = (slopeInfo.normal - groundInfo.normal).getNormalized();
-
-			if (newGround.x > 0)
-				resultNormal = Vec2{ -newGround.y, newGround.x };
-			else
-				resultNormal = Vec2{ newGround.y, -newGround.x };
-
-			// Nếu slope quá dốc thì bỏ qua slope
-			if (MATH_RAD_TO_DEG(resultNormal.getAngle()) > MAX_SLOPE_ANGLE)
-				setResult(groundInfo);
-			else
-				resultFraction = (groundInfo.fraction + slopeInfo.fraction) / 2 * rayLength;
+			// Nhiều trường hợp nếu vẫn để y thì Character sẽ bị stuck ở đáy hoặc ở đỉnh của polygon
+			// Bỏ luôn y ở trường hợp này cho khỏe
+			groundNormal = Vec2::ZERO;
+			return 0;
 		}
 	}
 
