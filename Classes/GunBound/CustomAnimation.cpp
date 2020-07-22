@@ -27,7 +27,7 @@ void CustomAnimation::addPlistFile(std::string_view plistfileName, std::string_v
 	}
 }
 
-CustomAnimation* CustomAnimation::create(  (std::string_view keyName)
+CustomAnimation* CustomAnimation::create(std::string_view keyName)
 {
 	auto anim = new CustomAnimation();
 	if (anim && anim->init (keyName))
@@ -55,7 +55,7 @@ bool CustomAnimation::init (std::string_view keyName)
 	const auto size = map[pattern];
 	Vector<SpriteFrame*> listSF{};
 	const auto cache = SpriteFrameCache::getInstance();
-	animation = Animation::create(  ();
+	animation = Animation::create();
 	for (int i{}; i < size; i++)
 	{
 		const auto sf = cache->getSpriteFrameByName(pattern + std::to_string(i));
@@ -71,7 +71,7 @@ bool CustomAnimation::init (std::string_view keyName)
 
 void CustomAnimation::playAnimation()
 {
-	this->runAction(Animate::create(  (animation));
+	this->runAction(Animate::create(animation));
 }
 
 CustomAnimation::~CustomAnimation()

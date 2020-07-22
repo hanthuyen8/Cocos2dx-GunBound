@@ -3,7 +3,7 @@
 
 Scene* GameScene::createScene()
 {
-	return GameScene::create(  ();
+	return GameScene::create();
 }
 
 bool GameScene::init ()
@@ -18,15 +18,15 @@ bool GameScene::init ()
 	Dino doux{ "DinoDoux" };
 	this->addChild(doux.sprite);
 	doux.sprite->setPosition(size.getMidX(), size.getMidY() + 100);
-	doux.sprite->runAction(RepeatForever::create(  (Animate::create(  (doux.idleAnimation)));
+	doux.sprite->runAction(RepeatForever::create(Animate::create(doux.idleAnimation)));
 
 	Dino mort{ "DinoTart" };
 	this->addChild(mort.sprite);
 	mort.sprite->setPosition(size.getMidX(), size.getMidY() - 100);
-	mort.sprite->runAction(RepeatForever::create(  (Animate::create(  (mort.idleAnimation)));
+	mort.sprite->runAction(RepeatForever::create(Animate::create(mort.idleAnimation)));
 
 
-	auto keyboardListener = EventListenerKeyboard::create(  ();
+	auto keyboardListener = EventListenerKeyboard::create();
 	keyboardListener->onKeyPressed = CC_CALLBACK_2(GameScene::onKeyDown, this);
 	keyboardListener->onKeyReleased = CC_CALLBACK_2(GameScene::onKeyUp, this);
 

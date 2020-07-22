@@ -1,4 +1,5 @@
 ﻿#include "GunBoundScene.h"
+#include "SceneSetup.h"
 #include "Helper.h"
 #include "Ammo.h"
 #include "CustomAnimation.h"
@@ -10,7 +11,7 @@ const auto PATH_BG_LAYER2 = "GunBound/BackgroundLayer2.png";
 const auto PATH_TERRAIN1 = "GunBound/Terrain1.png";
 const auto PATH_TERRAIN2 = "GunBound/Terrain2.png";
 const auto PATH_TREE = "GunBound/Tree.png";
-const std::string CHARACTER_STEAMMAN = "SteamMan";
+const std::string CHARACTER_STEAM_MAN = "Character_SteamMan";
 
 const auto GRAVITY = 981;
 const auto LEVEL_WIDTH = 2553;
@@ -26,7 +27,7 @@ namespace
 		std::string pattern{ namePattern };
 		for (int i{}; i < number; i++)
 		{
-			const auto sf = cache->getSpriteFrameByName(pattern + std::to_string(number));
+			const auto sf = cache->getSpriteFrameByName(pattern + std::to_string(i));
 			CC_ASSERT(sf);
 			anim->addSpriteFrame(sf);
 		}
@@ -53,13 +54,13 @@ bool GunBoundScene::init()
 	CustomAnimation::addPlistFile("GunBound/Animations/AnimationSmoke.plist", "AnimationSmoke");
 
 	const auto steamManIdleAnim = createAnimation(spriteCache, "Character_SteamMan/Idle/", 4);
-	animationCache->addAnimation(steamManIdleAnim, CHARACTER_STEAMMAN + "_Idle");
+	animationCache->addAnimation(steamManIdleAnim, CHARACTER_STEAM_MAN + "_Idle");
 
 	const auto steamManAttackAnim = createAnimation(spriteCache, "Character_SteamMan/Attack/", 6);
-	animationCache->addAnimation(steamManAttackAnim, CHARACTER_STEAMMAN + "_Attack");
+	animationCache->addAnimation(steamManAttackAnim, CHARACTER_STEAM_MAN + "_Attack");
 
 	const auto steamManWalkAnim = createAnimation(spriteCache, "Character_SteamMan/Walk/", 6);
-	animationCache->addAnimation(steamManWalkAnim, CHARACTER_STEAMMAN + "_Walk");
+	animationCache->addAnimation(steamManWalkAnim, CHARACTER_STEAM_MAN + "_Walk");
 
 #pragma endregion
 
@@ -106,31 +107,39 @@ bool GunBoundScene::init()
 	backgroundLayer->addChild(background2);
 	background2->setPosition(936.93, -26.082);
 
-	// Terrain (2 cái) kèm physic body
-	const auto terrain1 = SpritePhysics::createInstance(PATH_TERRAIN1, mapbox::getTrianglesFromPolyline({
-		Vec2{96,120},Vec2{-283,32},Vec2{-434,-40},Vec2{-640,-40},Vec2{-640,-120},Vec2{640,-120},Vec2{640,-40},Vec2{565,-40},Vec2{264,-8},
-		}));
-	CC_ASSERT(terrain1);
-	terrain1->setName("Terrain1");
-	addToScene(terrain1, Vec2{ 1.865, -238.039 });
+	// Tile Map
 
-	const auto terrain2 = SpritePhysics::createInstance(PATH_TERRAIN2, mapbox::getTrianglesFromPolyline({
-		Vec2{-640,76},Vec2{-640,-75},Vec2{640,-75},Vec2{640,76},Vec2{498,76},Vec2{247,4},Vec2{-97,4},Vec2{-467,76}
-		}));
-	CC_ASSERT(terrain2);
-	terrain1->setName("Terrain2");
-	addToScene(terrain2, Vec2{ 1282.27, -354.47 });
+	const auto tileMap = TMXTiledMap::create(Map1::MAP1_FILE_PATH);
+	CC_ASSERT(tileMap);
+	tileMap->setName("Map1");
 
-	// Tree (1 cái) kèm physic body
-	const auto tree = SpritePhysics::createInstance(PATH_TREE, mapbox::getTrianglesFromPolyline({
-		Vec2{ -13,155 }, Vec2{ -38,139 }, Vec2{ -45,122 }, Vec2{ -67,116 }, Vec2{ -77,93 }, Vec2{ -106,83 }, Vec2{ -119,60 }, Vec2{ -113,27 }, Vec2{ -93,12 }, Vec2{ -100,-27 }, Vec2{ -81,-36 }, Vec2{ -77,-61 }, Vec2{ -59,-62 }, Vec2{ -56,-92 }, Vec2{ -31,-98 }, Vec2{ -31,-137 }, Vec2{ -57,-137 }, Vec2{ -69,-155 }, Vec2{ 54,-155 }, Vec2{ 46,-139 }, Vec2{ 27,-137 }, Vec2{ 27,-84 }, Vec2{ 46,-81 }, Vec2{ 49,-59 }, Vec2{ 72,-58 }, Vec2{ 75,-44 }, Vec2{ 112,-20 }, Vec2{ 111,-3 }, Vec2{ 95,6 }, Vec2{ 119,34 }, Vec2{ 113,68 }, Vec2{ 86,85 }, Vec2{ 57,133 }
-		}));
-	CC_ASSERT(tree);
-	tree->setName("Tree");
-	addToScene(tree, Vec2{ -570, -140 });
+
+
+	//// Terrain (2 cái) kèm physic body
+	//const auto terrain1 = SpritePhysics::createInstance(PATH_TERRAIN1, mapbox::getTrianglesFromPolyline({
+	//	Vec2{96,120},Vec2{-283,32},Vec2{-434,-40},Vec2{-640,-40},Vec2{-640,-120},Vec2{640,-120},Vec2{640,-40},Vec2{565,-40},Vec2{264,-8},
+	//	}));
+	//CC_ASSERT(terrain1);
+	//terrain1->setName("Terrain1");
+	//addToScene(terrain1, Vec2{ 1.865, -238.039 });
+
+	//const auto terrain2 = SpritePhysics::createInstance(PATH_TERRAIN2, mapbox::getTrianglesFromPolyline({
+	//	Vec2{-640,76},Vec2{-640,-75},Vec2{640,-75},Vec2{640,76},Vec2{498,76},Vec2{247,4},Vec2{-97,4},Vec2{-467,76}
+	//	}));
+	//CC_ASSERT(terrain2);
+	//terrain1->setName("Terrain2");
+	//addToScene(terrain2, Vec2{ 1282.27, -354.47 });
+
+	//// Tree (1 cái) kèm physic body
+	//const auto tree = SpritePhysics::createInstance(PATH_TREE, mapbox::getTrianglesFromPolyline({
+	//	Vec2{ -13,155 }, Vec2{ -38,139 }, Vec2{ -45,122 }, Vec2{ -67,116 }, Vec2{ -77,93 }, Vec2{ -106,83 }, Vec2{ -119,60 }, Vec2{ -113,27 }, Vec2{ -93,12 }, Vec2{ -100,-27 }, Vec2{ -81,-36 }, Vec2{ -77,-61 }, Vec2{ -59,-62 }, Vec2{ -56,-92 }, Vec2{ -31,-98 }, Vec2{ -31,-137 }, Vec2{ -57,-137 }, Vec2{ -69,-155 }, Vec2{ 54,-155 }, Vec2{ 46,-139 }, Vec2{ 27,-137 }, Vec2{ 27,-84 }, Vec2{ 46,-81 }, Vec2{ 49,-59 }, Vec2{ 72,-58 }, Vec2{ 75,-44 }, Vec2{ 112,-20 }, Vec2{ 111,-3 }, Vec2{ 95,6 }, Vec2{ 119,34 }, Vec2{ 113,68 }, Vec2{ 86,85 }, Vec2{ 57,133 }
+	//	}));
+	//CC_ASSERT(tree);
+	//tree->setName("Tree");
+	//addToScene(tree, Vec2{ -570, -140 });
 
 	// Player (1 cái) kèm physic body
-	player = Character::create(CHARACTER_STEAMMAN, 55, Vec2{ 0.45f, 0.5f });
+	player = Character::create(CHARACTER_STEAM_MAN, Vec2{ 0.34f, 0.25f }, Size{ 128,128 }, 32);
 	CC_ASSERT(player);
 
 	player->setMoveSpeed(450);

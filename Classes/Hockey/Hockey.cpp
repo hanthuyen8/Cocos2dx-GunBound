@@ -17,8 +17,8 @@ namespace
 
 Scene* Hockey::createScene()
 {
-	const auto scene = Scene::create(  ();
-	scene->addChild(Hockey::create(  ());
+	const auto scene = Scene::create();
+	scene->addChild(Hockey::create());
 	return scene;
 }
 
@@ -69,7 +69,7 @@ bool Hockey::init ()
 	player2_ScoreLabel->setRotation(90);
 
 	// Touch Events
-	const auto touchListener = EventListenerTouchAllAtOnce::create(  ();
+	const auto touchListener = EventListenerTouchAllAtOnce::create();
 	touchListener->onTouchesBegan = CC_CALLBACK_2(Hockey::touchBegin, this);
 	touchListener->onTouchesMoved = CC_CALLBACK_2(Hockey::touchMove, this);
 	touchListener->onTouchesEnded = CC_CALLBACK_2(Hockey::touchEnd, this);

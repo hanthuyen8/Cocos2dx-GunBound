@@ -70,6 +70,7 @@ list(APPEND GAME_SOURCE
 list(APPEND GAME_HEADER
 #Interfaces
     Classes/GunBound/IDamageable.h
+    Classes/GunBound/SceneSetup.h
 
     Classes/GunBound/GunBoundScene.h
     Classes/GunBound/Character.h

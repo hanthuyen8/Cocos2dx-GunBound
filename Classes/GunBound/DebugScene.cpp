@@ -2,7 +2,7 @@
 
 Scene* DebugScene::createScene()
 {
-	return DebugScene::create(  ();
+	return DebugScene::create();
 }
 
 bool DebugScene::init ()
@@ -10,8 +10,8 @@ bool DebugScene::init ()
 	if (!Scene::initWithPhysics())
 		return false;
 
-	sprite = Sprite::create(  ("GunBound/Bullet.png");
-	sample = Sprite::create(  ("GunBound/Bullet.png");
+	sprite = Sprite::create("GunBound/Bullet.png");
+	sample = Sprite::create("GunBound/Bullet.png");
 	this->addChild(sprite);
 	sprite->setPosition(400, 400);
 	sprite->addChild(sample);

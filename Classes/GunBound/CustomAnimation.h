@@ -8,7 +8,7 @@ class CustomAnimation : public Sprite
 {
 public:
 	static void addPlistFile(std::string_view plistfileName, std::string_view keyName);
-	static CustomAnimation* create(  (std::string_view keyName);
+	static CustomAnimation* create(std::string_view keyName);
 	bool init (std::string_view keyName);
 	void playAnimation();
 
