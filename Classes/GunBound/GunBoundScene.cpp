@@ -21,17 +21,17 @@ float cameraMaxX = 0;
 
 namespace
 {
-	Animation* createAnimation(SpriteFrameCache* cache, std::string_view namePattern, int number)
+	void cacheAnimation(AnimationCache* animCache, SpriteFrameCache* spriteCache, Characters::AnimConfig config)
 	{
 		Animation* anim = Animation::create();
-		std::string pattern{ namePattern };
-		for (int i{}; i < number; i++)
+		for (int i{}; i < config.totalFrame; i++)
 		{
-			const auto sf = cache->getSpriteFrameByName(pattern + std::to_string(i));
+			const auto sf = spriteCache->getSpriteFrameByName(config.name + std::to_string(i));
 			CC_ASSERT(sf);
 			anim->addSpriteFrame(sf);
 		}
-		return anim;
+		anim->setDelayPerUnit(config.fps);
+		animCache->addAnimation(anim, config.name);
 	}
 }
 
@@ -48,19 +48,14 @@ bool GunBoundScene::init()
 #pragma region Spritesheets & Animations
 
 	const auto spriteCache = SpriteFrameCache::getInstance();
-	const auto animationCache = AnimationCache::getInstance();
+	const auto animCache = AnimationCache::getInstance();
 
-	spriteCache->addSpriteFramesWithFile("GunBound/Animations/Character_SteamMan.plist");
+	spriteCache->addSpriteFramesWithFile(Characters::STEAM_MAN_FILE_PLIST);
 	CustomAnimation::addPlistFile("GunBound/Animations/AnimationSmoke.plist", "AnimationSmoke");
 
-	const auto steamManIdleAnim = createAnimation(spriteCache, "Character_SteamMan/Idle/", 4);
-	animationCache->addAnimation(steamManIdleAnim, CHARACTER_STEAM_MAN + "_Idle");
-
-	const auto steamManAttackAnim = createAnimation(spriteCache, "Character_SteamMan/Attack/", 6);
-	animationCache->addAnimation(steamManAttackAnim, CHARACTER_STEAM_MAN + "_Attack");
-
-	const auto steamManWalkAnim = createAnimation(spriteCache, "Character_SteamMan/Walk/", 6);
-	animationCache->addAnimation(steamManWalkAnim, CHARACTER_STEAM_MAN + "_Walk");
+	cacheAnimation(animCache, spriteCache, Characters::STEAM_MAN_ANIM_IDLE);
+	cacheAnimation(animCache, spriteCache, Characters::STEAM_MAN_ANIM_ATTACK);
+	cacheAnimation(animCache, spriteCache, Characters::STEAM_MAN_ANIM_WALK);
 
 #pragma endregion
 
@@ -84,7 +79,7 @@ bool GunBoundScene::init()
 	// Get window size
 	const auto director = Director::getInstance();
 	const auto winSize = director->getVisibleSize();
-	this->setPosition(winSize.width / 2, winSize.height / 2);
+	this->setAnchorPoint(Vec2::ZERO);
 
 	//------------------------------------------------------------------------------------------------------
 	// Tất cả những thứ sẽ setup gồm:
@@ -109,9 +104,14 @@ bool GunBoundScene::init()
 
 	// Tile Map
 
-	const auto tileMap = TMXTiledMap::create(Map1::MAP1_FILE_PATH);
+	const auto tileMap = TMXTiledMap::create(Map1::MAP1_FILE_TMX);
 	CC_ASSERT(tileMap);
+	tileMap->setAnchorPoint(Vec2::ZERO);
 	tileMap->setName("Map1");
+	const auto map1 = SpritePhysics::create(tileMap, mapbox::getTrianglesFromPolyline(Map1::MAP1_POLYLINE));
+	map1->setAnchorPoint(Vec2::ZERO);
+	this->addChild(map1);
+	map1->setPosition(Map1::MAP1_POSITION);
 
 
 
@@ -139,13 +139,13 @@ bool GunBoundScene::init()
 	//addToScene(tree, Vec2{ -570, -140 });
 
 	// Player (1 cái) kèm physic body
-	player = Character::create(CHARACTER_STEAM_MAN, Vec2{ 0.34f, 0.25f }, Size{ 128,128 }, 32);
+	player = Character::create(Characters::STEAM_MAN_NAME, Characters::STEAM_MAN_ANCHOR, Size{128,128}, Characters::STEAM_MAN_CIRCLE_COL_RADIUS);
 	CC_ASSERT(player);
 
 	player->setMoveSpeed(450);
-	player->setPosition(-537, 100);
+	player->setPosition(Map1::CHARACTER_POSITION_1);
 	player->listenToKeyboardMovement();
-	player->setName("Player");
+	player->setName(Characters::STEAM_MAN_NAME);
 	player->setOnCharacterMovementCallback(CC_CALLBACK_1(GunBoundScene::moveCameraByCharacter, this));
 	this->addChild(player);
 

@@ -14,8 +14,8 @@ public:
 	static inline int COLLISION_CATEGORY{ 0 };
 	static inline int COLLISION_WITH{ 0 };
 
-	static SpritePhysics* createInstance(std::string_view fileName, std::vector<PolyVec>& shape);
-	bool init (std::string_view fileName, std::vector<PolyVec>& shape);
+	static SpritePhysics* create(Node* sprite, const std::vector<PolyVec>& shape);
+	bool init(Node* sprite, const std::vector<PolyVec>& shape);
 
 	std::vector<PolyVec> getShapes();
 	void replaceShapes();
@@ -24,7 +24,7 @@ public:
 	virtual void receiveDamage(const std::vector<Vec2>& damagedPoints) override;
 
 private:
-	Sprite* sprite{};
+	Node* sprite{};
 	DrawNode* stencil{};
 	CC_SYNTHESIZE_READONLY(PhysicsBody*, physicsBody, PhysicsBody);
 	std::vector<PolyVec> shapes{};

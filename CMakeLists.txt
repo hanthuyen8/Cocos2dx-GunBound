@@ -65,10 +65,14 @@ list(APPEND GAME_SOURCE
      Classes/GunBound/GameLayer.cpp
      Classes/GunBound/BackgroundLayer.cpp
 
+     Classes/GunBound/InputHandler.cpp
+     Classes/GunBound/GUI/ChargeMeterGUI.cpp
+
      Classes/GunBound/DebugScene.cpp
      )
 list(APPEND GAME_HEADER
 #Interfaces
+    Classes/Interfaces/Observer.h
     Classes/GunBound/IDamageable.h
     Classes/GunBound/SceneSetup.h
 
@@ -80,6 +84,9 @@ list(APPEND GAME_HEADER
      Classes/GunBound/SpritePhysics.h
      Classes/GunBound/GameLayer.h
      Classes/GunBound/BackgroundLayer.h
+
+     Classes/GunBound/InputHandler.h
+     Classes/GunBound/GUI/ChargeMeterGUI.h
 
      Classes/GunBound/DebugScene.h
      )

@@ -5,10 +5,8 @@
 // Learn life-cycle callbacks:
 //  - https://docs.cocos.com/creator/manual/en/scripting/life-cycle-callbacks.html
 
-import WriteThisToFile from "./WriteThisToFile"
-
-
 const { ccclass, property, executeInEditMode } = cc._decorator;
+const PROJECT_NAME = "GunBound/";
 
 class CppData
 {
@@ -16,8 +14,10 @@ class CppData
     public position: cc.Vec2 = null;
     public anchor: cc.Vec2 = null;
 
-    public spriteName: string = "";
+    public spriteName: string = PROJECT_NAME;
     public colliderPoints: cc.Vec2[] = [];
+    public circleCollider_radius: number = 0;
+    public circleCollider_offset: cc.Vec2 = null;
 }
 
 @ccclass
@@ -43,18 +43,28 @@ export default class WriteSceneSetupFile extends cc.Component
 
             data.name = node.name;
             data.position = node.getPosition();
+
             data.anchor = node.getAnchorPoint();
 
             const sprite = node.getComponent(cc.Sprite);
             if (sprite)
             {
-                data.spriteName = sprite.spriteFrame.getTexture().url;
+                data.spriteName = PROJECT_NAME;
             }
 
-            const polygon = node.getComponent(cc.PolygonCollider)
+            const polygon = node.getComponent(cc.PolygonCollider);
             if (polygon)
             {
                 data.colliderPoints = polygon.points;
+            }
+            else
+            {
+                const circle = node.getComponent(cc.CircleCollider);
+                if (circle)
+                {
+                    data.circleCollider_radius = circle.radius;
+                    data.circleCollider_offset = circle.offset;
+                }
             }
 
             this.cppData.push(data);
@@ -63,14 +73,12 @@ export default class WriteSceneSetupFile extends cc.Component
         for (const data of this.cppData)
         {
             const variableName = data.name.toUpperCase();
-            this.result += `const std::string ${variableName}_FILE_PATH {"${data.name}"};\n`;
+            this.result += `const std::string ${variableName}_NAME {"${data.name}"};\n`;
+            this.result += `const std::string ${variableName}_FILE_PATH {"${data.spriteName}"};\n`;
             this.result += `const Vec2 ${variableName}_POSITION {${data.position.x}, ${data.position.y}};\n`;
 
             if (data.anchor.x != 0.5 && data.anchor.y != 0.5)
-                this.result += `const Vec2 ${variableName}_ANCHOR {${data.anchor.x}, ${data.anchor.y}};\n`
-
-            if (data.spriteName)
-                this.result += `const std::string ${variableName}_SPRITE_PATH {${data.spriteName}};\n`;
+                this.result += `const Vec2 ${variableName}_ANCHOR {${data.anchor.x}, ${data.anchor.y}};\n`;
 
             if (data.colliderPoints.length > 0)
             {
@@ -83,6 +91,12 @@ export default class WriteSceneSetupFile extends cc.Component
                         vectors += "\n\t";
                 }
                 this.result += `const std::vector<Vec2> ${variableName}_POLYLINE {\n\t${vectors.substr(0, vectors.length - 2)}\n};\n`;
+            }
+            if (data.circleCollider_radius)
+            {
+                this.result += `const float ${variableName}_CIRCLE_COL_RADIUS {${data.circleCollider_radius}};\n`;
+                if (data.circleCollider_offset.x != 0 && data.circleCollider_offset.y != 0)
+                    this.result += `const Vec2 ${variableName}_CIRCLE_COL_OFFSET {${data.circleCollider_offset.x}, ${data.circleCollider_offset.y}};\n`;
             }
 
             this.result += "\n\n";

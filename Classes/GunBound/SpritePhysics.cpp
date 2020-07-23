@@ -3,10 +3,10 @@
 #include "clipper.hpp"
 #include "EarCut/earcut.hpp"
 
-SpritePhysics* SpritePhysics::createInstance(std::string_view fileName, std::vector<PolyVec>& shape)
+SpritePhysics* SpritePhysics::create(Node* sprite, const std::vector<PolyVec>& shape)
 {
 	auto instance = new SpritePhysics();
-	if (instance && instance->init (fileName, shape))
+	if (instance && instance->init (sprite, shape))
 	{
 		instance->autorelease();
 		return instance;
@@ -16,7 +16,7 @@ SpritePhysics* SpritePhysics::createInstance(std::string_view fileName, std::vec
 	return nullptr;
 }
 
-bool SpritePhysics::init (std::string_view fileName, std::vector<PolyVec>& shape)
+bool SpritePhysics::init (Node* sprite, const std::vector<PolyVec>& shape)
 {
 	if (!ClippingNode::init ())
 		return false;
@@ -28,9 +28,7 @@ bool SpritePhysics::init (std::string_view fileName, std::vector<PolyVec>& shape
 	this->setInverted(true);
 
 	// Create Sprite
-	sprite = Sprite::create(std::string{ fileName });
-	RETURN_FALSE_IF_NULL_PTR(sprite, "SpritePhysics sprite");
-	this->sprite = sprite;
+	CC_ASSERT(sprite);
 	this->addChild(sprite);
 
 	// Create polygon physics body shape

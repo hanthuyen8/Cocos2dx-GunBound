@@ -1,6 +1,7 @@
 ﻿#include "Cannon.h"
 #include "GunBound/GunBoundScene.h"
-#include "Helper.h";
+#include "Helper.h"
+#include "SceneSetup.h"
 
 const float MIN_ANGLE = 0;
 const float MAX_ANGLE = 180;

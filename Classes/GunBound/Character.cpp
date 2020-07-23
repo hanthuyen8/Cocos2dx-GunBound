@@ -2,14 +2,15 @@
 #include "Helper.h"
 #include <algorithm>
 #include "SpritePhysics.h"
+#include "SceneSetup.h"
 
 const int FALL_SPEED = 981;
 const int MAX_SLOPE_ANGLE = 60;
 
-Character* Character::create(std::string_view name, Vec2& spriteAnchor, Size& spriteSize, float physicsRadius)
+Character* Character::create(std::string_view characterName, const Vec2& spriteAnchor, const Size& spriteSize, float physicsRadius)
 {
 	Character* instance = new(std::nothrow) Character();
-	if (instance && instance->init(name, spriteAnchor, spriteSize, physicsRadius))
+	if (instance && instance->init(characterName, spriteAnchor, spriteSize, physicsRadius))
 	{
 		instance->autorelease();
 		return instance;
@@ -19,12 +20,12 @@ Character* Character::create(std::string_view name, Vec2& spriteAnchor, Size& sp
 	return nullptr;
 }
 
-bool Character::init(std::string_view name, Vec2& spriteAnchor, Size& spriteSize, float physicsRadius)
+bool Character::init(std::string_view characterName, const Vec2& spriteAnchor, const Size& spriteSize, float physicsRadius)
 {
 	if (!Node::init())
 		return false;
 
-	this->name = name;
+	this->name = characterName;
 	this->radius = physicsRadius;
 
 	sprite = Sprite::create();
@@ -54,6 +55,10 @@ bool Character::init(std::string_view name, Vec2& spriteAnchor, Size& spriteSize
 
 	cannon->setPosition(this->convertToNodeSpace(Vec2::ZERO));
 	this->addChild(cannon);
+
+	cannon->setLocalZOrder(0);
+	sprite->setLocalZOrder(1);
+	changeAnimation(Character::AnimState::Idle, true);
 
 	return true;
 }
@@ -88,7 +93,7 @@ void Character::update(float dt)
 		}
 		physicsBody->applyForce(Vec2{ force_x ,0 });
 		doPlayerMovementCallback();
-		changeAnimation(AnimState::Walk, true);
+		changeAnimation(Character::AnimState::Walk, true);
 	}
 	else
 	{
@@ -104,12 +109,12 @@ void Character::update(float dt)
 
 			physicsBody->applyForce(Vec2{ x, y });
 			doPlayerMovementCallback();
-			changeAnimation(AnimState::Walk, true);
+			changeAnimation(Character::AnimState::Walk, true);
 		}
 		else
 		{
 			physicsBody->setVelocity(Vec2::ZERO);
-			changeAnimation(AnimState::Idle, true);
+			changeAnimation(Character::AnimState::Idle, true);
 		}
 	}
 }
@@ -189,32 +194,36 @@ void Character::doPlayerMovementCallback()
 	}
 }
 
-void Character::changeAnimation(AnimState state, bool loop)
+void Character::changeAnimation(AnimState newState, bool loop)
 {
-	const auto cache = AnimationCache::getInstance();
-	Animation* anim{};
-	switch (state)
+	if (currentAnim == newState)
+		return;
+
+	currentAnim = newState;
+	std::string animName{};
+	switch (newState)
 	{
-		case AnimState::Idle:
-			anim = cache->getAnimation(name + "_Idle");
+		case Character::AnimState::Idle:
+			animName = name + AnimSuffix::IDLE;
 			break;
-
-		case AnimState::Walk:
-			anim = cache->getAnimation(name + "_Walk");
+		case Character::AnimState::Walk:
+			animName = name + AnimSuffix::WALK;
 			break;
-
-		case AnimState::Attack:
-			anim = cache->getAnimation(name + "_Attack");
+		case Character::AnimState::Attack:
+			animName = name + AnimSuffix::ATTACK;
 			break;
 	}
+	if (animName.empty())
+		return;
+
+	Animation* anim{};
+	const auto cache = AnimationCache::getInstance();
+	anim = AnimationCache::getInstance()->getAnimation(animName);
 
 	if (anim)
 	{
-		if (animateAction)
-		{
-			sprite->stopAction(animateAction);
-		}
-		animateAction = Animate::create(anim);
+		sprite->stopAllActions();
+		const auto animateAction = Animate::create(anim);
 		if (loop)
 			sprite->runAction(RepeatForever::create(animateAction));
 		else

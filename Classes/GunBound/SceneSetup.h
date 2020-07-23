@@ -3,28 +3,55 @@
 #include "cocos2d.h"
 using Vec2 = cocos2d::Vec2;
 
+namespace EventNames
+{
+	const std::string PLAYER_MOVEMENT = "Player_Movement";
+	const std::string PLAYER_AIM = "Player_Aim";
+	const std::string PLAYER_CHARGE = "Player_Charge";
+	const std::string PLAYER_FIRE = "Player_Fire";
+}
+
+namespace AnimSuffix
+{
+	const std::string IDLE = "/Idle/";
+	const std::string ATTACK = "/Attack/";
+	const std::string WALK = "/Walk/";
+}
+
 namespace Map1
 {
-
-	const std::string MAP1_FILE_PATH{ "GunBound/TileMaps/Map1.tmx" };
-	const Vec2 MAP1_POSITION{ 15.504, 147.534 };
+	const std::string MAP1_FILE_TMX{ "GunBound/TileMaps/Map1.tmx" };
+	const Vec2 MAP1_POSITION{ 38.842, 132.818 };
+	const Vec2 MAP1_ANCHOR{ 0, 0 };
 	const std::vector<Vec2> MAP1_POLYLINE{
-		Vec2{-600.2, -345.1}, Vec2{-599.8, 240.1}, Vec2{-401.1, 240}, Vec2{-407.3, 255.7}, Vec2{-406.9, 277.1}, Vec2{-401.1, 287.7},
-		Vec2{-368.07, 287.75}, Vec2{-360.8, 272.3}, Vec2{-362, 252.4}, Vec2{-367.4, 240.2}, Vec2{-72.3, 239.8},
-		Vec2{-71.8, 191.7}, Vec2{22.8, 192.1}, Vec2{24.3, 220.1}, Vec2{8, 223.6}, Vec2{0.1, 217.6},
-		Vec2{-13.5, 226}, Vec2{-22.7, 252.5}, Vec2{-17.6, 299.2}, Vec2{-2.4, 297.2}, Vec2{15.5, 343.1},
-		Vec2{30.7, 363.1}, Vec2{53, 364.8}, Vec2{89.3, 341.6}, Vec2{99.6, 328.5}, Vec2{102.2, 302.9},
-		Vec2{99.8, 287.5}, Vec2{113.8, 273.6}, Vec2{116.6, 251.2}, Vec2{110, 225.2}, Vec2{68.8, 217.8},
-		Vec2{69, 192.2}, Vec2{168, 192.2}, Vec2{168.1, 47.9}, Vec2{227.6, 48}, Vec2{230.5, 99.5},
-		Vec2{245.8, 128.7}, Vec2{265.9, 133.9}, Vec2{289.1, 125.4}, Vec2{300.7, 95.1}, Vec2{303, 48.09},
-		Vec2{407.8, 48}, Vec2{408.4, 0.3}, Vec2{456.87, 0.1}, Vec2{456.21, 47.85}, Vec2{551.8, 47.5},
-		Vec2{551.94, 0.21}, Vec2{600.4, -0.1}, Vec2{600, -346.6}, Vec2{561.4, -383.6}, Vec2{-560.2, -384},
+		Vec2{652, 702}, Vec2{644, 691}, Vec2{630, 701}, Vec2{626, 689}, Vec2{616, 689}, Vec2{600, 634},
+		Vec2{581, 637}, Vec2{577, 588}, Vec2{586, 561}, Vec2{625, 556}, Vec2{622, 528},
+		Vec2{528, 528}, Vec2{528, 576}, Vec2{234, 576}, Vec2{240, 611}, Vec2{233, 624},
+		Vec2{197, 622}, Vec2{198, 576}, Vec2{0, 576}, Vec2{0, 39}, Vec2{40, 0},
+		Vec2{1160, 0}, Vec2{1200, 39}, Vec2{1200, 336}, Vec2{1147, 336}, Vec2{1152, 384},
+		Vec2{1056, 384}, Vec2{1060, 336}, Vec2{1008, 336}, Vec2{1008, 384}, Vec2{903, 384},
+		Vec2{904, 415}, Vec2{890, 462}, Vec2{876, 447}, Vec2{868, 470}, Vec2{854, 449},
+		Vec2{845, 465}, Vec2{830, 437}, Vec2{831, 387}, Vec2{768, 384}, Vec2{768, 528},
+		Vec2{670, 528}, Vec2{670, 555}, Vec2{711, 558}, Vec2{718, 597}, Vec2{700, 623},
+		Vec2{697, 672}, Vec2{659, 689}
 	};
 
+	const Vec2 CHARACTER_POSITION_1{ 161.531, 810.164 };
+}
 
-
-
-
-
-
+namespace Characters
+{
+	struct AnimConfig
+	{
+		std::string name;
+		byte totalFrame;
+		float fps;
+	};
+	const std::string STEAM_MAN_NAME{ "Character_SteamMan" };
+	const std::string STEAM_MAN_FILE_PLIST{ "GunBound/Animations/Character_SteamMan.plist" };
+	const Vec2 STEAM_MAN_ANCHOR{ 0.34, 0.25 };
+	const float STEAM_MAN_CIRCLE_COL_RADIUS{ 32 };
+	const AnimConfig STEAM_MAN_ANIM_IDLE{ STEAM_MAN_NAME + AnimSuffix::IDLE, 4, 1/4.0f };
+	const AnimConfig STEAM_MAN_ANIM_ATTACK{ STEAM_MAN_NAME + AnimSuffix::ATTACK, 6, 1.5f/6.0f };
+	const AnimConfig STEAM_MAN_ANIM_WALK{ STEAM_MAN_NAME + AnimSuffix::WALK, 6, 1.5f/6.0f };
 }
