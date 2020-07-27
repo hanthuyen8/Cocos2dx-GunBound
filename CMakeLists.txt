@@ -58,6 +58,9 @@ endif()
 list(APPEND GAME_SOURCE
     Classes/GunBound/GunBoundScene.cpp
     Classes/GunBound/Character.cpp
+    Classes/GunBound/CharacterMovement.cpp
+    Classes/GunBound/CharacterPresentation.cpp
+
     Classes/GunBound/Cannon.cpp
     Classes/GunBound/Ammo.cpp
     Classes/GunBound/CustomAnimation.cpp
@@ -67,6 +70,7 @@ list(APPEND GAME_SOURCE
 
      Classes/GunBound/InputHandler.cpp
      Classes/GunBound/GUI/ChargeMeterGUI.cpp
+     Classes/GunBound/GUI/AimMeterGUI.cpp
 
      Classes/GunBound/DebugScene.cpp
      )
@@ -78,7 +82,6 @@ list(APPEND GAME_HEADER
 
     Classes/GunBound/GunBoundScene.h
     Classes/GunBound/Character.h
-    Classes/GunBound/Cannon.h
     Classes/GunBound/Ammo.h
     Classes/GunBound/CustomAnimation.h
      Classes/GunBound/SpritePhysics.h
@@ -87,6 +90,7 @@ list(APPEND GAME_HEADER
 
      Classes/GunBound/InputHandler.h
      Classes/GunBound/GUI/ChargeMeterGUI.h
+     Classes/GunBound/GUI/AimMeterGUI.h
 
      Classes/GunBound/DebugScene.h
      )

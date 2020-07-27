@@ -1,17 +1,21 @@
 #pragma once
 #include "cocos2d.h"
+#include "Character.h"
 
 USING_NS_CC;
 
-class InputHandler : public Ref
+class InputHandler : public Node
 {
 public:
-	static InputHandler* getInstance();
+	CREATE_FUNC(InputHandler);
+	void controlActor(Character* actor);
+	void stopControl();
 
 private:
-	inline static InputHandler* instance{};
-	bool init();
+	~InputHandler();
+	virtual bool init() override;
 	void onKeyPressed(EventKeyboard::KeyCode key, Event* ev);
 	void onKeyReleased(EventKeyboard::KeyCode key, Event* ev);
+	Character* actor;
 };
 

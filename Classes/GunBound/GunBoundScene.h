@@ -4,6 +4,8 @@
 #include "SpritePhysics.h"
 #include "Character.h"
 #include "BackgroundLayer.h"
+#include "InputHandler.h"
+#include "GUI/AimMeterGUI.h"
 
 USING_NS_CC;
 
@@ -36,7 +38,9 @@ private:
 	inline static Vec2 acceleration{};
 
 	// Khác:
-	Camera* camera;
+	Camera* camera{};
+	InputHandler* inputHandler{};
+	AimMeterGUI* aimMeterGUI{};
 
 	void addToScene(SpritePhysics* sprite, Vec2&& atPos);
 

@@ -142,11 +142,9 @@ bool GunBoundScene::init()
 	player = Character::create(Characters::STEAM_MAN_NAME, Characters::STEAM_MAN_ANCHOR, Size{128,128}, Characters::STEAM_MAN_CIRCLE_COL_RADIUS);
 	CC_ASSERT(player);
 
-	player->setMoveSpeed(450);
 	player->setPosition(Map1::CHARACTER_POSITION_1);
-	player->listenToKeyboardMovement();
 	player->setName(Characters::STEAM_MAN_NAME);
-	player->setOnCharacterMovementCallback(CC_CALLBACK_1(GunBoundScene::moveCameraByCharacter, this));
+	player->setOnCharacterMoveCallback(CC_CALLBACK_1(GunBoundScene::moveCameraByCharacter, this));
 	this->addChild(player);
 
 #pragma region Camera
@@ -159,6 +157,17 @@ bool GunBoundScene::init()
 	cameraMaxX = cameraMinX + LEVEL_WIDTH - winSize.width;
 
 #pragma endregion
+
+	inputHandler = InputHandler::create();
+	this->addChild(inputHandler);
+	inputHandler->controlActor(player);
+
+	aimMeterGUI = AimMeterGUI::create();
+	this->addChild(aimMeterGUI);
+
+	// Callbacks
+	player->setOnCharacterAimCallback(CC_CALLBACK_1(AimMeterGUI::updateAngle, aimMeterGUI));
+	player->setOnCharacterMoveCallback(CC_CALLBACK_1(AimMeterGUI::updatePosition, aimMeterGUI));
 
 	return true;
 }
