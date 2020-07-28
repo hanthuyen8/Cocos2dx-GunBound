@@ -796,6 +796,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Classes\Editor\Editor.h" />
     <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Classes\Interfaces\Observer.h" />
     <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Classes\GunBound\IDamageable.h" />
     <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Classes\GunBound\SceneSetup.h" />
@@ -819,6 +820,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Classes\Hockey\GameSprite.h" />
     <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\proj.win32\main.h" />
     <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\proj.win32\resource.h" />
+    <ClCompile Include="D:\Projects\Cocos2dx\TestGame1\Classes\Editor\Editor.cpp" />
     <ClCompile Include="D:\Projects\Cocos2dx\TestGame1\Classes\GunBound\GunBoundScene.cpp" />
     <ClCompile Include="D:\Projects\Cocos2dx\TestGame1\Classes\GunBound\Character.cpp" />
     <ClCompile Include="D:\Projects\Cocos2dx\TestGame1\Classes\GunBound\CharacterMovement.cpp" />

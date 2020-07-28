@@ -3,6 +3,7 @@
 #include "Helper.h"
 #include "Ammo.h"
 #include "CustomAnimation.h"
+#include "Editor/Editor.h"
 
 // Resource Paths
 const auto PATH_EMPTY = "Empty.png";
@@ -45,6 +46,8 @@ bool GunBoundScene::init()
 	if (!Scene::initWithPhysics())
 		return false;
 
+	
+
 #pragma region Spritesheets & Animations
 
 	const auto spriteCache = SpriteFrameCache::getInstance();
@@ -77,19 +80,21 @@ bool GunBoundScene::init()
 #pragma endregion
 
 	// Get window size
-	const auto director = Director::getInstance();
-	const auto winSize = director->getVisibleSize();
+	const auto const director = Director::getInstance();
+	const auto const winSize = director->getVisibleSize();
 	this->setAnchorPoint(Vec2::ZERO);
 
 	//------------------------------------------------------------------------------------------------------
 	// Tất cả những thứ sẽ setup gồm:
 	//------------------------------------------------------------------------------------------------------
 
+	const auto const physicsWorld = this->getPhysicsWorld();
 	GunBoundScene::acceleration = Vec2{ 0, -9.81f };
-	this->getPhysicsWorld()->setGravity(Vec2{ 0,-GRAVITY });
+	physicsWorld->setGravity(Vec2{ 0,-GRAVITY });
 
 	// Background (2 cái)
 	backgroundLayer = BackgroundLayer::create();
+	backgroundLayer->setName("Background Layer");
 	this->addChild(backgroundLayer);
 
 	const auto background1 = Sprite::create(PATH_BG_LAYER2);
@@ -107,8 +112,8 @@ bool GunBoundScene::init()
 	const auto tileMap = TMXTiledMap::create(Map1::MAP1_FILE_TMX);
 	CC_ASSERT(tileMap);
 	tileMap->setAnchorPoint(Vec2::ZERO);
-	tileMap->setName("Map1");
 	const auto map1 = SpritePhysics::create(tileMap, mapbox::getTrianglesFromPolyline(Map1::MAP1_POLYLINE));
+	map1->setName("Map1");
 	map1->setAnchorPoint(Vec2::ZERO);
 	this->addChild(map1);
 	map1->setPosition(Map1::MAP1_POSITION);
@@ -139,7 +144,14 @@ bool GunBoundScene::init()
 	//addToScene(tree, Vec2{ -570, -140 });
 
 	// Player (1 cái) kèm physic body
-	player = Character::create(Characters::STEAM_MAN_NAME, Characters::STEAM_MAN_ANCHOR, Size{128,128}, Characters::STEAM_MAN_CIRCLE_COL_RADIUS);
+	Character::InitData initData{};
+	initData.characterName = Characters::STEAM_MAN_NAME;
+	initData.physicsRadius = Characters::STEAM_MAN_CIRCLE_COL_RADIUS;
+	initData.physicsWorld = physicsWorld;
+	initData.spriteAnchor = Characters::STEAM_MAN_ANCHOR;
+	initData.spriteSize = Size{ 128,128 };
+
+	player = Character::create(initData);
 	CC_ASSERT(player);
 
 	player->setPosition(Map1::CHARACTER_POSITION_1);
@@ -168,6 +180,13 @@ bool GunBoundScene::init()
 	// Callbacks
 	player->setOnCharacterAimCallback(CC_CALLBACK_1(AimMeterGUI::updateAngle, aimMeterGUI));
 	player->setOnCharacterMoveCallback(CC_CALLBACK_1(AimMeterGUI::updatePosition, aimMeterGUI));
+
+
+
+	// Editor
+	const auto editor = Editor::create(this);
+	this->addChild(editor);
+	this->setLocalZOrder(999);
 
 	return true;
 }

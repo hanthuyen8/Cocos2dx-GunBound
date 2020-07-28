@@ -7,6 +7,15 @@ USING_NS_CC;
 
 class Character : public Node, public IDamageable
 {
+public :
+	struct InitData
+	{
+		PhysicsWorld* physicsWorld{};
+		std::string characterName{};
+		Vec2 spriteAnchor{};
+		Size spriteSize{};
+		float physicsRadius{};
+	};
 private:
 	enum class State
 	{
@@ -19,7 +28,9 @@ private:
 	class Movement
 	{
 	public:
-		void init(PhysicsWorld* world, float radius);
+		Movement() = default;
+		~Movement() = default;
+		bool init(PhysicsWorld* world, float radius);
 		inline PhysicsBody* getPhysicsBody() const { return physicsBody; };
 
 		/// <summary>
@@ -49,14 +60,17 @@ private:
 	class Presentation
 	{
 	public:
-		void init(std::string& animName, const Vec2& spriteAnchor, const Size& spriteSize);
+		Presentation() = default;
+		~Presentation() = default;
+
+		bool init(std::string& animName, const Vec2& spriteAnchor, const Size& spriteSize);
 		inline Sprite* getSprite() const { return sprite; };
 		void changeAnimation(State newState, bool loop);
 		void setRotation(float angle, bool flipped);
 
 	private:
 		Sprite* sprite{};
-		std::string& currentAnim;
+		std::string* currentAnim{};
 		std::string animIdle{};
 		std::string animAttack{};
 		std::string animWalk{};
@@ -65,6 +79,8 @@ private:
 	class Cannon
 	{
 	public:
+		Cannon() = default;
+		~Cannon() = default;
 		float aim(float dt);
 		float charge(float dt);
 		std::vector<Vec2> simulateAmmoPath(Vec2 initDisplacement, float angle, float speed);
@@ -81,8 +97,8 @@ public:
 	static inline int COLLISION_CATEGORY{ 0x00 };
 	static inline int COLLISION_WITH{ 0x00 };
 
-	static Character* create(std::string_view characterName, const Vec2& spriteAnchor, const Size& spriteSize, float physicsRadius);
-	bool init(std::string_view characterName, const Vec2& spriteAnchor, const Size& spriteSize, float physicsRadius);
+	static Character* create(const InitData& initData);
+	bool init(const InitData& initData);
 
 	// Character sẽ có các thuộc tính:
 	bool cameraFollow{ true };

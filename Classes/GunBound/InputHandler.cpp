@@ -5,7 +5,7 @@
 
 void InputHandler::controlActor(Character* actor)
 {
-    actor = actor;
+    this->actor = actor;
 }
 
 void InputHandler::stopControl()

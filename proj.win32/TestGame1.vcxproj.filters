@@ -1,6 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <ClCompile Include="D:\Projects\Cocos2dx\TestGame1\Classes\Editor\Editor.cpp">
+      <Filter>Source Files\Classes\Editor</Filter>
+    </ClCompile>
     <ClCompile Include="D:\Projects\Cocos2dx\TestGame1\Classes\GunBound\GunBoundScene.cpp">
       <Filter>Source Files\Classes\GunBound</Filter>
     </ClCompile>
@@ -69,6 +72,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Classes\Editor\Editor.h">
+      <Filter>Source Files\Classes\Editor</Filter>
+    </ClInclude>
     <ClInclude Include="D:\Projects\Cocos2dx\TestGame1\Classes\Interfaces\Observer.h">
       <Filter>Source Files\Classes\Interfaces</Filter>
     </ClInclude>
@@ -303,6 +309,9 @@
     </Filter>
     <Filter Include="Source Files\Classes\EarCut">
       <UniqueIdentifier>{B2D47533-39B8-3566-ADBF-77E41CBD669F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Classes\Editor">
+      <UniqueIdentifier>{8AC069AB-270A-3098-9965-A3FEE3D3BD6C}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Classes\GunBound">
       <UniqueIdentifier>{48182B51-57E5-33DC-AA45-4158770AA57F}</UniqueIdentifier>

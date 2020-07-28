@@ -22,10 +22,10 @@ namespace
 	}
 }
 
-Character* Character::create(std::string_view characterName, const Vec2& spriteAnchor, const Size& spriteSize, float physicsRadius)
+Character* Character::create(const InitData& initData)
 {
 	Character* instance = new(std::nothrow) Character();
-	if (instance && instance->init(characterName, spriteAnchor, spriteSize, physicsRadius))
+	if (instance && instance->init(initData))
 	{
 		instance->autorelease();
 		return instance;
@@ -35,29 +35,40 @@ Character* Character::create(std::string_view characterName, const Vec2& spriteA
 	return nullptr;
 }
 
-bool Character::init(std::string_view characterName, const Vec2& spriteAnchor, const Size& spriteSize, float physicsRadius)
+bool Character::init(const InitData& initData)
 {
 	if (!Node::init())
 		return false;
 
-	this->name = characterName;
-
+	this->name = initData.characterName;
 	characterPresentation = std::make_unique<Presentation>();
-	characterPresentation->init(this->name, spriteAnchor, spriteSize);
+	characterPresentation->init(this->name, initData.spriteAnchor, initData.spriteSize);
 	this->addChild(characterPresentation->getSprite());
 
 	characterMovement = std::make_unique<Movement>();
-	characterMovement->init(this->getScene()->getPhysicsWorld(), physicsRadius);
+	characterMovement->init(initData.physicsWorld, initData.physicsRadius);
 
 	this->setPhysicsBody(characterMovement->getPhysicsBody());
 
 	characterCannon = std::make_unique<Cannon>();
+
+	this->scheduleUpdate();
 
 	return true;
 }
 
 void Character::update(float dt)
 {
+	const auto moved = characterMovement->updatePosition(desiredMoveDirectionX, dt);
+	if (moved)
+	{
+		desiredState = State::Move;
+	}
+	else if(desiredState == State::Move)
+	{
+		desiredState = State::Idle;
+	}
+
 	switch (desiredState)
 	{
 		case Character::State::Idle:
@@ -68,17 +79,9 @@ void Character::update(float dt)
 
 		case Character::State::Move:
 		{
-			const auto moved = characterMovement->updatePosition(desiredMoveDirectionX, dt);
-			if (moved)
-			{
-				doCharacterMoveCallback();
-				characterPresentation->setRotation(characterMovement->getRotation(), desiredMoveDirectionX < 0);
-				characterPresentation->changeAnimation(State::Move, true);
-			}
-			else
-			{
-				characterPresentation->changeAnimation(State::Idle, true);
-			}
+			doCharacterMoveCallback();
+			characterPresentation->setRotation(characterMovement->getRotation(), desiredMoveDirectionX < 0);
+			characterPresentation->changeAnimation(State::Move, true);
 			break;
 		}
 

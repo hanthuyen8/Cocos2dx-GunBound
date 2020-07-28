@@ -54,6 +54,14 @@ if(APPLE OR WINDOWS)
     cocos_mark_multi_resources(common_res_files RES_TO "Resources" FOLDERS ${GAME_RES_FOLDER})
 endif()
 
+#Editor
+list(APPEND GAME_SOURCE
+    Classes/Editor/Editor.cpp
+     )
+list(APPEND GAME_HEADER
+    Classes/Editor/Editor.h
+)
+
 #Gun Bound Game
 list(APPEND GAME_SOURCE
     Classes/GunBound/GunBoundScene.cpp

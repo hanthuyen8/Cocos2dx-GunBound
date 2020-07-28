@@ -1,7 +1,7 @@
 #include "Character.h"
 #include "SceneSetup.h"
 
-void Character::Presentation::init(std::string& animName, const Vec2& spriteAnchor, const Size& spriteSize)
+bool Character::Presentation::init(std::string& animName, const Vec2& spriteAnchor, const Size& spriteSize)
 {
 	sprite = Sprite::create();
 	CC_ASSERT(sprite);
@@ -11,6 +11,8 @@ void Character::Presentation::init(std::string& animName, const Vec2& spriteAnch
 	animAttack = animName + AnimSuffix::ATTACK;
 	animWalk = animName + AnimSuffix::WALK;
 	animIdle = animName + AnimSuffix::IDLE;
+
+	return true;
 }
 
 void Character::Presentation::changeAnimation(State newState, bool loop)
@@ -18,24 +20,24 @@ void Character::Presentation::changeAnimation(State newState, bool loop)
 	switch (newState)
 	{
 		case Character::State::Move:
-			if (currentAnim == animWalk)
+			if (currentAnim && *currentAnim == animWalk)
 				return;
 
-			currentAnim = animWalk;
+			currentAnim = &animWalk;
 			break;
 
 		case Character::State::Attack:
-			if (currentAnim == animAttack)
+			if (currentAnim && *currentAnim == animAttack)
 				return;
 
-			currentAnim = animAttack;
+			currentAnim = &animAttack;
 			break;
 
 		default:
-			if (currentAnim == animIdle)
+			if (currentAnim && *currentAnim == animIdle)
 				return;
 
-			currentAnim = animIdle;
+			currentAnim = &animIdle;
 			break;
 	}
 

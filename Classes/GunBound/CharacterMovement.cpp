@@ -5,8 +5,9 @@
 const int FALL_SPEED = 981;
 const int MAX_SLOPE_ANGLE = 60;
 
-void Character::Movement::init(PhysicsWorld* world, float radius)
+bool Character::Movement::init(PhysicsWorld* const world, float radius)
 {
+	this->radius = radius;
 	physicsBody = PhysicsBody::create();
 	physicsBody->addShape(PhysicsShapeCircle::create(radius, PhysicsMaterial::PhysicsMaterial(0, 0, 0)));
 	physicsBody->setDynamic(true);
@@ -17,6 +18,8 @@ void Character::Movement::init(PhysicsWorld* world, float radius)
 	physicsBody->setContactTestBitmask(COLLISION_WITH);
 
 	physicsWorld = world;
+
+	return true;
 }
 
 // Return false nếu không có di chuyển trong frame này
@@ -24,7 +27,6 @@ bool Character::Movement::updatePosition(int nextMoveDirectionX, float dt)
 {
 	const auto groundDistance = findGroundDistanceAndNormal(nextMoveDirectionX);
 	const auto velocity = physicsBody->getVelocity();
-
 
 	if (nextMoveDirectionX != 0)
 	{
@@ -36,7 +38,7 @@ bool Character::Movement::updatePosition(int nextMoveDirectionX, float dt)
 
 		// clamp velocity.x không cho vượt quá moveSpeed
 		auto force_x = std::abs(velocity.x);
-		if (nextMoveDirectionX == lastMoveDirectionX)
+		if (nextMoveDirectionX != lastMoveDirectionX)
 		{
 			// Phát hiện chuyển hướng
 			// Quất ngay 1 lực hướng ngược lại để chống trượt dài theo velocity cũ
@@ -126,7 +128,7 @@ float Character::Movement::findGroundDistanceAndNormal(float faceDirection)
 	}
 
 	// Raycast to detect Ground
-	const Vec2 rayToGroundStart{ origin - Vec2::UNIT_Y * (radius + 1) };
+	const Vec2 rayToGroundStart{ origin };
 	const Vec2 rayToGroundEnd{ Vec2{rayToGroundStart.x, rayToGroundStart.y - rayLength} };
 	//const Vec2 rayToGroundEnd{ origin - Vec2::UNIT_Y * (radius + rayLength) };
 	physicsWorld->rayCast(func, rayToGroundStart, rayToGroundEnd, &groundInfo);
@@ -138,10 +140,11 @@ float Character::Movement::findGroundDistanceAndNormal(float faceDirection)
 	*/
 	Vec2 resultNormal{};
 	float resultFraction{};
+	float radius{ this->radius };
 
-	const auto setResult = [&resultNormal, &resultFraction, rayLength](PhysicsRayCastInfo& info) {
+	const auto setResult = [&resultNormal, &resultFraction, rayLength, radius](PhysicsRayCastInfo& info) {
 		resultNormal = info.normal;
-		resultFraction = info.fraction * rayLength;
+		resultFraction = info.fraction * rayLength - radius;
 	};
 
 	const bool groundDetected{ groundInfo.shape != nullptr && groundInfo.normal.y > 0 };
